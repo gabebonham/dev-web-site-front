@@ -12,6 +12,9 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        'imfell': ['IM Fell DW Pica SC', 'serif'],
+      },
     },
   },
   plugins: [],
