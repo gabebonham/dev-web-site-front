@@ -12,7 +12,7 @@ import {
   } from "@/components/ui/sidebar"
 import sideBarMenuItems from "../_lib/SideBarMenuItems"
    
-export default function AppSidebar() {
+export default function AppSideBar() {
 
 
 

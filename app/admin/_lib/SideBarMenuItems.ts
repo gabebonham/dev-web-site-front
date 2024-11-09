@@ -4,27 +4,27 @@ import { CaptionsIcon, AlignJustifyIcon, AtomIcon, CircleUserRoundIcon, Clipboar
 
 const sideBarMenuItems = [{
     title: 'Blog',
-    url: 'admin/blog',
+    url: 'blog',
     icon:  CaptionsIcon
 },
 {
     title: 'Projetos',
-    url: 'admin/projects',
+    url: 'projects',
     icon:  AtomIcon
 },
 {
     title: 'Sobre',
-    url: 'admin/about',
+    url: 'about',
     icon:  AlignJustifyIcon
 },
 {
     title: 'Contato',
-    url: 'admin/contact',
+    url: 'contact',
     icon:  CircleUserRoundIcon
 },
 {
     title: 'Competencias',
-    url: 'admin/competences',
+    url: 'competences',
     icon:  ClipboardListIcon
 }
 

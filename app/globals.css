@@ -10,6 +10,7 @@
 }
 
 @layer base {
+  
   :root {
     --radius: 0.5rem;
     --sidebar-background: 0 0% 98%;
@@ -32,4 +33,3 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
-
