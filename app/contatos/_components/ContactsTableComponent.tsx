@@ -18,10 +18,10 @@ export default function ContactsTableComponent({
 	contacts: Contact[];
 }) {
 	const getIcon = (contact) => {
-		if (contact.platform_name == 'Github') {
+		if (contact.platformName == 'Github') {
 			return <Github />;
 		}
-		if (contact.platform_name == 'Gmail') {
+		if (contact.platformName == 'Gmail') {
 			return <Mail />;
 		}
 	};
@@ -35,10 +35,10 @@ export default function ContactsTableComponent({
 							{getIcon(c)}
 						</TableCell>
 						<TableCell className="">
-							{c.platform_name}
+							{c.platformName}
 						</TableCell>
 						<TableCell>
-							{c.platform_user_page_link ==
+							{c.platformUserPageLink ==
 							'NDA' ? (
 								<>
 									Não
@@ -53,11 +53,11 @@ export default function ContactsTableComponent({
 							) : (
 								<Link
 									href={
-										c.platform_user_page_link
+										c.platformUserPageLink
 									}
 								>
 									{
-										c.platform_user_page_link
+										c.platformUserPageLink
 									}
 								</Link>
 							)}

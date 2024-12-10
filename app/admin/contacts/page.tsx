@@ -8,8 +8,8 @@ export default async function ContactsPage() {
 	const contacts: Contact[] = (await getAllContacts()) as Contact[];
 	const contactList = contacts.map((c) => ({
 		id: c.id,
-		platform_name: c.platform_name,
-		platform_user_page_link: c.platform_user_page_link,
+		platform_name: c.platformName,
+		platform_user_page_link: c.platformUserPageLink,
 		email: c.email,
 	}));
 	return (

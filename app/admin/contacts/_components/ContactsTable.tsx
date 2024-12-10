@@ -45,12 +45,10 @@ export default function ContactsTable({ contacts }) {
 							{b.id}
 						</TableCell>
 						<TableCell>
-							{b.platform_name}
+							{b.platformName}
 						</TableCell>
 						<TableCell>
-							{
-								b.platform_user_page_link
-							}
+							{b.platformUserPageLink}
 						</TableCell>
 						<TableCell>{b.email}</TableCell>
 						<TableCell>
