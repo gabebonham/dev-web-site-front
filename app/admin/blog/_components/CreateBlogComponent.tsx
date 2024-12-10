@@ -9,7 +9,7 @@ import {
 import { createBlog } from '../_service/BlogService';
 import { FormEvent, useState } from 'react';
 import { Textarea } from '@/components/ui/textarea';
-import Blog, { CreateBlog } from '../_model/BlogModel';
+import Blog from '../_model/BlogModel';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -25,7 +25,7 @@ export default function CreateBlogComponent() {
 		const form = new FormData(event.currentTarget);
 		const title = (await form.get('title')) as string;
 		const body = (await form.get('body')) as string;
-		await createBlog(new CreateBlog(title, body, image));
+		await createBlog(new Blog(1, title, body, image));
 		open(false);
 		router.refresh();
 	};

@@ -26,6 +26,7 @@ export default function BlogModal({ b }: { b: Blog }) {
 		blog.title = titleRef.current.value;
 		blog.body = bodyRef.current.value;
 		blog.imageName = image;
+		console.log(blog);
 		await updateBlogById(blog);
 		router.refresh();
 	};

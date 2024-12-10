@@ -12,25 +12,28 @@ import {
 	getAllBlogs,
 	getBlogById,
 } from './_service/BlogService';
-import BlogModel from './_model/BlogModel';
 import SideBarComponent from '../_components/SideBarComponent';
 import { Toggle } from '@/components/ui/toggle';
 import { Button } from '@/components/ui/button';
 import { useEffect, useState } from 'react';
 import BlogModal from './_components/BlogModal';
-import { getBlogMocks } from '@/app/_mocks/BlogMock';
 import Blog from './_model/BlogModel';
 import CreateBlogComponent from './_components/CreateBlogComponent';
 
 export default async function BlogHomePage() {
-	const blogs: Blog[] = await getAllBlogs();
-
+	const blogList: Blog[] = (await getAllBlogs()) as Blog[];
+	const blogs = blogList.map((b) => ({
+		id: b.id,
+		title: b.title,
+		imageName: b.imageName,
+		body: b.body,
+	}));
 	return (
 		<SideBarComponent>
 			<CreateBlogComponent />
 			<div className="grid grid-rows-4 grid-cols-4 gap-16">
 				{blogs.map((b) => (
-					<BlogModal b={b} />
+					<BlogModal key={b.id} b={b} />
 				))}
 			</div>
 		</SideBarComponent>

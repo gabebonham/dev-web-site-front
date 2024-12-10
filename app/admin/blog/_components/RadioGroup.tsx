@@ -7,10 +7,10 @@ import Image from 'next/image';
 
 export function RadioGroupComponent({ setImage }: { setImage: Function }) {
 	return (
-		<RadioGroup defaultValue="image1.jpg" className="grid-cols-4">
+		<RadioGroup className="grid-cols-4">
 			<div className="flex items-center space-x-2">
 				<RadioGroupItem
-					value="default"
+					value="r1"
 					id="r1"
 					onClick={(e) => setImage('image1.jpg')}
 				/>
@@ -23,7 +23,7 @@ export function RadioGroupComponent({ setImage }: { setImage: Function }) {
 			</div>
 			<div className="flex items-center space-x-2">
 				<RadioGroupItem
-					value="comfortable"
+					value="r2"
 					id="r2"
 					onClick={(e) => setImage('image2.jpg')}
 				/>
@@ -36,7 +36,7 @@ export function RadioGroupComponent({ setImage }: { setImage: Function }) {
 			</div>
 			<div className="flex items-center space-x-2">
 				<RadioGroupItem
-					value="compact"
+					value="r3"
 					id="r3"
 					onClick={(e) => setImage('image3.jpg')}
 				/>
@@ -49,8 +49,8 @@ export function RadioGroupComponent({ setImage }: { setImage: Function }) {
 			</div>
 			<div className="flex items-center space-x-2">
 				<RadioGroupItem
-					value="compact"
-					id="r3"
+					value="r4"
+					id="r4"
 					onClick={(e) => setImage('image4.jpg')}
 				/>
 				<Image

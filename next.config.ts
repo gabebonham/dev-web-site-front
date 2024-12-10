@@ -1,7 +1,10 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  /* config options here */
+	env: {
+		BACKEND_URL: 'http://localhost:3001/api',
+		RESEND_API_KEY: 're_FHTwcqWX_9QZxjeGRddfEfPFL45R7Y7cj',
+	},
 };
 
 export default nextConfig;
