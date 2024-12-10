@@ -1,13 +1,13 @@
 export async function getAllCompetences() {
 	const a = await (
-		await fetch('http://localhost:3001/api/competences')
+		await fetch(process.env.BACKEND_URL + '/competences')
 	).json();
 	return a;
 }
 
 export async function getCompetenceById(id) {
 	return await (
-		await fetch('http://localhost:3001/api/competences/' + id, {
+		await fetch(process.env.BACKEND_URL + '/competences/' + id, {
 			headers: {
 				'Content-Type': 'application/json',
 			},
@@ -18,7 +18,7 @@ export async function getCompetenceById(id) {
 }
 export async function createCompetence(competence) {
 	const competencesJson = await JSON.stringify(competence);
-	const a = await fetch('http://localhost:3001/api/competences', {
+	const a = await fetch(process.env.BACKEND_URL + '/competences', {
 		headers: {
 			'Content-Type': 'application/json',
 		},
@@ -30,7 +30,7 @@ export async function createCompetence(competence) {
 }
 export async function deleteCompetenceById(id: number) {
 	const a = await fetch(
-		'http://localhost:3001/api/competences/' + id.toString(),
+		process.env.BACKEND_URL + '/competences/' + id.toString(),
 		{
 			headers: {
 				'Content-Type': 'application/json',

@@ -1,6 +1,6 @@
 export async function getAbout() {
 	const about = await (
-		await fetch('http://localhost:3001/api/about', {
+		await fetch(process.env.BACKEND_URL + '/about', {
 			headers: {
 				'Content-Type': 'application/json',
 			},
@@ -12,7 +12,7 @@ export async function getAbout() {
 	return about;
 }
 export async function updateAbout(newAbout) {
-	const a = await fetch('http://localhost:3001/api/about', {
+	const a = await fetch(process.env.BACKEND_URL + '/about', {
 		headers: {
 			'Content-Type': 'application/json',
 		},

@@ -5,7 +5,7 @@ export async function authenticate(userName, password) {
 		password: password,
 	};
 	const token = await (
-		await fetch('http://localhost:3001/login', {
+		await fetch(process.env.BACKEND_URL + '/login', {
 			headers: {
 				'Content-Type': 'application/json',
 			},

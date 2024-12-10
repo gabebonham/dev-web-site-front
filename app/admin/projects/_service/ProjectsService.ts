@@ -36,7 +36,7 @@ async function updateProject(project) {
 	});
 }
 async function deleteProjectById(id: string) {
-	const a = await fetch(`http://localhost:3001/api/projects/${id}`, {
+	const a = await fetch(`${process.env.BACKEND_URL}/projects/${id}`, {
 		method: 'DELETE',
 		credentials: 'include',
 	});

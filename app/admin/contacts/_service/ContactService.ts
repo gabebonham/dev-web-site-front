@@ -1,18 +1,18 @@
 export async function getAllContacts() {
 	const a = await (
-		await fetch('http://localhost:3001/api/contacts')
+		await fetch(process.env.BACKEND_URL + '/contacts')
 	).json();
 	return a;
 }
 
 export async function getContactById(id) {
 	return await (
-		await fetch('http://localhost:3001/api/contacts/' + id)
+		await fetch(process.env.BACKEND_URL + '/contacts/' + id)
 	).json();
 }
 export async function createContact(contact) {
 	const contactJson = await JSON.stringify(contact);
-	const a = await fetch('http://localhost:3001/api/contacts', {
+	const a = await fetch(process.env.BACKEND_URL + '/contacts', {
 		headers: {
 			'Content-Type': 'application/json',
 		},
@@ -25,7 +25,7 @@ export async function createContact(contact) {
 export async function deleteContactById(id: number) {
 	console.log(id);
 	const a = await fetch(
-		'http://localhost:3001/api/contacts/' + id.toString(),
+		process.env.BACKEND_URL + '/contacts/' + id.toString(),
 		{
 			method: 'DELETE',
 			credentials: 'include',

@@ -1,16 +1,18 @@
 import Blog from '../_model/BlogModel';
 
 async function getAllBlogs(): Promise<Blog[]> {
-	const a = await (await fetch('http://localhost:3001/api/blogs')).json();
+	const a = await (
+		await fetch(process.env.BACKEND_URL + '/blogs')
+	).json();
 	return a;
 }
 
 async function getBlogById(id) {
-	return await fetch('http://localhost:3001/api/blogs/' + id);
+	return await fetch(process.env.BACKEND_URL + '/blogs/' + id);
 }
 
 async function deleteBlogById(id) {
-	const a = await fetch('http://localhost:3001/api/blogs/' + id, {
+	const a = await fetch(process.env.BACKEND_URL + '/blogs/' + id, {
 		method: 'DELETE',
 		credentials: 'include',
 	});
@@ -19,7 +21,7 @@ async function deleteBlogById(id) {
 async function updateBlogById(body: Blog) {
 	console.log(body);
 	const bodyJson = await JSON.stringify(body);
-	await fetch('http://localhost:3001/api/blogs', {
+	await fetch(process.env.BACKEND_URL + '/blogs', {
 		headers: {
 			'Content-Type': 'application/json',
 		},
@@ -31,7 +33,7 @@ async function updateBlogById(body: Blog) {
 
 async function createBlog(blog: Blog) {
 	const bodyJson = await JSON.stringify(blog);
-	await fetch('http://localhost:3001/api/blogs', {
+	await fetch(process.env.BACKEND_URL + '/blogs', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
