@@ -21,18 +21,18 @@ import Blog from './_model/BlogModel';
 import CreateBlogComponent from './_components/CreateBlogComponent';
 
 export default async function BlogHomePage() {
-	const blogList: Blog[] = (await getAllBlogs()) as Blog[];
+	const blogList = await getAllBlogs();
 	const blogs = blogList.map((b) => ({
 		id: b.id,
 		title: b.title,
-		imageName: b.imageName,
+		imageName: b.imageName || 'image1.jpg',
 		body: b.body,
 	}));
 	return (
 		<SideBarComponent>
 			<CreateBlogComponent />
 			<div className="grid grid-rows-4 grid-cols-4 gap-16">
-				{blogs.map((b) => (
+				{blogList.map((b) => (
 					<BlogModal key={b.id} b={b} />
 				))}
 			</div>

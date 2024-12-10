@@ -16,7 +16,7 @@ import { Input } from '@/components/ui/input';
 import { RadioGroupComponent } from './RadioGroup';
 
 export default function CreateBlogComponent() {
-	const [image, setImage] = useState('');
+	const [image, setImage] = useState('image.jpg');
 	const router = useRouter();
 	const [isOpen, open] = useState(false);
 

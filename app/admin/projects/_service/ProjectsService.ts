@@ -2,20 +2,20 @@ import Project from '../_models/ProjectModel';
 
 async function getAllProjects(): Promise<Project[]> {
 	const p = await (
-		await fetch('http://localhost:3001/api/projects')
+		await fetch(process.env.BACKEND_URL + '/projects')
 	).json();
 	console.log(p);
 	return p;
 }
 async function getProjectById(id): Promise<Project> {
 	return await (
-		await fetch('http://localhost:3001/api/projects/' + id)
+		await fetch(process.env.BACKEND_URL + '/projects/' + id)
 	).json();
 }
 async function createProject(project) {
 	const projectJson = await JSON.stringify(project);
 	console.log(projectJson);
-	const a = await fetch('http://localhost:3001/api/projects', {
+	const a = await fetch(process.env.BACKEND_URL + '/projects', {
 		headers: {
 			'Content-Type': 'application/json',
 		},
@@ -26,7 +26,7 @@ async function createProject(project) {
 }
 async function updateProject(project) {
 	const projectJson = await JSON.stringify(project);
-	await fetch('http://localhost:3001/api/projects', {
+	await fetch(process.env.BACKEND_URL + '/projects', {
 		headers: {
 			'Content-Type': 'application/json',
 		},
@@ -36,7 +36,7 @@ async function updateProject(project) {
 	});
 }
 async function deleteProjectById(id: string) {
-	const a = await fetch(`${process.env.BACKEND_URL}/projects/${id}`, {
+	const a = await fetch(process.env.BACKEND_URL + '/projects/' + id, {
 		method: 'DELETE',
 		credentials: 'include',
 	});

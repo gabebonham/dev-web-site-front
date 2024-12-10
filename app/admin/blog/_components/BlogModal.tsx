@@ -15,19 +15,23 @@ import { deleteBlogById, updateBlogById } from '../_service/BlogService';
 import { useRouter } from 'next/navigation';
 import { RadioGroupComponent } from './RadioGroup';
 
-export default function BlogModal({ b }: { b: Blog }) {
+export default function BlogModal({ b }) {
 	const router = useRouter();
-	const [image, setImage] = useState('');
+	const [image, setImage] = useState('image1.jpg');
 	const [isOpen, open] = useState(false);
 	const titleRef = useRef<any>(null);
 	const bodyRef = useRef<any>(null);
 
 	const updateBlogHandler = async (blog) => {
-		blog.title = titleRef.current.value;
-		blog.body = bodyRef.current.value;
-		blog.imageName = image;
+		const title = titleRef.current.value;
+		const body = bodyRef.current.value;
 		console.log(blog);
-		await updateBlogById(blog);
+		await updateBlogById({
+			id: blog.id,
+			title: title,
+			body: body,
+			imageName: image,
+		});
 		router.refresh();
 	};
 
@@ -45,7 +49,7 @@ export default function BlogModal({ b }: { b: Blog }) {
 			>
 				<Card
 					style={{
-						backgroundImage: `url(/${b.imageName})`,
+						backgroundImage: `url(/${b?.imageName})`,
 						backgroundSize: 'cover',
 						backgroundPosition: 'center',
 					}}
@@ -54,7 +58,7 @@ export default function BlogModal({ b }: { b: Blog }) {
 					<CardHeader>
 						<CardTitle className="text-wrap">
 							<p className="text-white break-words">
-								{b.title.slice(
+								{b?.title.slice(
 									0,
 									30,
 								)}
@@ -63,7 +67,7 @@ export default function BlogModal({ b }: { b: Blog }) {
 					</CardHeader>
 					<CardContent className="text-wrap">
 						<p className="text-white break-words">
-							{b.body.slice(0, 30)}
+							{b?.body.slice(0, 30)}
 						</p>
 					</CardContent>
 					<CardFooter className="size-full pt-4"></CardFooter>
@@ -81,7 +85,7 @@ export default function BlogModal({ b }: { b: Blog }) {
 										titleRef
 									}
 									placeholder={
-										b.title
+										b?.title
 									}
 									type="text"
 								/>
@@ -92,7 +96,7 @@ export default function BlogModal({ b }: { b: Blog }) {
 										bodyRef
 									}
 									placeholder={
-										b.body
+										b?.body
 									}
 								/>
 								<RadioGroupComponent
@@ -140,7 +144,7 @@ export default function BlogModal({ b }: { b: Blog }) {
 										e,
 									) =>
 										deleteBlogHandler(
-											b.id,
+											b?.id,
 										)
 									}
 								>

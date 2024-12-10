@@ -2,7 +2,13 @@ import Blog from '../_model/BlogModel';
 
 async function getAllBlogs(): Promise<Blog[]> {
 	const a = await (
-		await fetch(process.env.BACKEND_URL + '/blogs')
+		await fetch(process.env.BACKEND_URL + '/blogs', {
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			method: 'GET',
+			credentials: 'include',
+		})
 	).json();
 	return a;
 }
