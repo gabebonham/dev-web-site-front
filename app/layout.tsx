@@ -1,23 +1,19 @@
-import type { Metadata } from "next";
-import "./globals.css";
+import type { Metadata } from 'next';
+import './globals.css';
 
 export const metadata: Metadata = {
-  title: "Gabriel Grote",
-  description: "Gabriel Grote Web Site",
+	title: 'Gabriel Grote',
+	description: 'Gabriel Grote Web Site',
 };
 
 export default function RootLayout({
-  children,
+	children,
 }: Readonly<{
-  children: React.ReactNode;
+	children: React.ReactNode;
 }>) {
-  return (
-    <html lang="pt" className="">
-      <body
-        className="font-imfell"
-      >
-        {children}
-      </body>
-    </html>
-  );
+	return (
+		<html lang="pt" className="">
+			<body className="font-imfell h-full">{children}</body>
+		</html>
+	);
 }
