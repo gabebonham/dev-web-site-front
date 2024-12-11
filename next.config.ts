@@ -1,7 +1,7 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-	basePath: 'grote.com.br/',
+	basePath: '/',
 	env: {
 		BACKEND_URL:
 			'https://dev-web-site-back-production.up.railway.app/api',
