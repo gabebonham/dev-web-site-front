@@ -4,7 +4,9 @@ const nextConfig: NextConfig = {
 	env: {
 		BACKEND_URL:
 			'https://dev-web-site-back-production.up.railway.app/api',
-		RESEND_API_KEY: 're_FHTwcqWX_9QZxjeGRddfEfPFL45R7Y7cj',
+		BACKEND_URL_PURE:
+			'https://dev-web-site-back-production.up.railway.app',
+		JWT_KEY: 'grote',
 	},
 };
 

@@ -26,7 +26,7 @@ import Link from 'next/link';
 
 import { useRef, useState } from 'react';
 import ScheduleModal from './ScheduleModal';
-import { authenticate } from '@/app/admin/services/AuthService';
+import { authenticate, logout } from '@/app/admin/services/AuthService';
 import { useRouter } from 'next/navigation';
 import Cookie from 'js-cookie';
 
@@ -46,9 +46,14 @@ export default function LayoutComponent({ children }) {
 			name.current.value,
 			pass.current.value,
 		);
-		Cookie.set(JSON.stringify(token));
+		Cookie.set('session', JSON.stringify(token));
 		console.log(token);
 		router.push('/admin/competences');
+	};
+	const logoutHandler = async () => {
+		await logout();
+		Cookie.remove('session');
+		router.refresh();
 	};
 
 	return (
@@ -115,6 +120,15 @@ export default function LayoutComponent({ children }) {
 													}
 												>
 													Send
+												</Button>
+												<Button
+													onClick={(
+														e,
+													) =>
+														logoutHandler()
+													}
+												>
+													Logout
 												</Button>
 											</CardFooter>
 										</CardHeader>

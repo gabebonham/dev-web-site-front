@@ -5,7 +5,7 @@ export async function authenticate(userName, password) {
 		password: password,
 	};
 	const token = await (
-		await fetch(process.env.BACKEND_URL + '/login', {
+		await fetch(process.env.BACKEND_URL_PURE + '/login', {
 			headers: {
 				'Content-Type': 'application/json',
 			},
@@ -17,4 +17,8 @@ export async function authenticate(userName, password) {
 	setCookie('session', JSON.stringify(token.session));
 
 	return token.session;
+}
+
+export async function logout() {
+	setCookie('session', '', { expires: new Date(0) });
 }
