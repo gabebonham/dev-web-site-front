@@ -1,4 +1,6 @@
-export async function getAllContacts() {
+import Contact from '../_models/ContactModel';
+
+export async function getAllContacts(): Promise<Contact[]> {
 	const a = await (
 		await fetch(process.env.BACKEND_URL + '/contacts', {
 			headers: {

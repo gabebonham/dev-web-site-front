@@ -1,4 +1,6 @@
-export async function getAllCompetences() {
+import Competence from '../_models/CompetenceModel';
+
+export async function getAllCompetences(): Promise<Competence[]> {
 	const a = await (
 		await fetch(process.env.BACKEND_URL + '/competences')
 	).json();

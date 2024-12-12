@@ -1,4 +1,13 @@
-export async function getAllMessages() {
+export async function getAllMessages(): Promise<
+	{
+		id: number;
+		msg: string;
+		email: string;
+		scheduled: Date;
+		createdAt: Date;
+		isNew: boolean;
+	}[]
+> {
 	const message = await (
 		await fetch(process.env.BACKEND_URL + '/messages', {
 			headers: {

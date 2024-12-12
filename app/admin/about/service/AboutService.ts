@@ -1,4 +1,4 @@
-export async function getAbout() {
+export async function getAbout(): Promise<string> {
 	const about = await (
 		await fetch(process.env.BACKEND_URL + '/about', {
 			headers: {
