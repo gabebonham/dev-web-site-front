@@ -17,7 +17,7 @@ import EditProjectModal from './EditProjectModal';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-export default function TableComponent({ projects }: { projects: Project[] }) {
+export default function TableComponent({ projects }) {
 	const router = useRouter();
 	const [isOpen, open] = useState(false);
 	const [project, setProject] = useState(null);

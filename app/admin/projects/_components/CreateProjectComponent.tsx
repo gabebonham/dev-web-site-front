@@ -24,7 +24,11 @@ export default function CreateProjectComponent() {
 		const name = nameRef.current.value;
 		const description = descriptionRef.current.value;
 		const link = linkRef.current.value;
-		await createProject(new Project(name, link, description, 1));
+		await createProject({
+			name: name,
+			link: link,
+			description: description,
+		});
 		open(false);
 		router.refresh();
 	};

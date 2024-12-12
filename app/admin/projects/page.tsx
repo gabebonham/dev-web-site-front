@@ -5,7 +5,7 @@ import Project from './_models/ProjectModel';
 import { getAllProjects } from './_service/ProjectsService';
 
 export default async function ProjectsPage() {
-	const projects: Project[] = (await getAllProjects()) as Project[];
+	const projects = await getAllProjects();
 	const projectList = projects.map((p) => ({
 		name: p.name,
 		id: p.id,
