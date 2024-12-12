@@ -6,7 +6,9 @@ export default async function AboutPage() {
 	const about = await getAbout();
 	return (
 		<SideBarComponent>
-			<EditAbout about={about} />
+			{about != null && about != undefined && (
+				<EditAbout about={about} />
+			)}
 		</SideBarComponent>
 	);
 }

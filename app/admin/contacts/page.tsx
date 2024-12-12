@@ -15,7 +15,9 @@ export default async function ContactsPage() {
 	return (
 		<SideBarComponent>
 			<CreateContactComponent />
-			<ContactsTable contacts={contactList} />
+			{contactList.length != 0 && (
+				<ContactsTable contacts={contactList} />
+			)}
 		</SideBarComponent>
 	);
 }

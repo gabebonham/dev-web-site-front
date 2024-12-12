@@ -32,7 +32,11 @@ export default async function ContactPage() {
 						que use o meu email.
 					</p>
 				</div>
-				<ContactsTableComponent contacts={contacts} />
+				{contacts.length != 0 && (
+					<ContactsTableComponent
+						contacts={contacts}
+					/>
+				)}
 			</div>
 		</LayoutComponent>
 	);

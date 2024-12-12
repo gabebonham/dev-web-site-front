@@ -15,7 +15,9 @@ export default async function MessagesPage() {
 	return (
 		<SideBarComponent>
 			<div>
-				<MessagesTable messages={messageList} />
+				{messageList.length != 0 && (
+					<MessagesTable messages={messageList} />
+				)}
 			</div>
 		</SideBarComponent>
 	);

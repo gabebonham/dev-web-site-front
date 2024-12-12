@@ -8,7 +8,9 @@ export default async function ComponentsPage() {
 	return (
 		<SideBarComponent>
 			<CreateCompetenceComponent />
-			<CompetencesTable competences={competences} />
+			{competences.length != 0 && (
+				<CompetencesTable competences={competences} />
+			)}
 		</SideBarComponent>
 	);
 }

@@ -15,7 +15,9 @@ export default async function ProjectsPage() {
 	return (
 		<SideBarComponent>
 			<CreateProjectComponent />
-			<TableComponent projects={projectList} />
+			{projectList.length != 0 && (
+				<TableComponent projects={projectList} />
+			)}
 		</SideBarComponent>
 	);
 }
