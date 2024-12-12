@@ -32,7 +32,7 @@ export default async function BlogHomePage() {
 		<SideBarComponent>
 			<CreateBlogComponent />
 			<div className="grid grid-rows-4 grid-cols-4 gap-16">
-				{blogList.map((b) => (
+				{blogs.map((b) => (
 					<BlogModal key={b.id} b={b} />
 				))}
 			</div>
