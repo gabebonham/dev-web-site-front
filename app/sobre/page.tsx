@@ -16,9 +16,16 @@ export default async function aboutPage() {
 					<h1 className="text-5xl ml-80 drop-shadow-[0_2px_2px_rgba(0,0,0,1)] ">
 						Gabriel Grote
 					</h1>
-					<div className="p-16 text-start text-lg drop-shadow-[0_2px_2px_rgba(0,0,0,1)]">
-						{aboutText.about.value}
-					</div>
+					{aboutText != null &&
+						aboutText != undefined && (
+							<div className="p-16 text-start text-lg drop-shadow-[0_2px_2px_rgba(0,0,0,1)]">
+								{
+									aboutText
+										.about
+										.value
+								}
+							</div>
+						)}
 				</div>
 			</div>
 		</LayoutComponent>

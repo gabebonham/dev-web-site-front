@@ -49,6 +49,9 @@ async function updateProject(project) {
 }
 async function deleteProjectById(id) {
 	const a = await fetch(process.env.BACKEND_URL + '/projects/' + id, {
+		headers: {
+			'Content-Type': 'application/json',
+		},
 		method: 'DELETE',
 		credentials: 'include',
 	});
