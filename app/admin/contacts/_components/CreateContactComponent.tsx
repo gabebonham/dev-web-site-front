@@ -24,9 +24,11 @@ export default function CreateContactComponent() {
 		const platform = platformRef.current.value;
 		const platformLink = platformLinkRef.current.value;
 		const email = emailRef.current.value;
-		await createContact(
-			new Contact(1, platform, platformLink, email),
-		);
+		await createContact({
+			platform: platform,
+			platformUserPageLink: platformLink,
+			email: email,
+		});
 		open(false);
 		router.refresh();
 	};

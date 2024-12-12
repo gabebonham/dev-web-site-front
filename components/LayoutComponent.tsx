@@ -122,6 +122,7 @@ export default function LayoutComponent({ children }) {
 													Send
 												</Button>
 												<Button
+													className="ml-4"
 													onClick={(
 														e,
 													) =>

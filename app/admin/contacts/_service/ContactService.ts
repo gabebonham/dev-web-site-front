@@ -1,13 +1,25 @@
 export async function getAllContacts() {
 	const a = await (
-		await fetch(process.env.BACKEND_URL + '/contacts')
+		await fetch(process.env.BACKEND_URL + '/contacts', {
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			method: 'GET',
+			credentials: 'include',
+		})
 	).json();
 	return a;
 }
 
 export async function getContactById(id) {
 	return await (
-		await fetch(process.env.BACKEND_URL + '/contacts/' + id)
+		await fetch(process.env.BACKEND_URL + '/contacts/' + id, {
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			method: 'GET',
+			credentials: 'include',
+		})
 	).json();
 }
 export async function createContact(contact) {
@@ -27,7 +39,10 @@ export async function deleteContactById(id: number) {
 	const a = await fetch(
 		process.env.BACKEND_URL + '/contacts/' + id.toString(),
 		{
-			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			method: 'GET',
 			credentials: 'include',
 		},
 	);

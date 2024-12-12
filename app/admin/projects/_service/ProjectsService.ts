@@ -2,14 +2,26 @@ import Project from '../_models/ProjectModel';
 
 async function getAllProjects(): Promise<Project[]> {
 	const p = await (
-		await fetch(process.env.BACKEND_URL + '/projects')
+		await fetch(process.env.BACKEND_URL + '/projects', {
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			method: 'GET',
+			credentials: 'include',
+		})
 	).json();
 	console.log(p);
 	return p;
 }
 async function getProjectById(id): Promise<Project> {
 	return await (
-		await fetch(process.env.BACKEND_URL + '/projects/' + id)
+		await fetch(process.env.BACKEND_URL + '/projects/' + id, {
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			method: 'GET',
+			credentials: 'include',
+		})
 	).json();
 }
 async function createProject(project) {
