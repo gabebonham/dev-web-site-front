@@ -1,23 +1,6 @@
-import AppSideBar from '../_components/AppSideBar';
-import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardFooter,
-	CardHeader,
-	CardTitle,
-} from '@/components/ui/card';
-import {
-	deleteBlogById,
-	getAllBlogs,
-	getBlogById,
-} from './_service/BlogService';
+import { getAllBlogs } from './_service/BlogService';
 import SideBarComponent from '../_components/SideBarComponent';
-import { Toggle } from '@/components/ui/toggle';
-import { Button } from '@/components/ui/button';
-import { useEffect, useState } from 'react';
 import BlogModal from './_components/BlogModal';
-import Blog from './_model/BlogModel';
 import CreateBlogComponent from './_components/CreateBlogComponent';
 
 export default async function BlogHomePage() {

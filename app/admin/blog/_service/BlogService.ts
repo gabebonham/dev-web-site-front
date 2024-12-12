@@ -24,7 +24,7 @@ async function deleteBlogById(id) {
 	});
 }
 
-async function updateBlogById(body: Blog) {
+async function updateBlogById(body) {
 	console.log(body);
 	const bodyJson = await JSON.stringify(body);
 	await fetch(process.env.BACKEND_URL + '/blogs', {
@@ -37,7 +37,7 @@ async function updateBlogById(body: Blog) {
 	});
 }
 
-async function createBlog(blog: Blog) {
+async function createBlog(blog) {
 	const bodyJson = await JSON.stringify(blog);
 	await fetch(process.env.BACKEND_URL + '/blogs', {
 		method: 'POST',

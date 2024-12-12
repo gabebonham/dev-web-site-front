@@ -25,7 +25,11 @@ export default function CreateBlogComponent() {
 		const form = new FormData(event.currentTarget);
 		const title = (await form.get('title')) as string;
 		const body = (await form.get('body')) as string;
-		await createBlog(new Blog(1, title, body, image));
+		await createBlog({
+			title: title,
+			body: body,
+			imageName: image,
+		});
 		open(false);
 		router.refresh();
 	};
