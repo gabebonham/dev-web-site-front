@@ -7,7 +7,12 @@ import Image from 'next/image';
 import img from '@/public/contact.jpeg';
 
 export default async function ContactPage() {
-	const contacts = (await getAllContacts()) as Contact[];
+	const contacts = (await getAllContacts()).map((y) => ({
+		id: y.id,
+		platformName: y.platformName,
+		platformUserPageLink: y.platformUserPageLink,
+		email: y.email,
+	}));
 	return (
 		<LayoutComponent>
 			<div className="mb-8 p-16 shadow-2xl shadow-black bg-[rgba(0,0,0,0.2)] ">

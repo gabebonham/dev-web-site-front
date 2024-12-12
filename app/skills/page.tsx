@@ -14,7 +14,11 @@ import Image from 'next/image';
 import img from '@/public/skilld.jpeg';
 
 export default async function SkillsPage() {
-	const skills = (await getAllSkills()) as Competence[];
+	const skills = (await getAllSkills()).map((y) => ({
+		id: y.id,
+		name: y.name,
+		rating: y.rating,
+	}));
 	return (
 		<LayoutComponent>
 			<div className="mb-8 p-16 shadow-2xl shadow-black bg-[rgba(0,0,0,0.2)]">
