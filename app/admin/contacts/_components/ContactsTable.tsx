@@ -18,7 +18,6 @@ import { useState } from 'react';
 
 export default function ContactsTable({ contacts }) {
 	const router = useRouter();
-	const contactList: Contact[] = contacts;
 
 	const deleteHandler = async (id) => {
 		console.log(id);
@@ -39,7 +38,7 @@ export default function ContactsTable({ contacts }) {
 				</TableRow>
 			</TableHeader>
 			<TableBody>
-				{contactList.map((b) => (
+				{contacts.map((b) => (
 					<TableRow key={b.id}>
 						<TableCell className="font-medium">
 							{b.id}
