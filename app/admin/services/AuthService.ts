@@ -13,8 +13,8 @@ export async function authenticate(userName, password) {
 			body: JSON.stringify(userObj),
 		})
 	).json();
-	console.log(token.session);
-	setCookie('session', JSON.stringify(token.session));
+	console.log(token);
+	setCookie('session', token);
 
 	return token.session;
 }

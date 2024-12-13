@@ -46,7 +46,7 @@ export default function LayoutComponent({ children }) {
 			name.current.value,
 			pass.current.value,
 		);
-		Cookie.set('session', JSON.stringify(token));
+		Cookie.set('session', token);
 		console.log(token);
 		router.push('/admin/competences');
 	};
