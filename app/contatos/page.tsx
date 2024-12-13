@@ -12,7 +12,7 @@ export default async function ContactPage() {
 		platformName: y.platformName,
 		platformUserPageLink: y.platformUserPageLink,
 		email: y.email,
-	}));
+	})) as Contact[];
 	return (
 		<LayoutComponent>
 			<div className="mb-8 p-16 shadow-2xl shadow-black bg-[rgba(0,0,0,0.2)] ">

@@ -8,7 +8,7 @@ export async function getAllMessages(): Promise<
 		isNew: boolean;
 	}[]
 > {
-	const message = await (
+	const message = (await (
 		await fetch(process.env.BACKEND_URL + '/messages', {
 			headers: {
 				'Content-Type': 'application/json',
@@ -16,10 +16,17 @@ export async function getAllMessages(): Promise<
 			method: 'GET',
 			credentials: 'include',
 		})
-	).json();
+	).json()) as {
+		id: number;
+		msg: string;
+		email: string;
+		scheduled: Date;
+		createdAt: Date;
+		isNew: boolean;
+	}[];
 	return message;
 }
-export async function updateMessage(id) {
+export async function updateMessage(id: number) {
 	await fetch(process.env.BACKEND_URL + '/messages/' + id, {
 		headers: {
 			'Content-Type': 'application/json',
@@ -28,7 +35,7 @@ export async function updateMessage(id) {
 		credentials: 'include',
 	});
 }
-export async function deleteMessageById(id) {
+export async function deleteMessageById(id: number) {
 	await fetch(process.env.BACKEND_URL + '/messages/' + id, {
 		headers: {
 			'Content-Type': 'application/json',

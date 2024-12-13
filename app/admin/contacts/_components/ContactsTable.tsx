@@ -16,10 +16,10 @@ import { deleteContactById } from '../_service/ContactService';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-export default function ContactsTable({ contacts }) {
+export default function ContactsTable({ contacts }: { contacts: Contact[] }) {
 	const router = useRouter();
 
-	const deleteHandler = async (id) => {
+	const deleteHandler = async (id: number) => {
 		console.log(id);
 		await deleteContactById(id);
 		router.refresh();

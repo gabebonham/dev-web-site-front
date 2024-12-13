@@ -23,7 +23,7 @@ export default function CreateCompetenceComponent() {
 		const name = nameRef.current.value;
 		const rating = Number.parseInt(ratingRef.current.value);
 
-		await createCompetence(new Competence(1, name, rating));
+		await createCompetence({ name: name, rating: rating });
 		open(false);
 		router.refresh();
 	};

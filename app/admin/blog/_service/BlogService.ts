@@ -1,7 +1,7 @@
 import Blog from '../_model/BlogModel';
 
 async function getAllBlogs(): Promise<Blog[]> {
-	const a = await (
+	const a = (await (
 		await fetch(process.env.BACKEND_URL + '/blogs', {
 			headers: {
 				'Content-Type': 'application/json',
@@ -9,16 +9,19 @@ async function getAllBlogs(): Promise<Blog[]> {
 			method: 'GET',
 			credentials: 'include',
 		})
+	).json()) as Blog[];
+	return a;
+}
+
+async function getBlogById(id: number): Promise<Blog> {
+	const a = await (
+		await fetch(process.env.BACKEND_URL + '/blogs/' + id)
 	).json();
 	return a;
 }
 
-async function getBlogById(id) {
-	return await fetch(process.env.BACKEND_URL + '/blogs/' + id);
-}
-
-async function deleteBlogById(id) {
-	const a = await fetch(process.env.BACKEND_URL + '/blogs/' + id, {
+async function deleteBlogById(id: number) {
+	await fetch(process.env.BACKEND_URL + '/blogs/' + id, {
 		method: 'DELETE',
 		credentials: 'include',
 	});

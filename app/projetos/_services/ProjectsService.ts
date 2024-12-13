@@ -2,7 +2,7 @@ import Project from '@/app/admin/projects/_models/ProjectModel';
 
 export async function getAllProjects(): Promise<Project[]> {
 	const backendUrl = process.env.BACKEND_URL as string;
-	const projs = await (
+	const projs = (await (
 		await fetch(backendUrl + '/projects', {
 			headers: {
 				'Content-Type': 'application/json',
@@ -10,6 +10,6 @@ export async function getAllProjects(): Promise<Project[]> {
 			method: 'GET',
 			credentials: 'include',
 		})
-	).json();
+	).json()) as Project[];
 	return projs;
 }

@@ -1,7 +1,7 @@
 import Project from '../_models/ProjectModel';
 
 async function getAllProjects(): Promise<Project[]> {
-	const p = await (
+	const p = (await (
 		await fetch(process.env.BACKEND_URL + '/projects', {
 			headers: {
 				'Content-Type': 'application/json',
@@ -9,12 +9,12 @@ async function getAllProjects(): Promise<Project[]> {
 			method: 'GET',
 			credentials: 'include',
 		})
-	).json();
+	).json()) as Project[];
 	console.log(p);
 	return p;
 }
-async function getProjectById(id): Promise<Project> {
-	return await (
+async function getProjectById(id: number): Promise<Project> {
+	return (await (
 		await fetch(process.env.BACKEND_URL + '/projects/' + id, {
 			headers: {
 				'Content-Type': 'application/json',
@@ -22,7 +22,7 @@ async function getProjectById(id): Promise<Project> {
 			method: 'GET',
 			credentials: 'include',
 		})
-	).json();
+	).json()) as Project;
 }
 async function createProject(project) {
 	const projectJson = await JSON.stringify(project);
@@ -47,7 +47,7 @@ async function updateProject(project) {
 		credentials: 'include',
 	});
 }
-async function deleteProjectById(id) {
+async function deleteProjectById(id: number) {
 	const a = await fetch(process.env.BACKEND_URL + '/projects/' + id, {
 		headers: {
 			'Content-Type': 'application/json',

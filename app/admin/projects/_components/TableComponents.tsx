@@ -17,11 +17,11 @@ import EditProjectModal from './EditProjectModal';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-export default function TableComponent({ projects }) {
+export default function TableComponent({ projects }: { projects: Project[] }) {
 	const router = useRouter();
 	const [isOpen, open] = useState(false);
 	const [project, setProject] = useState(null);
-	const deleteProject = async (id) => {
+	const deleteProject = async (id: number) => {
 		await deleteProjectById(id);
 		open(false);
 		router.refresh();

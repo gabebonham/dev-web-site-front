@@ -22,7 +22,7 @@ export default function CompetencesTable({
 	competences: Competence[];
 }) {
 	const router = useRouter();
-	const deleteHandler = async (id) => {
+	const deleteHandler = async (id: number) => {
 		await deleteCompetenceById(id);
 		router.refresh();
 	};

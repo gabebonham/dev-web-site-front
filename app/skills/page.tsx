@@ -18,7 +18,7 @@ export default async function SkillsPage() {
 		id: y.id,
 		name: y.name,
 		rating: y.rating,
-	}));
+	})) as Competence[];
 	return (
 		<LayoutComponent>
 			<div className="mb-8 p-16 shadow-2xl shadow-black bg-[rgba(0,0,0,0.2)]">

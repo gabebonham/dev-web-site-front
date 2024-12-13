@@ -19,7 +19,7 @@ export default async function ProjectsPage() {
 		name: y.name,
 		description: y.description,
 		link: y.link,
-	}));
+	})) as Project[];
 
 	return (
 		<LayoutComponent>

@@ -1,7 +1,7 @@
 import Contact from '../_models/ContactModel';
 
 export async function getAllContacts(): Promise<Contact[]> {
-	const a = await (
+	const a = (await (
 		await fetch(process.env.BACKEND_URL + '/contacts', {
 			headers: {
 				'Content-Type': 'application/json',
@@ -9,12 +9,12 @@ export async function getAllContacts(): Promise<Contact[]> {
 			method: 'GET',
 			credentials: 'include',
 		})
-	).json();
+	).json()) as Contact[];
 	return a;
 }
 
-export async function getContactById(id) {
-	return await (
+export async function getContactById(id: number): Promise<Contact> {
+	return (await (
 		await fetch(process.env.BACKEND_URL + '/contacts/' + id, {
 			headers: {
 				'Content-Type': 'application/json',
@@ -22,7 +22,7 @@ export async function getContactById(id) {
 			method: 'GET',
 			credentials: 'include',
 		})
-	).json();
+	).json()) as Contact;
 }
 export async function createContact(contact) {
 	const contactJson = await JSON.stringify(contact);

@@ -1,14 +1,14 @@
 import Competence from '../_models/CompetenceModel';
 
 export async function getAllCompetences(): Promise<Competence[]> {
-	const a = await (
+	const a = (await (
 		await fetch(process.env.BACKEND_URL + '/competences')
-	).json();
+	).json()) as Competence[];
 	return a;
 }
 
-export async function getCompetenceById(id) {
-	return await (
+export async function getCompetenceById(id: number): Promise<Competence> {
+	const a = await (
 		await fetch(process.env.BACKEND_URL + '/competences/' + id, {
 			headers: {
 				'Content-Type': 'application/json',
@@ -17,6 +17,7 @@ export async function getCompetenceById(id) {
 			credentials: 'include',
 		})
 	).json();
+	return a;
 }
 export async function createCompetence(competence) {
 	const competencesJson = await JSON.stringify(competence);

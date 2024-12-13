@@ -29,7 +29,7 @@ export default function EditProjectModal({
 	const descriptionRef = useRef<any>(null);
 	const linkRef = useRef<any>(null);
 
-	const updateProjectById = async (proj) => {
+	const updateProjectById = async (proj: Project) => {
 		proj.name = nameRef.current.value || proj.name;
 		proj.description =
 			descriptionRef.current.value || proj.description;

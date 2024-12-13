@@ -15,14 +15,28 @@ import { deleteBlogById, updateBlogById } from '../_service/BlogService';
 import { useRouter } from 'next/navigation';
 import { RadioGroupComponent } from './RadioGroup';
 
-export default function BlogModal({ b }) {
+export default function BlogModal({
+	b,
+}: {
+	b: {
+		id: number;
+		title: string;
+		imageName: string;
+		body: string;
+	};
+}) {
 	const router = useRouter();
 	const [image, setImage] = useState('image1.jpg');
 	const [isOpen, open] = useState(false);
 	const titleRef = useRef<any>(null);
 	const bodyRef = useRef<any>(null);
 
-	const updateBlogHandler = async (blog) => {
+	const updateBlogHandler = async (blog: {
+		id: number;
+		title: string;
+		imageName: string;
+		body: string;
+	}) => {
 		const title = titleRef.current.value;
 		const body = bodyRef.current.value;
 		console.log(blog);
