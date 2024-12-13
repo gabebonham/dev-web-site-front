@@ -9,8 +9,8 @@ export async function decrypt(session) {
 			algorithms: ['HS256'],
 		});
 		console.log(payload.user);
-		return payload.user;
+		return true;
 	} catch (e) {
-		return null;
+		return false;
 	}
 }
