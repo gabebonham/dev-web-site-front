@@ -11,6 +11,7 @@ export async function authenticate(userName, password): Promise<string> {
 			},
 			method: 'POST',
 			body: JSON.stringify(userObj),
+			credentials: 'include',
 		})
 	).json();
 	console.log(token);
