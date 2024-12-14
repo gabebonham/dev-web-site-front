@@ -43,23 +43,27 @@ export default async function SkillsPage() {
 					</p>
 				</div>
 				<div className="grid grid-cols-5 gap-8">
-					{skills.map((s) => (
-						<Card className="hover:animate-flash hover:animate-pulseFlash">
-							<CardHeader>
-								<CardTitle>
-									{s.name}
-								</CardTitle>
-							</CardHeader>
-							<CardContent>
-								<CardDescription className="text-lg">
-									{
-										s.rating
-									}
-									%
-								</CardDescription>
-							</CardContent>
-						</Card>
-					))}
+					{skills &&
+						skills.map((s) => (
+							<Card className="hover:animate-flash hover:animate-pulseFlash">
+								<CardHeader>
+									<CardTitle>
+										{
+											s.name
+										}
+									</CardTitle>
+								</CardHeader>
+								<CardContent>
+									<CardDescription className="text-lg">
+										{
+											s.rating
+										}
+
+										%
+									</CardDescription>
+								</CardContent>
+							</Card>
+						))}
 				</div>
 			</div>
 		</LayoutComponent>
