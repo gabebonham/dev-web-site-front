@@ -9,6 +9,10 @@ export async function a() {
 	return aboutText;
 }
 export default async function aboutPage() {
+	async function a() {
+		const aboutText = await getAbout();
+		return aboutText;
+	}
 	const aboutText = await a();
 	return (
 		<LayoutComponent>
