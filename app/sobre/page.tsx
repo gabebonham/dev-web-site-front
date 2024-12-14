@@ -5,11 +5,7 @@ import { getAbout } from './_services/AboutService';
 import About from '../admin/about/models/AboutMode';
 
 export default async function aboutPage() {
-	async function a() {
-		const aboutText = await getAbout();
-		return aboutText;
-	}
-	const aboutText = await a();
+	const aboutText = await getAbout();
 	return (
 		<LayoutComponent>
 			<div className="mb-8 p-16 shadow-2xl shadow-black bg-[rgba(0,0,0,0.2)]">
