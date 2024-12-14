@@ -14,7 +14,7 @@ import Image from 'next/image';
 import img from '@/public/proj.jpeg';
 
 export default async function ProjectsPage() {
-	const projects = (await getAllProjects()) || [];
+	const projects = await getAllProjects();
 
 	return (
 		<LayoutComponent>

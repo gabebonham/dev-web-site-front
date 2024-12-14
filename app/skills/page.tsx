@@ -14,7 +14,7 @@ import Image from 'next/image';
 import img from '@/public/skilld.jpeg';
 
 export default async function SkillsPage() {
-	const skills = (await getAllSkills()) || [];
+	const skills = await getAllSkills();
 	return (
 		<LayoutComponent>
 			<div className="mb-8 p-16 shadow-2xl shadow-black bg-[rgba(0,0,0,0.2)]">
@@ -39,7 +39,7 @@ export default async function SkillsPage() {
 					</p>
 				</div>
 				<div className="grid grid-cols-5 gap-8">
-					{skills.length &&
+					{skills.length > 0 &&
 						skills.map((s) => (
 							<Card className="hover:animate-flash hover:animate-pulseFlash">
 								<CardHeader>
