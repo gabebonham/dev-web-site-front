@@ -39,28 +39,31 @@ export default function CompetencesTable({
 				</TableRow>
 			</TableHeader>
 			<TableBody>
-				{competences.map((b) => (
-					<TableRow key={b.id}>
-						<TableCell className="font-medium">
-							{b.id}
-						</TableCell>
-						<TableCell>{b.name}</TableCell>
-						<TableCell>
-							{b.rating}
-						</TableCell>
-						<TableCell>
-							<Button
-								onClick={() =>
-									deleteHandler(
-										b.id,
-									)
-								}
-							>
-								<X />
-							</Button>
-						</TableCell>
-					</TableRow>
-				))}
+				{competences &&
+					competences.map((b) => (
+						<TableRow key={b.id}>
+							<TableCell className="font-medium">
+								{b.id}
+							</TableCell>
+							<TableCell>
+								{b.name}
+							</TableCell>
+							<TableCell>
+								{b.rating}
+							</TableCell>
+							<TableCell>
+								<Button
+									onClick={() =>
+										deleteHandler(
+											b.id,
+										)
+									}
+								>
+									<X />
+								</Button>
+							</TableCell>
+						</TableRow>
+					))}
 			</TableBody>
 			<TableFooter></TableFooter>
 		</Table>
