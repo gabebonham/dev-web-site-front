@@ -56,7 +56,7 @@ export async function deleteContactById(id: number) {
 	try {
 		console.log(id);
 		const a = await fetch(
-			process.env.BACKEND_URL + '/contacts/' + id.toString(),
+			process.env.BACKEND_URL + '/contacts/' + id,
 			{
 				headers: {
 					'Content-Type': 'application/json',

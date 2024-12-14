@@ -16,7 +16,7 @@ export async function authenticate(userName, password): Promise<string> {
 			})
 		).json();
 		console.log(token);
-		setCookie('session', token);
+		await setCookie('session', token);
 
 		return token.session;
 	} catch (e) {

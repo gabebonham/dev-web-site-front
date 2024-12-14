@@ -7,22 +7,16 @@ export async function middleware(req: NextRequest) {
 	// Get the 'session' cookie from the request
 	const sessiosn = await req.cookies.get('session'); // Use `cookies.get` to get the cookie
 
-	try {
-		// Decrypt the session token using the decrypt function (or JWT verify if needed)
-		const decryptedData = await decrypt(sessiosn); // Assuming decrypt works here
+	const decryptedData = await decrypt(sessiosn); // Assuming decrypt works here
 
-		if (!decryptedData) {
-			// If the session cannot be decrypted or is invalid, redirect to '/home'
-			return NextResponse.redirect(new URL('/home', req.url));
-		}
-
-		// If everything is fine, continue with the request
+	if (decryptedData) {
+		// If the session cannot be decrypted or is invalid, redirect to '/home'
 		return NextResponse.next();
-	} catch (error) {
-		console.error('Error while decrypting session:', error);
-		// If any error occurs (e.g., invalid JWT), redirect to '/home'
+	} else {
 		return NextResponse.redirect(new URL('/home', req.url));
 	}
+
+	// If everything is fine, continue with the request
 }
 
 // Define the paths where the middleware should apply
