@@ -1,45 +1,70 @@
 import Competence from '../_models/CompetenceModel';
 
 export async function getAllCompetences(): Promise<Competence[]> {
-	const a = (await (
-		await fetch(process.env.BACKEND_URL + '/competences')
-	).json()) as Competence[];
-	return a;
+	try {
+		const a = (await (
+			await fetch(process.env.BACKEND_URL + '/competences')
+		).json()) as Competence[];
+		return a;
+	} catch (e) {
+		return [];
+	}
 }
 
 export async function getCompetenceById(id: number): Promise<Competence> {
-	const a = await (
-		await fetch(process.env.BACKEND_URL + '/competences/' + id, {
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			method: 'GET',
-			credentials: 'include',
-		})
-	).json();
-	return a;
+	try {
+		const a = await (
+			await fetch(
+				process.env.BACKEND_URL + '/competences/' + id,
+				{
+					headers: {
+						'Content-Type':
+							'application/json',
+					},
+					method: 'GET',
+					credentials: 'include',
+				},
+			)
+		).json();
+		return a;
+	} catch (e) {
+		return null;
+	}
 }
 export async function createCompetence(competence) {
-	const competencesJson = await JSON.stringify(competence);
-	const a = await fetch(process.env.BACKEND_URL + '/competences', {
-		headers: {
-			'Content-Type': 'application/json',
-		},
-		method: 'POST',
-		body: competencesJson,
-		credentials: 'include',
-	});
-	return a;
+	try {
+		const competencesJson = await JSON.stringify(competence);
+		const a = await fetch(
+			process.env.BACKEND_URL + '/competences',
+			{
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				method: 'POST',
+				body: competencesJson,
+				credentials: 'include',
+			},
+		);
+		return a;
+	} catch (e) {
+		return [];
+	}
 }
 export async function deleteCompetenceById(id: number) {
-	const a = await fetch(
-		process.env.BACKEND_URL + '/competences/' + id.toString(),
-		{
-			headers: {
-				'Content-Type': 'application/json',
+	try {
+		const a = await fetch(
+			process.env.BACKEND_URL +
+				'/competences/' +
+				id.toString(),
+			{
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				method: 'DELETE',
+				credentials: 'include',
 			},
-			method: 'DELETE',
-			credentials: 'include',
-		},
-	);
+		);
+	} catch (e) {
+		return [];
+	}
 }
