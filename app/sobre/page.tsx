@@ -4,7 +4,7 @@ import img from '@/public/p2.jpeg';
 import { getAbout } from './_services/AboutService';
 import About from '../admin/about/models/AboutMode';
 export default async function aboutPage() {
-	const aboutText = ((await getAbout()) || []) as { about: About };
+	const aboutText = ((await getAbout()) || []) as About;
 	return (
 		<LayoutComponent>
 			<div className="mb-8 p-16 shadow-2xl shadow-black bg-[rgba(0,0,0,0.2)]">
@@ -17,16 +17,11 @@ export default async function aboutPage() {
 					<h1 className="text-5xl ml-80 drop-shadow-[0_2px_2px_rgba(0,0,0,1)] ">
 						Gabriel Grote
 					</h1>
-					{aboutText != null &&
-						aboutText != undefined && (
-							<div className="p-16 text-start text-lg drop-shadow-[0_2px_2px_rgba(0,0,0,1)]">
-								{
-									aboutText
-										.about
-										.value
-								}
-							</div>
-						)}
+					{aboutText && (
+						<div className="p-16 text-start text-lg drop-shadow-[0_2px_2px_rgba(0,0,0,1)]">
+							{aboutText.value}
+						</div>
+					)}
 				</div>
 			</div>
 		</LayoutComponent>
