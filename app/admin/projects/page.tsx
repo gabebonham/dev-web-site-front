@@ -5,17 +5,11 @@ import Project from './_models/ProjectModel';
 import { getAllProjects } from './_service/ProjectsService';
 
 export default async function ProjectsPage() {
-	const projects = ((await getAllProjects()) || []) as Project[];
-	const projectList = projects.map((p) => ({
-		name: p.name,
-		id: p.id,
-		description: p.description,
-		link: p.link,
-	}));
+	const projects = (await getAllProjects()) || [];
 	return (
 		<SideBarComponent>
 			<CreateProjectComponent />
-			{projects.length != 0 && (
+			{projects.length && (
 				<TableComponent projects={projects} />
 			)}
 		</SideBarComponent>

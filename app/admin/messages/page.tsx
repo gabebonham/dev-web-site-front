@@ -3,27 +3,12 @@ import MessagesTable from './_components/MessagesTable';
 import { getAllMessages } from './_services/MessagesService';
 
 export default async function MessagesPage() {
-	const messages = ((await getAllMessages()) || []) as {
-		id: number;
-		msg: string;
-		email: string;
-		scheduled: Date;
-		createdAt: Date;
-		isNew: boolean;
-	}[];
-	const messageList = messages.map((c) => ({
-		id: c.id,
-		msg: c.msg,
-		email: c.email,
-		scheduled: c.scheduled,
-		createdAt: Date.now(),
-		isNew: c.isNew,
-	}));
+	const messages = (await getAllMessages()) || [];
 	return (
 		<SideBarComponent>
 			<div>
-				{messageList.length != 0 && (
-					<MessagesTable messages={messageList} />
+				{messages.length && (
+					<MessagesTable messages={messages} />
 				)}
 			</div>
 		</SideBarComponent>

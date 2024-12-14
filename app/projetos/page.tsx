@@ -14,12 +14,7 @@ import Image from 'next/image';
 import img from '@/public/proj.jpeg';
 
 export default async function ProjectsPage() {
-	const projects = ((await getAllProjects()) || []).map((y) => ({
-		id: y.id,
-		name: y.name,
-		description: y.description,
-		link: y.link,
-	})) as Project[];
+	const projects = (await getAllProjects()) || [];
 
 	return (
 		<LayoutComponent>
@@ -33,32 +28,37 @@ export default async function ProjectsPage() {
 					Projetos
 				</h1>
 				<div className=" grid grid-cols-3 gap-8 w-[1000px] ">
-					{projects.map((p) => (
-						<Card className="shadow-2xl cursor-pointer hover:animate-pulse2 bg-gradient-to-br from-gray-400 to-white border border-2 border-red-500">
-							<CardHeader>
-								<CardTitle>
-									{p.name}
-								</CardTitle>
-							</CardHeader>
-							<CardContent>
-								<CardDescription className="text-black">
-									{
-										p.description
-									}
-								</CardDescription>
-							</CardContent>
-							<CardFooter>
-								<Link
-									className="text-blue-500"
-									href={
-										p.link
-									}
-								>
-									{p.link}
-								</Link>
-							</CardFooter>
-						</Card>
-					))}
+					{projects.length &&
+						projects.map((p) => (
+							<Card className="shadow-2xl cursor-pointer hover:animate-pulse2 bg-gradient-to-br from-gray-400 to-white border border-2 border-red-500">
+								<CardHeader>
+									<CardTitle>
+										{
+											p.name
+										}
+									</CardTitle>
+								</CardHeader>
+								<CardContent>
+									<CardDescription className="text-black">
+										{
+											p.description
+										}
+									</CardDescription>
+								</CardContent>
+								<CardFooter>
+									<Link
+										className="text-blue-500"
+										href={
+											p.link
+										}
+									>
+										{
+											p.link
+										}
+									</Link>
+								</CardFooter>
+							</Card>
+						))}
 				</div>
 			</div>
 		</LayoutComponent>

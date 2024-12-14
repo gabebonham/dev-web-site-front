@@ -7,12 +7,7 @@ import Image from 'next/image';
 import img from '@/public/contact.jpeg';
 
 export default async function ContactPage() {
-	const contacts = ((await getAllContacts()) || []).map((y) => ({
-		id: y.id,
-		platformName: y.platformName,
-		platformUserPageLink: y.platformUserPageLink,
-		email: y.email,
-	})) as Contact[];
+	const contacts = await getAllContacts();
 	return (
 		<LayoutComponent>
 			<div className="mb-8 p-16 shadow-2xl shadow-black bg-[rgba(0,0,0,0.2)] ">
@@ -32,7 +27,7 @@ export default async function ContactPage() {
 						que use o meu email.
 					</p>
 				</div>
-				{contacts.length != 0 && (
+				{contacts.length && contacts.length && (
 					<ContactsTableComponent
 						contacts={contacts}
 					/>

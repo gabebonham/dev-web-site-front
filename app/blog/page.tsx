@@ -13,12 +13,7 @@ import img from '@/public/blog.jpeg';
 import Link from 'next/link';
 
 export default async function BlogPage() {
-	const blogs = ((await getAllBlogs()) || []).map((y) => ({
-		id: y.id,
-		title: y.title,
-		body: y.body,
-		imageName: y.imageName,
-	}));
+	const blogs = (await getAllBlogs()) || [];
 	const firstBlog = blogs[0] || {
 		imageName: '',
 		body: '',
@@ -27,7 +22,7 @@ export default async function BlogPage() {
 	};
 	return (
 		<LayoutComponent>
-			{blogs.length != 0 && (
+			{blogs.length && (
 				<div className="mb-4 p-16 shadow-2xl shadow-black bg-[rgba(0,0,0,0.2)]">
 					<Image
 						src={img}
