@@ -5,7 +5,7 @@ import CreateBlogComponent from './_components/CreateBlogComponent';
 import Blog from './_model/BlogModel';
 
 export default async function BlogHomePage() {
-	const blogList = (await getAllBlogs()) as Blog[];
+	const blogList = ((await getAllBlogs()) || []) as Blog[];
 	const blogs = blogList.map((b) => ({
 		id: b.id,
 		title: b.title,

@@ -5,7 +5,7 @@ import Contact from './_models/ContactModel';
 import { getAllContacts } from './_service/ContactService';
 
 export default async function ContactsPage() {
-	const contacts = (await getAllContacts()) as Contact[];
+	const contacts = ((await getAllContacts()) || []) as Contact[];
 	const contactList = contacts.map((c) => ({
 		id: c.id,
 		platformName: c.platformName,

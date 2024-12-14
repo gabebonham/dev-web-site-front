@@ -7,7 +7,7 @@ import Image from 'next/image';
 import img from '@/public/contact.jpeg';
 
 export default async function ContactPage() {
-	const contacts = (await getAllContacts()).map((y) => ({
+	const contacts = ((await getAllContacts()) || []).map((y) => ({
 		id: y.id,
 		platformName: y.platformName,
 		platformUserPageLink: y.platformUserPageLink,

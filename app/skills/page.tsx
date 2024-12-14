@@ -14,7 +14,7 @@ import Image from 'next/image';
 import img from '@/public/skilld.jpeg';
 
 export default async function SkillsPage() {
-	const skills = (await getAllSkills()).map((y) => ({
+	const skills = ((await getAllSkills()) || []).map((y) => ({
 		id: y.id,
 		name: y.name,
 		rating: y.rating,

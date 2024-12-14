@@ -3,7 +3,7 @@ import MessagesTable from './_components/MessagesTable';
 import { getAllMessages } from './_services/MessagesService';
 
 export default async function MessagesPage() {
-	const messages = (await getAllMessages()) as {
+	const messages = ((await getAllMessages()) || []) as {
 		id: number;
 		msg: string;
 		email: string;

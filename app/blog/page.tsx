@@ -13,13 +13,18 @@ import img from '@/public/blog.jpeg';
 import Link from 'next/link';
 
 export default async function BlogPage() {
-	const blogs = (await getAllBlogs()).map((y) => ({
+	const blogs = ((await getAllBlogs()) || []).map((y) => ({
 		id: y.id,
 		title: y.title,
 		body: y.body,
 		imageName: y.imageName,
 	}));
-	const firstBlog = blogs[0];
+	const firstBlog = blogs[0] || {
+		imageName: '',
+		body: '',
+		id: 2,
+		title: '',
+	};
 	return (
 		<LayoutComponent>
 			{blogs.length != 0 && (

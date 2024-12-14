@@ -14,7 +14,7 @@ import Image from 'next/image';
 import img from '@/public/proj.jpeg';
 
 export default async function ProjectsPage() {
-	const projects = (await getAllProjects()).map((y) => ({
+	const projects = ((await getAllProjects()) || []).map((y) => ({
 		id: y.id,
 		name: y.name,
 		description: y.description,
