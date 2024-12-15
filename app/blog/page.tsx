@@ -7,7 +7,6 @@ import {
 	CardHeader,
 	CardTitle,
 } from '@/components/ui/card';
-import Blog from '../admin/blog/_model/BlogModel';
 import Image from 'next/image';
 import img from '@/public/blog.jpeg';
 import Link from 'next/link';
