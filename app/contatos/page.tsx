@@ -3,19 +3,10 @@ import { getAllContacts } from './_services/ContactsService';
 import ContactsTableComponent from './_components/ContactsTableComponent';
 import Image from 'next/image';
 import img from '@/public/contact.jpeg';
-export async function getStaticProps() {
-	const about = await getAllContacts();
-	return {
-		porps: {
-			about,
-		},
-	};
-}
-export default async function ContactPage(about) {
+
+export default async function ContactPage() {
 	let contacts = await getAllContacts();
-	if (contacts.length == 0) {
-		contacts = about;
-	}
+
 	return (
 		<LayoutComponent>
 			<div className="mb-8 p-16 shadow-2xl shadow-black bg-[rgba(0,0,0,0.2)] ">

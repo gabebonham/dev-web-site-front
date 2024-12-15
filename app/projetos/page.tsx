@@ -11,20 +11,10 @@ import Link from 'next/link';
 import { getAllProjects } from './_services/ProjectsService';
 import Image from 'next/image';
 import img from '@/public/proj.jpeg';
-export async function getStaticProps() {
-	const about = await getAllProjects();
-	return {
-		porps: {
-			about,
-		},
-	};
-}
-export default async function ProjectsPage(about) {
+
+export default async function ProjectsPage() {
 	let projects = await getAllProjects();
 
-	if (projects.length == 0) {
-		projects = about;
-	}
 	return (
 		<LayoutComponent>
 			<div className="mb-8 shadow-2xl shadow-black bg-[rgba(0,0,0,0.2)] p-16">

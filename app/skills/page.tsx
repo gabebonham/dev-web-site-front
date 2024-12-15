@@ -9,19 +9,10 @@ import {
 } from '@/components/ui/card';
 import Image from 'next/image';
 import img from '@/public/skilld.jpeg';
-export async function getStaticProps() {
-	const about = await getAllSkills();
-	return {
-		porps: {
-			about,
-		},
-	};
-}
-export default async function SkillsPage(skillss) {
+
+export default async function SkillsPage() {
 	let skills = await getAllSkills();
-	if (skillss == undefined) {
-		skills = skillss;
-	}
+
 	return (
 		<LayoutComponent>
 			<div className="mb-8 p-16 shadow-2xl shadow-black bg-[rgba(0,0,0,0.2)]">

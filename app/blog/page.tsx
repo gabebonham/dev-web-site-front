@@ -10,19 +10,10 @@ import {
 import Image from 'next/image';
 import img from '@/public/blog.jpeg';
 import Link from 'next/link';
-export async function getStaticProps() {
-	const about = await getAllBlogs();
-	return {
-		porps: {
-			about,
-		},
-	};
-}
-export default async function BlogPage(about) {
+
+export default async function BlogPage() {
 	let blogs = await getAllBlogs();
-	if (blogs.length == 0) {
-		blogs = about;
-	}
+
 	return (
 		<LayoutComponent>
 			{blogs.length && (
