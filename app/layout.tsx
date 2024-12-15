@@ -4,6 +4,14 @@ import './globals.css';
 export const metadata: Metadata = {
 	title: 'Gabriel Grote',
 	description: 'Gabriel Grote Web Site',
+	icons: {
+		icon: [
+			{
+				url: './favicon.jpg',
+				href: './favicon.jpg',
+			},
+		],
+	},
 };
 
 export default function RootLayout({
@@ -13,11 +21,11 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="pt" className="">
-			{process.env.RAILWAY_PUBLIC_DOMAIN.length > 4 && (
-				<body className="font-imfell h-full">
-					{children}
-				</body>
-			)}
+			<head></head>
+			<body className="font-imfell h-full">
+				{process.env.RAILWAY_PUBLIC_DOMAIN.length > 4 &&
+					children}
+			</body>
 		</html>
 	);
 }
