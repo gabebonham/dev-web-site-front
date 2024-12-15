@@ -3,7 +3,7 @@ builder = "NIXPACKS"
 buildCommand = "pnpm run build"
 
 [build.nixpacksPlan.phases.install]
-cmds = ["pnpm install"]
+cmds = ["pnpm install --no-frozen-lockfile"]
 
 [deploy]
 startCommand = "pnpm run start"
