@@ -12,13 +12,8 @@ import img from '@/public/blog.jpeg';
 import Link from 'next/link';
 
 export default async function BlogPage() {
-	const blogs = (await getAllBlogs()) || [];
-	const firstBlog = blogs[0] || {
-		imageName: '',
-		body: '',
-		id: 2,
-		title: '',
-	};
+	const blogs = await getAllBlogs();
+
 	return (
 		<LayoutComponent>
 			{blogs.length && (
@@ -29,24 +24,26 @@ export default async function BlogPage() {
 						className="absolute right-0 rounded-2xl pr-4 hover:animate-pulse2 opacity-50 size-48"
 					/>
 					<h1 className="pl-80 text-5xl">Blog</h1>
-					<Link href={'/blog/' + firstBlog.id}>
+					<Link href={'/blog/' + blogs[0].id}>
 						<Card
 							style={{
-								backgroundImage: `url('${firstBlog.imageName}')`,
+								backgroundImage: `url('${blogs[0].imageName}')`,
 							}}
 							className={`w-[800px] hover:animate-pulse2 m-8 cursor-pointer`}
 						>
 							<CardHeader>
 								<CardTitle>
 									{
-										firstBlog.title
+										blogs[0]
+											.title
 									}
 								</CardTitle>
 							</CardHeader>
 							<CardContent>
 								<CardDescription>
 									{
-										firstBlog.body
+										blogs[0]
+											.body
 									}
 								</CardDescription>
 							</CardContent>
