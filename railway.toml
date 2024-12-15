@@ -1,7 +1,5 @@
 [build]
 builder = "NIXPACKS"
-
-[build]
 buildCommand = "pnpm run build"
 
 [build.nixpacksPlan.phases.install]
