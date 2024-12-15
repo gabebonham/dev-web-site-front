@@ -11,8 +11,8 @@ export default async function BlogHomePage() {
 			<CreateBlogComponent />
 			<div className="grid grid-rows-4 grid-cols-4 gap-16">
 				{blogList.length ? (
-					blogList.map((b) => (
-						<BlogModal key={b.id} b={b} />
+					blogList.map((b, _i) => (
+						<BlogModal key={_i} b={b} />
 					))
 				) : (
 					<div></div>

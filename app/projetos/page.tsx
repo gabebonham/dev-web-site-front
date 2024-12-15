@@ -30,7 +30,10 @@ export default async function ProjectsPage() {
 				<div className=" grid grid-cols-3 gap-8 w-[1000px] ">
 					{projects.length &&
 						projects.map((p) => (
-							<Card className="shadow-2xl cursor-pointer hover:animate-pulse2 bg-gradient-to-br from-gray-400 to-white border border-2 border-red-500">
+							<Card
+								key={p.id}
+								className="shadow-2xl cursor-pointer hover:animate-pulse2 bg-gradient-to-br from-gray-400 to-white border border-2 border-red-500"
+							>
 								<CardHeader>
 									<CardTitle>
 										{

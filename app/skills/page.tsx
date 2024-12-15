@@ -41,7 +41,10 @@ export default async function SkillsPage() {
 				<div className="grid grid-cols-5 gap-8">
 					{skills.length > 0 &&
 						skills.map((s) => (
-							<Card className="hover:animate-flash hover:animate-pulseFlash">
+							<Card
+								key={s.id}
+								className="hover:animate-flash hover:animate-pulseFlash"
+							>
 								<CardHeader>
 									<CardTitle>
 										{

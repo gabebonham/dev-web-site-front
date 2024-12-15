@@ -21,7 +21,7 @@ export default function EditProjectModal({
 	open,
 }: {
 	b: Project;
-	open: Function;
+	open: (v: boolean) => void;
 }) {
 	const router = useRouter();
 
@@ -70,14 +70,14 @@ export default function EditProjectModal({
 					<CardFooter>
 						<Button
 							onClick={(a) =>
-								open((e) => !e)
+								open(false)
 							}
 						>
 							Fechar
 						</Button>
 						<Button
 							onClick={(a) => {
-								open((e) => !e);
+								open(false);
 								updateProjectById(
 									b,
 								);

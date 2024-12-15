@@ -60,6 +60,9 @@ export default async function BlogPage() {
 							if (i != 0)
 								return (
 									<Link
+										key={
+											i
+										}
 										href={
 											'/blog/' +
 											b.id

@@ -5,10 +5,14 @@ import image3 from '@/public/image3.jpg';
 import image4 from '@/public/image4.jpg';
 import Image from 'next/image';
 
-export function RadioGroupComponent({ setImage }: { setImage: Function }) {
+export function RadioGroupComponent({
+	setImage,
+}: {
+	setImage: (value: string) => void;
+}) {
 	return (
 		<RadioGroup className="grid-cols-4">
-			<div className="flex items-center space-x-2">
+			<div key={1} className="flex items-center space-x-2">
 				<RadioGroupItem
 					value="r1"
 					id="r1"
@@ -21,7 +25,7 @@ export function RadioGroupComponent({ setImage }: { setImage: Function }) {
 					className="rounded-3xl"
 				/>
 			</div>
-			<div className="flex items-center space-x-2">
+			<div key={2} className="flex items-center space-x-2">
 				<RadioGroupItem
 					value="r2"
 					id="r2"
@@ -34,7 +38,7 @@ export function RadioGroupComponent({ setImage }: { setImage: Function }) {
 					className="rounded-3xl"
 				/>
 			</div>
-			<div className="flex items-center space-x-2">
+			<div key={3} className="flex items-center space-x-2">
 				<RadioGroupItem
 					value="r3"
 					id="r3"
@@ -47,7 +51,7 @@ export function RadioGroupComponent({ setImage }: { setImage: Function }) {
 					className="rounded-3xl"
 				/>
 			</div>
-			<div className="flex items-center space-x-2">
+			<div key={4} className="flex items-center space-x-2">
 				<RadioGroupItem
 					value="r4"
 					id="r4"

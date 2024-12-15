@@ -14,7 +14,11 @@ import { Textarea } from './ui/textarea';
 import { Input } from './ui/input';
 import { storeMessageFromModal } from '@/lib/MessagesService';
 
-export default function ScheduleModal({ open }: { open: Function }) {
+export default function ScheduleModal({
+	open,
+}: {
+	open: (v: boolean) => void;
+}) {
 	const [date, setDate] = useState<Date>();
 	const obsRef = useRef<any>(null);
 	const emailRef = useRef<any>(null);
