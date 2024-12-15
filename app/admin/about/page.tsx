@@ -4,10 +4,12 @@ import About from './models/AboutMode';
 import { getAbout } from './service/AboutService';
 
 export default async function AboutPage() {
-	const about = (await getAbout()) as About;
+	const about = await getAbout();
 	return (
 		<SideBarComponent>
-			{about && <EditAbout about={about} />}
+			{about != null && about != undefined && (
+				<EditAbout about={about} />
+			)}
 		</SideBarComponent>
 	);
 }

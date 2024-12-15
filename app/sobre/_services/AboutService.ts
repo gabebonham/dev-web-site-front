@@ -1,5 +1,3 @@
-import About from '@/app/admin/about/models/AboutMode';
-
 export async function getAbout() {
 	console.log(process.env.BACKEND_URL);
 	try {

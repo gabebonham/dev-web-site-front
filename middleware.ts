@@ -1,4 +1,3 @@
-import { jwtVerify } from 'jose'; // For JWT verification
 import { NextRequest, NextResponse } from 'next/server'; // Required Next.js imports
 import { decrypt } from './lib/JWT'; // Assuming decrypt is your custom decryption function
 
@@ -7,6 +6,7 @@ export async function middleware(req: NextRequest) {
 	// Get the 'session' cookie from the request
 	const sessiosn = await req.cookies.get('session'); // Use `cookies.get` to get the cookie
 
+	await console.log(sessiosn);
 	const decryptedData = await decrypt(sessiosn); // Assuming decrypt works here
 
 	if (decryptedData) {
