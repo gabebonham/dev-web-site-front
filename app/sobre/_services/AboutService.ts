@@ -1,8 +1,9 @@
 import About from '@/app/admin/about/models/AboutMode';
 
-export async function getAbout(): Promise<About> {
+export async function getAbout() {
+	console.log(process.env.BACKEND_URL);
 	try {
-		const about = (await (
+		const about = await (
 			await fetch(process.env.BACKEND_URL + '/about', {
 				headers: {
 					'Content-Type': 'application/json',
@@ -10,7 +11,7 @@ export async function getAbout(): Promise<About> {
 				method: 'GET',
 				credentials: 'include',
 			})
-		).json()) as About;
+		).json();
 		return about;
 	} catch (e) {
 		return null;
