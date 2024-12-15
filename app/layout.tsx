@@ -13,7 +13,11 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="pt" className="">
-			<body className="font-imfell h-full">{children}</body>
+			{process.env.RAILWAY_DOMAIN != undefined && (
+				<body className="font-imfell h-full">
+					{children}
+				</body>
+			)}
 		</html>
 	);
 }

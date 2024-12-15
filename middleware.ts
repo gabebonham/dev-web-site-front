@@ -2,8 +2,9 @@ import { NextRequest, NextResponse } from 'next/server'; // Required Next.js imp
 import { decrypt } from './lib/JWT'; // Assuming decrypt is your custom decryption function
 
 // Middleware to check for a valid session cookie
-export async function middleware(req: NextRequest) {
+export async function middleware(req: NextRequest, res: NextResponse) {
 	// Get the 'session' cookie from the request
+	if (process.env.RAILWAY_DOMAIN == undefined) return null;
 	const sessiosn = await req.cookies.get('session'); // Use `cookies.get` to get the cookie
 
 	await console.log(sessiosn);
