@@ -1,7 +1,6 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Separator } from './ui/separator';
 import { useEffect, useRef, useState } from 'react';
 import p1 from '@/public/p1.png';
 import p2 from '@/public/p2.png';

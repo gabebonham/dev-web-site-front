@@ -1,4 +1,3 @@
-import { List } from 'lucide-react';
 import { Separator } from './ui/separator';
 import Link from 'next/link';
 

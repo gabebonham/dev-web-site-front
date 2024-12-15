@@ -2,7 +2,6 @@
 import logo from '@/public/a.png';
 import Image from 'next/image';
 import { Button } from './ui/button';
-import { NavBar } from './NavBar';
 import LayoutNavBar from './LayoutNavBar';
 import { NotebookPen } from 'lucide-react';
 import { AccordionComponenet } from './AccordionComponent';

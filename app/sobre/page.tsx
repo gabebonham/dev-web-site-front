@@ -2,7 +2,6 @@ import LayoutComponent from '@/components/LayoutComponent';
 import Image from 'next/image';
 import img from '@/public/p2.jpeg';
 import { getAbout } from './_services/AboutService';
-import path from 'path';
 
 export async function getStaticProps() {
 	const about = await getAbout();
