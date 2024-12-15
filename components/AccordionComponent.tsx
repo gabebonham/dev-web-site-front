@@ -8,8 +8,8 @@ import {
 export function AccordionComponenet() {
 	return (
 		<Accordion
-			type="single"
 			collapsible
+			type="single"
 			className="text-white w-full"
 		>
 			<AccordionItem value="item-1" className="min-h-12">
