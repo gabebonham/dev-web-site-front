@@ -1,8 +1,8 @@
 import Blog from '@/app/admin/blog/_model/BlogModel';
 
-export async function getAllBlogs(): Promise<Blog[]> {
+export async function getAllBlogs() {
 	try {
-		const blogs = (await (
+		const blogs = await (
 			await fetch(process.env.BACKEND_URL + '/blogs', {
 				headers: {
 					'Content-Type': 'application/json',
@@ -10,7 +10,7 @@ export async function getAllBlogs(): Promise<Blog[]> {
 				method: 'GET',
 				credentials: 'include',
 			})
-		).json()) as Blog[];
+		).json();
 		return blogs;
 	} catch (e) {
 		return [];
