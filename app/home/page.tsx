@@ -1,11 +1,8 @@
 'use client';
 import LayoutComponent from '@/components/LayoutComponent';
-import { Card, CardDescription, CardHeader } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
 import { useEffect, useRef, useState } from 'react';
 import eu from '@/public/me.png';
 import Image from 'next/image';
-import Link from 'next/link';
 
 export default function HomePage() {
 	const element2Ref = useRef(null);

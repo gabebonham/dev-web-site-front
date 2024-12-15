@@ -1,5 +1,4 @@
 import LayoutComponent from '@/components/LayoutComponent';
-import Project from '../admin/projects/_models/ProjectModel';
 import {
 	Card,
 	CardContent,

@@ -2,7 +2,6 @@
 import {
 	Table,
 	TableBody,
-	TableCaption,
 	TableCell,
 	TableFooter,
 	TableHead,
@@ -10,11 +9,10 @@ import {
 	TableRow,
 } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
-import { Pencil, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import Contact from '../_models/ContactModel';
 import { deleteContactById } from '../_service/ContactService';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
 
 export default function ContactsTable({ contacts }: { contacts: Contact[] }) {
 	const router = useRouter();

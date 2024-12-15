@@ -2,8 +2,6 @@ import LayoutComponent from '@/components/LayoutComponent';
 import Image from 'next/image';
 import img from '@/public/p2.jpeg';
 import { getAbout } from './_services/AboutService';
-import About from '../admin/about/models/AboutMode';
-
 export default async function aboutPage() {
 	const aboutText = await getAbout();
 	return (

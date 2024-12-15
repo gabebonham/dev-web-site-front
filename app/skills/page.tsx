@@ -1,8 +1,5 @@
 import LayoutComponent from '@/components/LayoutComponent';
-import SectionsComponent from '@/components/Sections';
 import { getAllSkills } from './_services/SkillsService';
-import { ListComponent } from '@/components/ListComponent';
-import Competence from '../admin/competences/_models/CompetenceModel';
 import {
 	Card,
 	CardContent,

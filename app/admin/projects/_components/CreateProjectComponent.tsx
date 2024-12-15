@@ -11,7 +11,6 @@ import { Textarea } from '@/components/ui/textarea';
 import { useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
 import { createProject } from '../_service/ProjectsService';
-import Project from '../_models/ProjectModel';
 
 export default function CreateProjectComponent() {
 	const router = useRouter();

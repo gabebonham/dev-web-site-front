@@ -1,9 +1,7 @@
 'use client';
-import { MenubarCheckboxItem } from '@/components/ui/menubar';
 import {
 	Table,
 	TableBody,
-	TableCaption,
 	TableFooter,
 	TableHead,
 	TableHeader,

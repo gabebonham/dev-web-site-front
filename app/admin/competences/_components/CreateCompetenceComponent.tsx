@@ -7,11 +7,9 @@ import {
 	CardHeader,
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
 import { createCompetence } from '../_services/CompetencesService';
-import Competence from '../_models/CompetenceModel';
 
 export default function CreateCompetenceComponent() {
 	const router = useRouter();

@@ -1,8 +1,6 @@
 import LayoutComponent from '@/components/LayoutComponent';
 import { getAllContacts } from './_services/ContactsService';
-import TableComponent from '../admin/projects/_components/TableComponents';
 import ContactsTableComponent from './_components/ContactsTableComponent';
-import Contact from '../admin/contacts/_models/ContactModel';
 import Image from 'next/image';
 import img from '@/public/contact.jpeg';
 

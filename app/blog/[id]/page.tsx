@@ -1,7 +1,5 @@
-import Blog from '@/app/admin/blog/_model/BlogModel';
 import LayoutComponent from '@/components/LayoutComponent';
 import { getBlogById } from '../_service/BlogsService';
-import { useParams } from 'next/navigation';
 
 export default async function BlogSpecificPage({ params }) {
 	const { id } = await params;

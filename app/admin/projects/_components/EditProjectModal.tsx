@@ -4,17 +4,13 @@ import {
 	CardFooter,
 	CardHeader,
 	Card,
-	CardTitle,
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import { deleteProjectById, updateProject } from '../_service/ProjectsService';
+import { updateProject } from '../_service/ProjectsService';
 import Project from '../_models/ProjectModel';
-import { TableCell, TableRow } from '@/components/ui/table';
-import { Pencil, X } from 'lucide-react';
 
 export default function EditProjectModal({
 	b,

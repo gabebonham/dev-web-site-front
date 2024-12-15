@@ -2,7 +2,6 @@
 import {
 	Table,
 	TableBody,
-	TableCaption,
 	TableCell,
 	TableFooter,
 	TableHead,
@@ -10,9 +9,8 @@ import {
 	TableRow,
 } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
-import { Pencil, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
 import Competence from '../_models/CompetenceModel';
 import { deleteCompetenceById } from '../_services/CompetencesService';
 

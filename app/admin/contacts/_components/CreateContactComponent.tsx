@@ -7,10 +7,8 @@ import {
 	CardHeader,
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
-import Contact from '../_models/ContactModel';
 import { createContact } from '../_service/ContactService';
 
 export default function CreateContactComponent() {
