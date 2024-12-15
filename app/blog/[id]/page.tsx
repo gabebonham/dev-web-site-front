@@ -1,9 +1,19 @@
 import LayoutComponent from '@/components/LayoutComponent';
-import { getBlogById } from '../_service/BlogsService';
-
-export default async function BlogSpecificPage({ params }) {
+import { getAllBlogs, getBlogById } from '../_service/BlogsService';
+export async function getStaticProps() {
+	const about = await getAllBlogs();
+	return {
+		porps: {
+			about,
+		},
+	};
+}
+export default async function BlogSpecificPage({ params, props }) {
 	const { id } = await params;
-	const blog = await getBlogById(id);
+	let blog = await getBlogById(id);
+	if (blog == undefined || blog == null) {
+		blog = props;
+	}
 	return (
 		<LayoutComponent>
 			<div

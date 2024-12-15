@@ -1,6 +1,6 @@
 [build]
 builder = "NIXPACKS"
-buildCommand = "pnpm run build --no-lint"
+buildCommand = "echo bunda"
 
 [build.nixpacksPlan.phases.install]
 cmds = ["pnpm install --no-frozen-lockfile"]

@@ -2,8 +2,21 @@ import LayoutComponent from '@/components/LayoutComponent';
 import Image from 'next/image';
 import img from '@/public/p2.jpeg';
 import { getAbout } from './_services/AboutService';
-export default async function aboutPage() {
-	const aboutText = await getAbout();
+import path from 'path';
+
+export async function getStaticProps() {
+	const about = await getAbout();
+	return {
+		porps: {
+			about,
+		},
+	};
+}
+export default async function aboutPage(about) {
+	let aboutText = await getAbout();
+	if (aboutText == undefined) {
+		aboutText = about;
+	}
 	return (
 		<LayoutComponent>
 			<div className="mb-8 p-16 shadow-2xl shadow-black bg-[rgba(0,0,0,0.2)]">
