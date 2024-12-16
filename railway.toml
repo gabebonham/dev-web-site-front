@@ -3,7 +3,7 @@ builder = "NIXPACKS"
 buildCommand = "pnpm run build --no-lint"
 
 [build.nixpacksPlan.phases.install]
-cmds = ["pnpm install --no-frozen-lockfile && echo wow"]
+cmds = ["rm -rf .next && rm -rf node_modules && em pnpm.lock.yaml && pnpm install --no-frozen-lockfile"]
 
 [deploy]
 startCommand = "pnpm run start"
