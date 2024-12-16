@@ -1,4 +1,5 @@
 import { setCookie } from 'cookies-next';
+
 export async function authenticate(userName, password): Promise<string> {
 	try {
 		const userObj = {

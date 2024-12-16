@@ -4,7 +4,7 @@ import img from '@/public/p2.png';
 import { getAbout } from './_services/AboutService';
 
 export default async function aboutPage() {
-	let aboutText = await getAbout();
+	const aboutText = await getAbout();
 
 	return (
 		<LayoutComponent>
@@ -20,7 +20,7 @@ export default async function aboutPage() {
 					</h1>
 					{aboutText != null && (
 						<div className="p-16 text-start text-lg drop-shadow-[0_2px_2px_rgba(0,0,0,1)]">
-							{aboutText.value}
+							{aboutText.about.value}
 						</div>
 					)}
 				</div>

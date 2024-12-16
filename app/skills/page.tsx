@@ -11,7 +11,7 @@ import Image from 'next/image';
 import img from '@/public/p5.png';
 
 export default async function SkillsPage() {
-	let skills = await getAllSkills();
+	const skills = await getAllSkills();
 
 	return (
 		<LayoutComponent>

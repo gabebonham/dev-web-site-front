@@ -1,7 +1,7 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-	staticPageGenerationTimeout: 5000,
+	staticPageGenerationTimeout: 10000,
 };
 
 export default nextConfig;

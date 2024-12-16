@@ -13,7 +13,7 @@ import Image from 'next/image';
 import img from '@/public/p1.png';
 
 export default async function ProjectsPage() {
-	let projects = await getAllProjects();
+	const projects = await getAllProjects();
 
 	return (
 		<LayoutComponent>

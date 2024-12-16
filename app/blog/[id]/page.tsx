@@ -3,7 +3,7 @@ import { getAllBlogs, getBlogById } from '../_service/BlogsService';
 
 export default async function BlogSpecificPage({ params }) {
 	const { id } = await params;
-	let blog = await getBlogById(id);
+	const blog = await getBlogById(id);
 
 	return (
 		<LayoutComponent>

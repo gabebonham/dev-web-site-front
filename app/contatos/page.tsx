@@ -5,7 +5,7 @@ import Image from 'next/image';
 import img from '@/public/p3.png';
 
 export default async function ContactPage() {
-	let contacts = await getAllContacts();
+	const contacts = await getAllContacts();
 
 	return (
 		<LayoutComponent>

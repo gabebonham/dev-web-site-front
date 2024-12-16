@@ -12,7 +12,7 @@ import img from '@/public/p4.png';
 import Link from 'next/link';
 
 export default async function BlogPage() {
-	let blogs = await getAllBlogs();
+	const blogs = await getAllBlogs();
 
 	return (
 		<LayoutComponent>

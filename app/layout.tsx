@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
-
+import 'dotenv';
 export const metadata: Metadata = {
 	title: 'Gabriel Grote',
 	description: 'Gabriel Grote Web Site',
