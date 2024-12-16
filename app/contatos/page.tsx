@@ -2,7 +2,7 @@ import LayoutComponent from '@/components/LayoutComponent';
 import { getAllContacts } from './_services/ContactsService';
 import ContactsTableComponent from './_components/ContactsTableComponent';
 import Image from 'next/image';
-import img from '@/public/contact.jpeg';
+import img from '@/public/p3.png';
 
 export default async function ContactPage() {
 	let contacts = await getAllContacts();

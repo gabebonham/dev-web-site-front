@@ -8,7 +8,7 @@ import {
 	CardTitle,
 } from '@/components/ui/card';
 import Image from 'next/image';
-import img from '@/public/blog.jpeg';
+import img from '@/public/p4.png';
 import Link from 'next/link';
 
 export default async function BlogPage() {

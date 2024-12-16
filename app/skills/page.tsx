@@ -8,7 +8,7 @@ import {
 	CardTitle,
 } from '@/components/ui/card';
 import Image from 'next/image';
-import img from '@/public/skilld.jpeg';
+import img from '@/public/p5.png';
 
 export default async function SkillsPage() {
 	let skills = await getAllSkills();

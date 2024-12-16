@@ -10,7 +10,7 @@ import {
 import Link from 'next/link';
 import { getAllProjects } from './_services/ProjectsService';
 import Image from 'next/image';
-import img from '@/public/proj.jpeg';
+import img from '@/public/p1.png';
 
 export default async function ProjectsPage() {
 	let projects = await getAllProjects();
