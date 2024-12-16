@@ -8,8 +8,9 @@ export async function getAbout(): Promise<About> {
 				headers: {
 					'Content-Type': 'application/json',
 				},
-				credentials: 'include',
+
 				method: 'GET',
+				credentials: 'include',
 			})
 		).json()) as About;
 		console.log(about);
