@@ -4,6 +4,7 @@ export async function getAbout(): Promise<About> {
 	try {
 		const about = (await (
 			await fetch(process.env.BACKEND_URL + '/about', {
+				mode: 'no-cors',
 				headers: {
 					'Content-Type': 'application/json',
 				},
