@@ -17,7 +17,7 @@ const nextConfig: NextConfig = {
 				headers: [
 					{
 						key: 'Access-Control-Allow-Origin',
-						value: '*',
+						value: '/:path*',
 					}, // replace this your actual origin
 					{
 						key: 'Access-Control-Allow-Methods',
