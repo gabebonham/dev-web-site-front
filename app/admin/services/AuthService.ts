@@ -6,6 +6,7 @@ export async function authenticate(userName, password): Promise<string> {
 			userName: userName,
 			password: password,
 		};
+		console.log(userObj);
 		const token = await (
 			await fetch(process.env.BACKEND_URL_PURE + '/login', {
 				headers: {
@@ -14,7 +15,6 @@ export async function authenticate(userName, password): Promise<string> {
 				method: 'POST',
 				body: JSON.stringify(userObj),
 				credentials: 'include',
-				mode: 'no-cors',
 			})
 		).json();
 		console.log(token);

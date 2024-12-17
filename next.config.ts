@@ -17,7 +17,7 @@ const nextConfig: NextConfig = {
 				headers: [
 					{
 						key: 'Access-Control-Allow-Origin',
-						value: '/:path*',
+						value: 'http://localhost:3001',
 					}, // replace this your actual origin
 					{
 						key: 'Access-Control-Allow-Methods',
@@ -25,7 +25,7 @@ const nextConfig: NextConfig = {
 					},
 					{
 						key: 'Access-Control-Allow-Headers',
-						value: 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
+						value: 'Content-Type',
 					},
 					{
 						key: 'Access-Control-Allow-Credentials',
