@@ -21,7 +21,6 @@ export async function getAbout(): Promise<About> {
 export async function updateAbout(newAbout) {
 	try {
 		const a = await fetch(process.env.BACKEND_URL + '/about', {
-			mode: 'no-cors',
 			headers: {
 				'Content-Type': 'application/json',
 			},
