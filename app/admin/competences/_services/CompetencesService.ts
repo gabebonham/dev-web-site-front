@@ -20,6 +20,7 @@ export async function getCompetenceById(id: number): Promise<Competence> {
 					headers: {
 						'Content-Type':
 							'application/json',
+						Origin: 'https://dev-web-site-front-production.up.railway.app',
 					},
 					method: 'GET',
 					credentials: 'include',
@@ -53,12 +54,11 @@ export async function createCompetence(competence) {
 export async function deleteCompetenceById(id: number) {
 	try {
 		const a = await fetch(
-			process.env.BACKEND_URL +
-				'/competences/' +
-				id.toString(),
+			process.env.BACKEND_URL + '/competences/' + id,
 			{
 				headers: {
 					'Content-Type': 'application/json',
+					Origin: 'https://dev-web-site-front-production.up.railway.app',
 				},
 				method: 'DELETE',
 				credentials: 'include',
