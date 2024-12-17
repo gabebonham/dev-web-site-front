@@ -4,9 +4,9 @@ const nextConfig: NextConfig = {
 	staticPageGenerationTimeout: 15000,
 	env: {
 		BACKEND_URL:
-			'https://dev-web-site-back-production.up.railway.app:3000/api',
+			'https://dev-web-site-back-production.up.railway.app/api',
 		BACKEND_URL_PURE:
-			'https://dev-web-site-back-production.up.railway.app:3000',
+			'https://dev-web-site-back-production.up.railway.app',
 		JWT_KEY: 'grote',
 	},
 };
