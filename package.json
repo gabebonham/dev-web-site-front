@@ -1,7 +1,7 @@
 {
 	"name": "dev-web-site-front",
 	"version": "0.1.0",
-	"private": false,
+	"private": true,
 	"packageManager": "pnpm@9.13.0",
 	"scripts": {
 		"dev": "next dev",

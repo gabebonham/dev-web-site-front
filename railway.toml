@@ -1,6 +1,6 @@
 [build]
 builder = "NIXPACKS"
-buildCommand = "pnpm run build --no-lint"
+buildCommand = "pnpm run build"
 
 [build.nixpacksPlan.phases.install]
 cmds = ["rm -rf .next && rm -rf node_modules && rm pnpm.lock.yaml && pnpm install --no-frozen-lockfile"]

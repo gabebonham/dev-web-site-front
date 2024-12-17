@@ -1,7 +1,7 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-	staticPageGenerationTimeout: 10000,
+	staticPageGenerationTimeout: 15000,
 	env: {
 		BACKEND_URL:
 			'https://dev-web-site-back-production.up.railway.app:3000/api',
