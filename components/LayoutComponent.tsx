@@ -23,7 +23,7 @@ import SectionsComponent from './Sections';
 import { Separator } from './ui/separator';
 import Link from 'next/link';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import ScheduleModal from './ScheduleModal';
 import { authenticate, logout } from '@/app/admin/services/AuthService';
 import { useRouter } from 'next/navigation';
@@ -37,6 +37,7 @@ const cookie = {
 
 export default function LayoutComponent({ children }) {
 	const [isOpen, open] = useState(false);
+	const [cookieState, setCookieState] = useState('');
 	const router = useRouter();
 	const name = useRef<any>(null);
 	const pass = useRef<any>(null);
@@ -45,10 +46,14 @@ export default function LayoutComponent({ children }) {
 			name.current.value,
 			pass.current.value,
 		);
-		await Cookie.set('session', token);
-		console.log(token);
-		router.push('/admin/competences');
+		setCookieState(token);
 	};
+	useEffect(() => {
+		Cookie.set('session', cookieState);
+		console.log(cookieState);
+		router.push('/admin/competences');
+	}, [cookieState]);
+
 	const logoutHandler = async () => {
 		await logout();
 		Cookie.remove('session');
