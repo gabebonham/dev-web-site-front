@@ -1,6 +1,12 @@
 'use server';
 import { cookies } from 'next/headers';
 
+const cookie = {
+	name: 'session',
+	options: { httpOnly: true, secure: true, sameSite: 'lax', path: '/' },
+	duration: 24 * 60 * 60 * 1000,
+};
+
 export async function authenticate(userName, password): Promise<string> {
 	try {
 		const userObj = {
@@ -19,7 +25,8 @@ export async function authenticate(userName, password): Promise<string> {
 			})
 		).json();
 		console.log(token);
-		await (await cookies()).set('session', token);
+		const a = await cookies();
+		a.set('session', token, cookie);
 
 		return token.session;
 	} catch (e) {
@@ -28,5 +35,6 @@ export async function authenticate(userName, password): Promise<string> {
 }
 
 export async function logout() {
-	(await cookies()).set('session', '', { expires: new Date(0) });
+	const a = await cookies();
+	a.set('session', '', { expires: new Date(0) });
 }
