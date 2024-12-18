@@ -2,11 +2,11 @@
 import { cookies } from 'next/headers';
 import Competence from '../_models/CompetenceModel';
 
-export async function getAllCompetences(): Promise<Competence[]> {
+export async function getAllCompetences() {
 	try {
-		const a = (await (
+		const a = await (
 			await fetch(process.env.BACKEND_URL + '/competences')
-		).json()) as Competence[];
+		).json();
 		return a;
 	} catch (e) {
 		return [];
@@ -53,8 +53,8 @@ export async function createCompetence(competence) {
 	}
 }
 export async function deleteCompetenceById(id: number) {
-	const a = await cookies();
-	console.log(a.getAll());
+	const b = await cookies();
+	console.log(b.getAll());
 	try {
 		const a = await (
 			await fetch(
