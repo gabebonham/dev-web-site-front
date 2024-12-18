@@ -2,9 +2,10 @@
 import { cookies } from 'next/headers';
 
 const cookie = {
-	name: 'session',
-	options: { httpOnly: true, secure: true, sameSite: 'lax', path: '/' },
-	duration: 24 * 60 * 60 * 1000,
+	secure: true,
+	sameSite: true,
+	path: '/',
+	expires: 1,
 };
 
 export async function authenticate(userName, password): Promise<string> {
