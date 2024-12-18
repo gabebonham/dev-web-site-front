@@ -1,3 +1,4 @@
+'use server';
 import { cookies } from 'next/headers';
 
 export async function authenticate(userName, password): Promise<string> {
