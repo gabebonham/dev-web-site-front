@@ -17,7 +17,7 @@ const nextConfig: NextConfig = {
 				headers: [
 					{
 						key: 'Access-Control-Allow-Origin',
-						value: 'https://dev-web-site-back-production.up.railway.app',
+						value: 'https://dev-web-site-front-production.up.railway.app',
 					}, // replace this your actual origin
 					{
 						key: 'Access-Control-Allow-Methods',
