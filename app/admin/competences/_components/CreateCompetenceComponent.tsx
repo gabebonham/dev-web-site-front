@@ -23,7 +23,7 @@ export default function CreateCompetenceComponent() {
 
 		await createCompetence({ name: name, rating: rating });
 		open(false);
-		router.push('/ainda prp');
+		router.push('/admin/competences');
 	};
 
 	return isOpen ? (
