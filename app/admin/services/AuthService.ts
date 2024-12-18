@@ -1,4 +1,4 @@
-import { setCookie } from 'cookies-next';
+import { cookies } from 'next/headers';
 
 export async function authenticate(userName, password): Promise<string> {
 	try {
@@ -18,7 +18,7 @@ export async function authenticate(userName, password): Promise<string> {
 			})
 		).json();
 		console.log(token);
-		await setCookie('session', token);
+		await (await cookies()).set('session', token);
 
 		return token.session;
 	} catch (e) {
@@ -27,5 +27,5 @@ export async function authenticate(userName, password): Promise<string> {
 }
 
 export async function logout() {
-	setCookie('session', '', { expires: new Date(0) });
+	(await cookies()).set('session', '', { expires: new Date(0) });
 }
