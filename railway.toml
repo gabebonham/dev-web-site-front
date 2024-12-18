@@ -6,4 +6,4 @@ buildCommand = "pnpm run build"
 cmds = ["rm -rf .next && rm -rf node_modules && rm pnpm.lock.yaml && pnpm install --no-frozen-lockfile"]
 
 [deploy]
-startCommand = "pnpm run start"
+startCommand = "pnpm run dev"
