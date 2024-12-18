@@ -41,7 +41,7 @@ export default function LayoutComponent({ children }) {
 	const name = useRef<any>(null);
 	const pass = useRef<any>(null);
 	const authHandler = async () => {
-		const token = await authenticate.bind(
+		const token = await authenticate(
 			name.current.value,
 			pass.current.value,
 		);

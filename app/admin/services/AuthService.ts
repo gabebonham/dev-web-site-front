@@ -27,6 +27,7 @@ export async function authenticate(userName, password): Promise<string> {
 		console.log(token);
 		const a = await cookies();
 		a.set('session', token, cookie);
+		console.log(a.getAll());
 
 		return token.session;
 	} catch (e) {

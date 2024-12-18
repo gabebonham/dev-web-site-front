@@ -1,3 +1,5 @@
+'use server';
+import { cookies } from 'next/headers';
 import Competence from '../_models/CompetenceModel';
 
 export async function getAllCompetences(): Promise<Competence[]> {
@@ -51,6 +53,8 @@ export async function createCompetence(competence) {
 	}
 }
 export async function deleteCompetenceById(id: number) {
+	const a = await cookies();
+	console.log(a.getAll());
 	try {
 		const a = await (
 			await fetch(
