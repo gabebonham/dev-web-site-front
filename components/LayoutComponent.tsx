@@ -42,7 +42,7 @@ export default function LayoutComponent({ children }) {
 	const pass = useRef<any>(null);
 	const authHandler = async () => {
 		const userObj = {
-			name: name.current.value,
+			userName: name.current.value,
 			password: pass.current.value,
 		};
 		const token = await (
