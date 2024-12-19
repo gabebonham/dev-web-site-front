@@ -41,10 +41,20 @@ export default function LayoutComponent({ children }) {
 	const name = useRef<any>(null);
 	const pass = useRef<any>(null);
 	const authHandler = async () => {
-		const token = await authenticate(
-			name.current.value,
-			pass.current.value,
-		);
+		const userObj = {
+			name: name.current.value,
+			password: pass.current.value,
+		};
+		const token = await (
+			await fetch(process.env.BACKEND_URL_PURE + '/login', {
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				method: 'POST',
+				body: JSON.stringify(userObj),
+				credentials: 'include',
+			})
+		).json();
 		await Cookie.set('session', token);
 		console.log(token);
 		router.push('/admin/competences');
