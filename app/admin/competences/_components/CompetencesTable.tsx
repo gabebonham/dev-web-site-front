@@ -12,17 +12,29 @@ import { Button } from '@/components/ui/button';
 import { X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import Competence from '../_models/CompetenceModel';
-import { deleteCompetenceById } from '../_services/CompetencesService';
+import { deleteCompetenceById, getAllCompetences } from '../_services/CompetencesService';
+import { useState } from 'react';
+
+export async function getServerSideProps(){
+	await 
+}
+
 
 export default function CompetencesTable({
 	competences,
 }: {
 	competences: Competence[];
 }) {
+	const [data, setData] = useState([]);
 	const router = useRouter();
 	const deleteHandler = async (id: number) => {
 		await deleteCompetenceById(id);
 		router.push('/admin/competences');
+	};
+	const getHandler = async () => {
+		const comp = await getAllCompetences();
+		setData(comp)
+		router.refresh();
 	};
 	return (
 		<Table className="w-[700px]">
@@ -37,7 +49,7 @@ export default function CompetencesTable({
 				</TableRow>
 			</TableHeader>
 			<TableBody>
-				{competences.length &&
+				{data.length &&
 					competences.map((b) => (
 						<TableRow key={b.id}>
 							<TableCell className="font-medium">
