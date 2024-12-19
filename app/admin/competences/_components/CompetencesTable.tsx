@@ -19,7 +19,7 @@ import {
 import { useState } from 'react';
 import { InferGetServerSidePropsType } from 'next';
 
-export default async function CompetencesTable({ comp }) {
+export default function CompetencesTable({ comp }) {
 	const [data, setData] = useState([]);
 	const router = useRouter();
 	const deleteHandler = async (id: number) => {
