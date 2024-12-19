@@ -21,7 +21,27 @@ export default function CreateCompetenceComponent() {
 		const name = nameRef.current.value;
 		const rating = Number.parseInt(ratingRef.current.value);
 
-		await createCompetence({ name: name, rating: rating });
+		try {
+			const competencesJson = await JSON.stringify({
+				name: name,
+				rating: rating,
+			});
+			const a = await (
+				await fetch(
+					process.env.BACKEND_URL +
+						'/competences',
+					{
+						headers: {
+							'Content-Type':
+								'application/json',
+						},
+						method: 'POST',
+						body: competencesJson,
+						credentials: 'include',
+					},
+				)
+			).json();
+		} catch (e) {}
 		open(false);
 		router.refresh();
 	};

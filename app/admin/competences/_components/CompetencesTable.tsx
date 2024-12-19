@@ -22,9 +22,25 @@ import { InferGetServerSidePropsType } from 'next';
 export default function CompetencesTable({ comp }) {
 	const [data, setData] = useState([]);
 	const router = useRouter();
-	const deleteHandler = async (id: number) => {
-		await deleteCompetenceById(id);
 
+	const deleteHandler = async (id: number) => {
+		try {
+			const a = await (
+				await fetch(
+					process.env.BACKEND_URL +
+						'/competences/' +
+						id,
+					{
+						headers: {
+							'Content-Type':
+								'application/json',
+						},
+						method: 'DELETE',
+						credentials: 'include',
+					},
+				)
+			).json();
+		} catch (e) {}
 		router.refresh();
 	};
 	return (
