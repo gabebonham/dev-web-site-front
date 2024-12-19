@@ -12,6 +12,7 @@ export async function middleware(req: NextRequest, res: NextResponse) {
 
 	if (decryptedData) {
 		// If the session cannot be decrypted or is invalid, redirect to '/home'
+
 		return NextResponse.next();
 	} else {
 		return NextResponse.redirect(new URL('/home', req.url));

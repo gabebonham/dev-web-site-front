@@ -5,13 +5,10 @@ import Competence from './_models/CompetenceModel';
 import { getAllCompetences } from './_services/CompetencesService';
 
 export default async function ComponentsPage() {
-	const competences = await getAllCompetences();
 	return (
 		<SideBarComponent>
 			<CreateCompetenceComponent />
-			{competences.length && (
-				<CompetencesTable competences={competences} />
-			)}
+			<CompetencesTable />
 		</SideBarComponent>
 	);
 }

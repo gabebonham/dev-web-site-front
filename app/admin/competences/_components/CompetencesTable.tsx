@@ -18,22 +18,23 @@ import {
 } from '../_services/CompetencesService';
 import { useState } from 'react';
 
-export default function CompetencesTable({
-	competences,
-}: {
-	competences: Competence[];
-}) {
+export async function getServerSideProps() {
+	const comp = await getAllCompetences();
+	return {
+		props: {
+			comp,
+		},
+	};
+}
+export default function CompetencesTable(comp) {
 	const [data, setData] = useState([]);
 	const router = useRouter();
 	const deleteHandler = async (id: number) => {
 		await deleteCompetenceById(id);
-		await getHandler();
+
 		router.refresh();
 	};
-	const getHandler = async () => {
-		const comp = await getAllCompetences();
-		setData(comp);
-	};
+
 	return (
 		<Table className="w-[700px]">
 			<TableHeader>
@@ -47,8 +48,8 @@ export default function CompetencesTable({
 				</TableRow>
 			</TableHeader>
 			<TableBody>
-				{data.length &&
-					data.map((b) => (
+				{comp.length &&
+					comp.map((b) => (
 						<TableRow key={b.id}>
 							<TableCell className="font-medium">
 								{b.id}
