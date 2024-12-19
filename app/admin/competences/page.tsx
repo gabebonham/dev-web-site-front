@@ -4,11 +4,20 @@ import CreateCompetenceComponent from './_components/CreateCompetenceComponent';
 import Competence from './_models/CompetenceModel';
 import { getAllCompetences } from './_services/CompetencesService';
 
-export default async function ComponentsPage() {
+export async function getServerSideProps() {
+	const comp = await getAllCompetences();
+	return {
+		props: {
+			comp,
+		},
+	};
+}
+
+export default async function ComponentsPage({ comp }) {
 	return (
 		<SideBarComponent>
 			<CreateCompetenceComponent />
-			<CompetencesTable comp={null} />
+			<CompetencesTable comp={comp} />
 		</SideBarComponent>
 	);
 }

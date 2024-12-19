@@ -17,16 +17,9 @@ import {
 	getAllCompetences,
 } from '../_services/CompetencesService';
 import { useState } from 'react';
+import { InferGetServerSidePropsType } from 'next';
 
-export async function getServerSideProps() {
-	const comp = await getAllCompetences();
-	return {
-		props: {
-			comp,
-		},
-	};
-}
-export default function CompetencesTable({ comp }) {
+export default async function CompetencesTable({ comp }) {
 	const [data, setData] = useState([]);
 	const router = useRouter();
 	const deleteHandler = async (id: number) => {
@@ -34,7 +27,6 @@ export default function CompetencesTable({ comp }) {
 
 		router.refresh();
 	};
-
 	return (
 		<Table className="w-[700px]">
 			<TableHeader>
