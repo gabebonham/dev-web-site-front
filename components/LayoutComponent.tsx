@@ -55,7 +55,7 @@ export default function LayoutComponent({ children }) {
 				credentials: 'include',
 			})
 		).json();
-		await Cookie.set('session', token);
+		await Cookie.set('session', JSON.parse(token));
 		console.log(token);
 		router.push('/admin/competences');
 	};
