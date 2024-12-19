@@ -12,13 +12,11 @@ import { Button } from '@/components/ui/button';
 import { X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import Competence from '../_models/CompetenceModel';
-import { deleteCompetenceById, getAllCompetences } from '../_services/CompetencesService';
+import {
+	deleteCompetenceById,
+	getAllCompetences,
+} from '../_services/CompetencesService';
 import { useState } from 'react';
-
-export async function getServerSideProps(){
-	await 
-}
-
 
 export default function CompetencesTable({
 	competences,
@@ -33,7 +31,7 @@ export default function CompetencesTable({
 	};
 	const getHandler = async () => {
 		const comp = await getAllCompetences();
-		setData(comp)
+		setData(comp);
 		router.refresh();
 	};
 	return (
