@@ -27,12 +27,12 @@ export default function CompetencesTable({
 	const router = useRouter();
 	const deleteHandler = async (id: number) => {
 		await deleteCompetenceById(id);
-		router.push('/admin/competences');
+		await getHandler();
+		router.refresh();
 	};
 	const getHandler = async () => {
 		const comp = await getAllCompetences();
 		setData(comp);
-		router.refresh();
 	};
 	return (
 		<Table className="w-[700px]">

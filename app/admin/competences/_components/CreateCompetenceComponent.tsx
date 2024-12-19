@@ -23,7 +23,7 @@ export default function CreateCompetenceComponent() {
 
 		await createCompetence({ name: name, rating: rating });
 		open(false);
-		router.push('/admin/competences');
+		router.refresh();
 	};
 
 	return isOpen ? (
