@@ -26,7 +26,7 @@ export async function getServerSideProps() {
 		},
 	};
 }
-export default function CompetencesTable(comp) {
+export default function CompetencesTable({ comp }) {
 	const [data, setData] = useState([]);
 	const router = useRouter();
 	const deleteHandler = async (id: number) => {

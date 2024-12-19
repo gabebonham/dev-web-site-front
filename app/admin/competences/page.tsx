@@ -8,7 +8,7 @@ export default async function ComponentsPage() {
 	return (
 		<SideBarComponent>
 			<CreateCompetenceComponent />
-			<CompetencesTable />
+			<CompetencesTable comp={null} />
 		</SideBarComponent>
 	);
 }
