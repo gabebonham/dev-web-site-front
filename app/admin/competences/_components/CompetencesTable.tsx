@@ -48,7 +48,7 @@ export default function CompetencesTable({
 			</TableHeader>
 			<TableBody>
 				{data.length &&
-					competences.map((b) => (
+					data.map((b) => (
 						<TableRow key={b.id}>
 							<TableCell className="font-medium">
 								{b.id}
