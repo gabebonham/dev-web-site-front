@@ -1,3 +1,4 @@
+'use client';
 import LayoutComponent from '@/components/LayoutComponent';
 import { getAllBlogs } from './_service/BlogsService';
 import {
@@ -10,13 +11,19 @@ import {
 import Image from 'next/image';
 import img from '@/public/p4.png';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
-export default async function BlogPage() {
-	const blogs = await getAllBlogs();
-
+export default function BlogPage() {
+	const [data, setData] = useState([]);
+	useEffect(() => {
+		const get = async () => {
+			await getAllBlogs(setData);
+		};
+		get();
+	}, []);
 	return (
 		<LayoutComponent>
-			{blogs.length && (
+			{data.length && (
 				<div className="mb-4 p-16 shadow-2xl shadow-black bg-[rgba(0,0,0,0.2)]">
 					<Image
 						src={img}
@@ -24,17 +31,17 @@ export default async function BlogPage() {
 						className="absolute right-0 rounded-2xl pr-4 hover:animate-pulse2 opacity-50 size-48"
 					/>
 					<h1 className="pl-80 text-5xl">Blog</h1>
-					<Link href={'/blog/' + blogs[0].id}>
+					<Link href={'/blog/' + data[0].id}>
 						<Card
 							style={{
-								backgroundImage: `url('${blogs[0].imageName}')`,
+								backgroundImage: `url('${data[0].imageName}')`,
 							}}
 							className={`w-[800px] hover:animate-pulse2 m-8 cursor-pointer`}
 						>
 							<CardHeader>
 								<CardTitle>
 									{
-										blogs[0]
+										data[0]
 											.title
 									}
 								</CardTitle>
@@ -42,7 +49,7 @@ export default async function BlogPage() {
 							<CardContent>
 								<CardDescription>
 									{
-										blogs[0]
+										data[0]
 											.body
 									}
 								</CardDescription>
@@ -50,7 +57,7 @@ export default async function BlogPage() {
 						</Card>
 					</Link>
 					<div className="grid grid-cols-3 gap-6 pt-4">
-						{blogs.map((b, i) => {
+						{data.map((b, i) => {
 							const image =
 								b.imageName;
 							if (i != 0)

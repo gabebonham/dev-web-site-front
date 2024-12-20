@@ -8,17 +8,34 @@ import {
 	TableRow,
 } from '@/components/ui/table';
 import { Check, CircleAlert } from 'lucide-react';
-import { useState } from 'react';
-import { updateMessage } from '../_services/MessagesService';
+import { useEffect, useState } from 'react';
+import {
+	getAllMessages,
+	storeMessage,
+	updateMessage,
+} from '../_services/MessagesService';
 import { useRouter } from 'next/navigation';
 
-export default function MessagesTable({ messages }) {
-	const router = useRouter();
+export default function MessagesTable() {
+	const [data, setData] = useState([]);
+	const [id, setId] = useState(0);
 	const [message, setMessage] = useState('');
+	const [canUpdate, update] = useState(false);
 	const updateHandler = async (id) => {
-		await updateMessage(id);
-		router.refresh();
+		setId(id);
+		update(true);
 	};
+	useEffect(() => {
+		const get = async () => {
+			await getAllMessages(setData);
+		};
+		const update = async () => {
+			await updateMessage(id);
+		};
+
+		canUpdate && update();
+		get();
+	}, [canUpdate]);
 	return (
 		<div className="w-auto">
 			<Table className="w-[850px]">
@@ -38,7 +55,7 @@ export default function MessagesTable({ messages }) {
 					</TableRow>
 				</TableHeader>
 				<TableBody>
-					{messages.map((m) => (
+					{data.map((m) => (
 						<TableRow key={m.id}>
 							<TableHead
 								className="cursor-pointer"

@@ -13,6 +13,7 @@ import { Button } from './ui/button';
 import { Textarea } from './ui/textarea';
 import { Input } from './ui/input';
 import { storeMessageFromModal } from '@/lib/MessagesService';
+import { fallbackModeToStaticPathsResult } from 'next/dist/lib/fallback';
 
 export default function ScheduleModal({
 	open,
@@ -23,19 +24,22 @@ export default function ScheduleModal({
 	const obsRef = useRef<any>(null);
 	const emailRef = useRef<any>(null);
 	document.body.classList.add('overflow-y-hidden');
+	const [canSend, send] = useState(false);
 	useEffect(() => {
-		console.log(date);
-	}, [date, setDate]);
-	const sendEmailHandler = async () => {
-		const email = emailRef?.current.value || '';
-		const obs = obsRef?.current.value || '';
-		await storeMessageFromModal({
-			email: email,
-			msg: obs,
-			scheduled: date,
-		});
-		open(false);
-	};
+		const sendEmailHandler = async () => {
+			const email = emailRef.current.value || '';
+			const obs = obsRef.current.value || '';
+			await storeMessageFromModal({
+				email: email,
+				msg: obs,
+				scheduled: date,
+			});
+			open(false);
+			send(false);
+		};
+		canSend && sendEmailHandler();
+	}, [canSend]);
+
 	return (
 		<div className="absolute justify-items-center bg-[rgba(0,0,0,0.2)] z-50 w-full h-full">
 			<Card className=" mt-36 w-[1000px] h-[400px] z-100">
@@ -76,9 +80,7 @@ export default function ScheduleModal({
 						Fechar
 					</Button>
 					<Button
-						onClick={(e) =>
-							sendEmailHandler()
-						}
+						onClick={(e) => send(true)}
 						className="ml-4"
 					>
 						Agendar

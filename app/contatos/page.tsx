@@ -1,12 +1,19 @@
+'use client';
 import LayoutComponent from '@/components/LayoutComponent';
 import { getAllContacts } from './_services/ContactsService';
 import ContactsTableComponent from './_components/ContactsTableComponent';
 import Image from 'next/image';
 import img from '@/public/p3.png';
+import { useEffect, useState } from 'react';
 
-export default async function ContactPage() {
-	const contacts = await getAllContacts();
-
+export default function ContactPage() {
+	const [data, setData] = useState([]);
+	useEffect(() => {
+		const get = async () => {
+			await getAllContacts(setData);
+		};
+		get();
+	}, []);
 	return (
 		<LayoutComponent>
 			<div className="mb-8 p-16 shadow-2xl shadow-black bg-[rgba(0,0,0,0.2)] ">
@@ -26,9 +33,9 @@ export default async function ContactPage() {
 						que use o meu email.
 					</p>
 				</div>
-				{contacts.length && contacts.length && (
+				{data.length > 0 && data.length && (
 					<ContactsTableComponent
-						contacts={contacts}
+						contacts={data}
 					/>
 				)}
 			</div>

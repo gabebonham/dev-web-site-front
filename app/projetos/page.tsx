@@ -1,3 +1,4 @@
+'use client';
 import LayoutComponent from '@/components/LayoutComponent';
 import {
 	Card,
@@ -11,10 +12,16 @@ import Link from 'next/link';
 import { getAllProjects } from './_services/ProjectsService';
 import Image from 'next/image';
 import img from '@/public/p1.png';
+import { useEffect, useState } from 'react';
 
-export default async function ProjectsPage() {
-	const projects = await getAllProjects();
-
+export default function ProjectsPage() {
+	const [data, setData] = useState([]);
+	useEffect(() => {
+		const get = async () => {
+			await getAllProjects(setData);
+		};
+		get();
+	}, []);
 	return (
 		<LayoutComponent>
 			<div className="mb-8 shadow-2xl shadow-black bg-[rgba(0,0,0,0.2)] p-16">
@@ -27,11 +34,11 @@ export default async function ProjectsPage() {
 					Projetos
 				</h1>
 				<div className=" grid grid-cols-3 gap-8 w-[1000px] ">
-					{projects.length &&
-						projects.map((p) => (
+					{data.length &&
+						data.map((p) => (
 							<Card
 								key={p.id}
-								className="shadow-2xl cursor-pointer hover:animate-pulse2 bg-gradient-to-br from-gray-400 to-white border border-2 border-red-500"
+								className="shadow-2xl cursor-pointer hover:animate-pulse2 bg-gradient-to-br from-gray-400 to-white border border-2 border-cyan-100"
 							>
 								<CardHeader>
 									<CardTitle>

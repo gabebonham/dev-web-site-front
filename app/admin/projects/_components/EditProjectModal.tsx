@@ -7,7 +7,7 @@ import {
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { updateProject } from '../_service/ProjectsService';
 import Project from '../_models/ProjectModel';
@@ -15,23 +15,39 @@ import Project from '../_models/ProjectModel';
 export default function EditProjectModal({
 	b,
 	open,
+	canGetAll,
+	getAll,
 }: {
-	b: Project;
+	b: any;
 	open: (v: boolean) => void;
+	canGetAll: boolean;
+	getAll: (v: boolean) => void;
 }) {
-	const router = useRouter();
-
 	const nameRef = useRef<any>(null);
 	const descriptionRef = useRef<any>(null);
 	const linkRef = useRef<any>(null);
 
-	const updateProjectById = async (proj: Project) => {
-		proj.name = nameRef.current.value || proj.name;
-		proj.description =
-			descriptionRef.current.value || proj.description;
-		proj.link = linkRef.current.value || proj.link;
-		await updateProject(proj);
-		router.refresh();
+	const [canUpdate, updateToggle] = useState(false);
+
+	const [project, setProject] = useState(null);
+
+	useEffect(() => {
+		const update = async () => {
+			await updateProject(project);
+
+			open(false);
+			getAll(!canGetAll);
+			updateToggle(false);
+		};
+		canUpdate && update();
+	}, [canUpdate]);
+
+	const updateHandler = () => {
+		b.name = nameRef.current.value || b.name;
+		b.description = descriptionRef.current.value || b.description;
+		b.link = linkRef.current.value || b.link;
+		setProject(b);
+		updateToggle(true);
 	};
 
 	return (
@@ -73,10 +89,7 @@ export default function EditProjectModal({
 						</Button>
 						<Button
 							onClick={(a) => {
-								open(false);
-								updateProjectById(
-									b,
-								);
+								updateHandler();
 							}}
 						>
 							Salvar

@@ -15,46 +15,52 @@ import { deleteBlogById, updateBlogById } from '../_service/BlogService';
 import { useRouter } from 'next/navigation';
 import { RadioGroupComponent } from './RadioGroup';
 
-export default function BlogModal({
-	b,
-}: {
-	b: {
-		id: number;
-		title: string;
-		imageName: string;
-		body: string;
-	};
-}) {
+export default function BlogModal({ b, act, setAct }) {
 	const router = useRouter();
-	const [image, setImage] = useState('image1.jpg');
+	const [data, setData] = useState(null);
 	const [isOpen, open] = useState(false);
+	const [id, setId] = useState(0);
+	const [canUpdate, update] = useState(false);
+	const [canDelete, deletee] = useState(false);
+	const [image, setImage] = useState('image1.jpg');
 	const titleRef = useRef<any>(null);
 	const bodyRef = useRef<any>(null);
 
-	const updateBlogHandler = async (blog: {
-		id: number;
-		title: string;
-		imageName: string;
-		body: string;
-	}) => {
+	const updateBlogHandler = (blog) => {
 		const title = titleRef.current.value;
 		const body = bodyRef.current.value;
 		console.log(blog);
-		await updateBlogById({
+		setData({
 			id: blog.id,
 			title: title,
 			body: body,
 			imageName: image,
 		});
+		update(true);
+		router.refresh();
+	};
+	const deleteBlogHandler = (id) => {
+		setId(id);
+		deletee(true);
 		router.refresh();
 	};
 
-	const deleteBlogHandler = async (id) => {
-		await deleteBlogById(id);
-		open(false);
-		router.refresh();
-	};
-
+	useEffect(() => {
+		const updateCall = async () => {
+			await updateBlogById(data);
+			open(false);
+			setAct(!act);
+			update(false);
+		};
+		const deleteCall = async () => {
+			await deleteBlogById(id);
+			open(false);
+			setAct(!act);
+			deletee(false);
+		};
+		canDelete && deleteCall();
+		canUpdate && updateCall();
+	}, [canUpdate, canDelete]);
 	return (
 		<div key={b.id} className="max-w-56 min-w-56">
 			<div

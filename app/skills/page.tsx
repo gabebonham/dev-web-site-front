@@ -1,3 +1,4 @@
+'use client';
 import LayoutComponent from '@/components/LayoutComponent';
 import { getAllSkills } from './_services/SkillsService';
 import {
@@ -9,10 +10,16 @@ import {
 } from '@/components/ui/card';
 import Image from 'next/image';
 import img from '@/public/p5.png';
+import { useEffect, useState } from 'react';
 
-export default async function SkillsPage() {
-	const skills = await getAllSkills();
-
+export default function SkillsPage() {
+	const [data, setData] = useState([]);
+	useEffect(() => {
+		const get = async () => {
+			await getAllSkills(setData);
+		};
+		get();
+	}, []);
 	return (
 		<LayoutComponent>
 			<div className="mb-8 p-16 shadow-2xl shadow-black bg-[rgba(0,0,0,0.2)]">
@@ -37,8 +44,8 @@ export default async function SkillsPage() {
 					</p>
 				</div>
 				<div className="grid grid-cols-5 gap-8">
-					{skills.length > 0 &&
-						skills.map((s) => (
+					{data.length > 0 &&
+						data.map((s) => (
 							<Card
 								key={s.id}
 								className="hover:animate-flash hover:animate-pulseFlash"

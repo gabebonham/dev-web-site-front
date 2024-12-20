@@ -9,29 +9,33 @@ import {
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useRouter } from 'next/navigation';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { createProject } from '../_service/ProjectsService';
 
-export default function CreateProjectComponent() {
-	const router = useRouter();
+export default function CreateProjectComponent({ getAll, canGetAll }) {
+	const [canCreate, create] = useState(false);
+	const [proj, setProj] = useState(null);
 	const [isOpen, open] = useState(false);
 	const nameRef = useRef<any>(null);
 	const descriptionRef = useRef<any>(null);
 	const linkRef = useRef<any>(null);
-
-	const createNewProject = async () => {
-		const name = nameRef.current.value;
-		const description = descriptionRef.current.value;
-		const link = linkRef.current.value;
-		await createProject({
-			name: name,
-			link: link,
-			description: description,
-		});
+	const createHandler = () => {
+		const project = {
+			name: nameRef.current.value,
+			link: linkRef.current.value,
+			description: descriptionRef.current.value,
+		};
+		setProj(project);
+		create(true);
 		open(false);
-		router.refresh();
+		getAll(!canGetAll);
 	};
-
+	useEffect(() => {
+		const create = async () => {
+			await createProject(proj);
+		};
+		canCreate && create();
+	}, [canCreate]);
 	return isOpen ? (
 		<div>
 			<div className="top-0 left-0 absolute bg-black size-full z-10 sepia-0 opacity-30"></div>
@@ -47,9 +51,7 @@ export default function CreateProjectComponent() {
 				</CardContent>
 				<CardFooter>
 					<Button
-						onClick={(e) =>
-							createNewProject()
-						}
+						onClick={(e) => createHandler()}
 						className="mr-4"
 					>
 						Salvar

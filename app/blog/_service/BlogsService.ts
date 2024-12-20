@@ -1,35 +1,23 @@
 import Blog from '@/app/admin/blog/_model/BlogModel';
 
-export async function getAllBlogs() {
-	try {
-		const blogs = await (
-			await fetch(process.env.BACKEND_URL + '/blogs', {
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				method: 'GET',
-				credentials: 'include',
-			})
-		).json();
-		return blogs;
-	} catch (e) {
-		return [];
-	}
+export async function getAllBlogs(setData) {
+	await fetch(process.env.BACKEND_URL + '/blogs', {
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		method: 'GET',
+		credentials: 'include',
+	})
+		.then((res) => res.json())
+		.then((d) => setData(d));
 }
 
-export async function getBlogById(id: number): Promise<Blog> {
-	try {
-		const blog = (await (
-			await fetch(process.env.BACKEND_URL + '/blogs/' + id, {
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				method: 'GET',
-				credentials: 'include',
-			})
-		).json()) as Blog;
-		return blog;
-	} catch (e) {
-		return null;
-	}
+export async function getBlogById(id: number) {
+	return await fetch(process.env.BACKEND_URL + '/blogs/' + id, {
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		method: 'GET',
+		credentials: 'include',
+	}).then((res) => res.json());
 }

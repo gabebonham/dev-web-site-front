@@ -31,7 +31,7 @@ import Cookie from 'js-cookie';
 
 const cookie = {
 	name: 'session',
-	options: { httpOnly: true, secure: true, sameSite: 'lax', path: '/' },
+	options: { httpOnly: false, secure: true, sameSite: 'lax', path: '/' },
 	duration: 24 * 60 * 60 * 1000,
 };
 
@@ -41,22 +41,11 @@ export default function LayoutComponent({ children }) {
 	const name = useRef<any>(null);
 	const pass = useRef<any>(null);
 	const authHandler = async () => {
-		const userObj = {
-			userName: name.current.value,
-			password: pass.current.value,
-		};
-		const token = await (
-			await fetch(process.env.BACKEND_URL_PURE + '/login', {
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				method: 'POST',
-				body: JSON.stringify(userObj),
-				credentials: 'include',
-			})
-		).json();
-		await Cookie.set('session', JSON.parse(token));
-		console.log(token);
+		const token = await authenticate(
+			name.current.value,
+			pass.current.value,
+		);
+		Cookie.set('session', token);
 		router.push('/admin/competences');
 	};
 	const logoutHandler = async () => {

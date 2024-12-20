@@ -10,38 +10,63 @@ import {
 } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
 import { X } from 'lucide-react';
-import { useRouter } from 'next/navigation';
+import { useEffect, useRef, useState } from 'react';
+import { getAllCompetences } from '../_services/CompetencesService';
 import Competence from '../_models/CompetenceModel';
-import {
-	deleteCompetenceById,
-	getAllCompetences,
-} from '../_services/CompetencesService';
-import { useState } from 'react';
-import { InferGetServerSidePropsType } from 'next';
+import { useRouter } from 'next/navigation';
 
-export default function CompetencesTable({ comp }) {
-	const [data, setData] = useState([]);
+export default function CompetencesTable({
+	setAction3,
+	isAction3,
+	open,
+	isOpen,
+}) {
 	const router = useRouter();
+	const [action, setAction] = useState(false);
+	const [item, setItem] = useState(0);
+	const [c, setC] = useState([]);
 
-	const deleteHandler = async (id: number) => {
-		try {
-			const a = await (
-				await fetch(
-					process.env.BACKEND_URL +
-						'/competences/' +
-						id,
-					{
-						headers: {
-							'Content-Type':
-								'application/json',
-						},
-						method: 'DELETE',
-						credentials: 'include',
+	useEffect(() => {
+		const deleteHandler = async (id: number) => {
+			await fetch(
+				process.env.BACKEND_URL + '/competences/' + id,
+				{
+					headers: {
+						'Content-Type':
+							'application/json',
 					},
-				)
-			).json();
-		} catch (e) {}
-		router.refresh();
+					method: 'DELETE',
+					credentials: 'include',
+				},
+			)
+				.then((d) => setAction3(!isAction3))
+				.then((d) => setAction(false));
+		};
+		action && deleteHandler(item);
+	}, [action]);
+
+	useEffect(() => {
+		async function a() {
+			await fetch(process.env.BACKEND_URL + '/competences', {
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				method: 'GET',
+				credentials: 'include',
+			})
+				.then((res) => res.json())
+				.then((data) => {
+					setC(data);
+				})
+				.then((data) => {
+					router.refresh();
+				});
+		}
+		a();
+	}, [isAction3]);
+	const handler = async (id: number) => {
+		await setItem(id);
+		await setAction(true);
 	};
 	return (
 		<Table className="w-[700px]">
@@ -56,28 +81,33 @@ export default function CompetencesTable({ comp }) {
 				</TableRow>
 			</TableHeader>
 			<TableBody>
-				{comp.map((b) => (
-					<TableRow key={b.id}>
-						<TableCell className="font-medium">
-							{b.id}
-						</TableCell>
-						<TableCell>{b.name}</TableCell>
-						<TableCell>
-							{b.rating}
-						</TableCell>
-						<TableCell>
-							<Button
-								onClick={() =>
-									deleteHandler(
-										b.id,
-									)
-								}
-							>
-								<X />
-							</Button>
-						</TableCell>
-					</TableRow>
-				))}
+				{c.length > 0 &&
+					c.map((b) => (
+						<TableRow key={b.id}>
+							<TableCell className="font-medium">
+								{b.id}
+							</TableCell>
+							<TableCell>
+								{b.name}
+							</TableCell>
+							<TableCell>
+								{b.rating}
+							</TableCell>
+							<TableCell>
+								<Button
+									onClick={(
+										e,
+									) =>
+										handler(
+											b.id,
+										)
+									}
+								>
+									<X />
+								</Button>
+							</TableCell>
+						</TableRow>
+					))}
 			</TableBody>
 			<TableFooter></TableFooter>
 		</Table>

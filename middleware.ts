@@ -5,10 +5,9 @@ import { decrypt } from './lib/JWT'; // Assuming decrypt is your custom decrypti
 export async function middleware(req: NextRequest, res: NextResponse) {
 	// Get the 'session' cookie from the request
 
-	const sessiosn = await req.cookies.get('session'); // Use `cookies.get` to get the cookie
-
-	await console.log(sessiosn);
-	const decryptedData = await decrypt(sessiosn); // Assuming decrypt works here
+	const session = await req.cookies.get('session'); // Use `cookies.get` to get the cookie
+	console.log(session);
+	const decryptedData = await decrypt(session); // Assuming decrypt works here
 
 	if (decryptedData) {
 		// If the session cannot be decrypted or is invalid, redirect to '/home'

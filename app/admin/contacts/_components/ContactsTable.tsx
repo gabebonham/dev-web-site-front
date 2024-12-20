@@ -13,15 +13,24 @@ import { X } from 'lucide-react';
 import Contact from '../_models/ContactModel';
 import { deleteContactById } from '../_service/ContactService';
 import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
-export default function ContactsTable({ contacts }: { contacts: Contact[] }) {
-	const router = useRouter();
+export default function ContactsTable({ contacts, getAll, canGetAll }) {
+	const [canDelete, setCanDelete] = useState(false);
+	const [id, setId] = useState(0);
 
 	const deleteHandler = async (id: number) => {
-		console.log(id);
-		await deleteContactById(id);
-		router.refresh();
+		setId(id);
+		setCanDelete(true);
 	};
+	useEffect(() => {
+		const del = async () => {
+			await deleteContactById(id);
+			setCanDelete(false);
+			getAll(!canGetAll);
+		};
+		canDelete && del();
+	}, [canDelete]);
 	return (
 		<Table className="w-[700px]">
 			<TableHeader>

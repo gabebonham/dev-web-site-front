@@ -8,28 +8,38 @@ import {
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { useRouter } from 'next/navigation';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { createContact } from '../_service/ContactService';
 
-export default function CreateContactComponent() {
-	const router = useRouter();
+export default function CreateContactComponent({ getAll, canGetAll }) {
+	const [contact, setContact] = useState(null);
+	const [canCreate, create] = useState(false);
 	const [isOpen, open] = useState(false);
 	const platformRef = useRef<any>(null);
 	const platformLinkRef = useRef<any>(null);
 	const emailRef = useRef<any>(null);
 
-	const createNewContact = async () => {
+	const createHanlder = () => {
 		const platform = platformRef.current.value;
 		const platformLink = platformLinkRef.current.value;
 		const email = emailRef.current.value;
-		await createContact({
-			platform: platform,
+		setContact({
+			platformName: platform,
 			platformUserPageLink: platformLink,
 			email: email,
 		});
 		open(false);
-		router.refresh();
+		create(true);
 	};
+	useEffect(() => {
+		const post = async () => {
+			await createContact(contact);
+			open(false);
+			create(false);
+			getAll(!canGetAll);
+		};
+		canCreate && post();
+	}, [canCreate]);
 
 	return isOpen ? (
 		<div>
@@ -52,9 +62,7 @@ export default function CreateContactComponent() {
 				</CardContent>
 				<CardFooter>
 					<Button
-						onClick={(e) =>
-							createNewContact()
-						}
+						onClick={(e) => createHanlder()}
 						className="mr-4"
 					>
 						Salvar

@@ -25,11 +25,13 @@ export async function authenticate(userName, password): Promise<string> {
 				credentials: 'include',
 			})
 		).json();
-		console.log(token);
-		const a = await cookies();
-		a.set('session', token, cookie);
-		console.log(a.getAll());
-
+		const coo = await cookies();
+		coo.set('session', token, {
+			httpOnly: false,
+			secure: true,
+			sameSite: 'lax',
+			path: '/',
+		});
 		return token.session;
 	} catch (e) {
 		return null;

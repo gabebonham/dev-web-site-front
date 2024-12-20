@@ -1,17 +1,12 @@
-export async function getAbout() {
-	console.log(process.env.BACKEND_URL);
-	try {
-		const about = await (
-			await fetch(process.env.BACKEND_URL + '/about', {
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				method: 'GET',
-				credentials: 'include',
-			})
-		).json();
-		return about;
-	} catch (e) {
-		return null;
-	}
+'use client';
+export async function getAbout(setData) {
+	await fetch(process.env.BACKEND_URL + '/about', {
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		method: 'GET',
+		credentials: 'include',
+	})
+		.then((res) => res.json())
+		.then((d) => setData(d));
 }

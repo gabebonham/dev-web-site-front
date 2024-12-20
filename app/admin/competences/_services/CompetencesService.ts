@@ -1,15 +1,14 @@
-'use server';
-import { cookies } from 'next/headers';
+'use client';
 import Competence from '../_models/CompetenceModel';
-
-export async function getAllCompetences() {
+import cookie from 'js-cookie';
+export async function getAllCompetences(): Promise<Competence[]> {
 	try {
-		const a = await (
+		const a = (await (
 			await fetch(process.env.BACKEND_URL + '/competences')
-		).json();
-		return a;
+		).json()) as Competence[];
+		return a as Competence[];
 	} catch (e) {
-		return [];
+		return [] as Competence[];
 	}
 }
 
@@ -34,8 +33,9 @@ export async function getCompetenceById(id: number): Promise<Competence> {
 		return null;
 	}
 }
-export async function createCompetence(competence) {
+export async function createCompetence(competence, token) {
 	try {
+		cookie.set('session', token);
 		const competencesJson = await JSON.stringify(competence);
 		const a = await (
 			await fetch(process.env.BACKEND_URL + '/competences', {
@@ -53,8 +53,6 @@ export async function createCompetence(competence) {
 	}
 }
 export async function deleteCompetenceById(id: number) {
-	const b = await cookies();
-	console.log(b.getAll());
 	try {
 		const a = await (
 			await fetch(

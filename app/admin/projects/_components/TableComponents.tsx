@@ -10,21 +10,32 @@ import {
 } from '@/components/ui/table';
 import Project from '../_models/ProjectModel';
 import { Button } from '@/components/ui/button';
-import { deleteProjectById } from '../_service/ProjectsService';
+import { deleteProjectById, updateProject } from '../_service/ProjectsService';
 import { Pencil, X } from 'lucide-react';
 import EditProjectModal from './EditProjectModal';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-export default function TableComponent({ projects }: { projects: Project[] }) {
-	const router = useRouter();
-	const [isOpen, open] = useState(false);
+export default function TableComponent({ projects, getAll, canGetAll }) {
 	const [project, setProject] = useState(null);
-	const deleteProject = async (id: number) => {
-		await deleteProjectById(id);
-		open(false);
-		router.refresh();
+	const [isOpen, open] = useState(false);
+	const [id, setId] = useState(0);
+	const [canDelete, deleteToggle] = useState(false);
+	const deleteHandler = async (id: number) => {
+		setId(id);
+		deleteToggle(true);
 	};
+
+	useEffect(() => {
+		const del = async () => {
+			await deleteProjectById(id);
+			deleteToggle(false);
+			open(false);
+			getAll(!canGetAll);
+		};
+
+		canDelete && del();
+	}, [canDelete]);
 	return (
 		<div>
 			<Table className="w-full">
@@ -60,11 +71,11 @@ export default function TableComponent({ projects }: { projects: Project[] }) {
 									onClick={(
 										e,
 									) => {
-										open(
-											true,
-										);
 										setProject(
 											p,
+										);
+										open(
+											true,
 										);
 									}}
 								>
@@ -74,7 +85,7 @@ export default function TableComponent({ projects }: { projects: Project[] }) {
 							<TableCell>
 								<Button
 									onClick={() =>
-										deleteProject(
+										deleteHandler(
 											p.id,
 										)
 									}
@@ -88,7 +99,14 @@ export default function TableComponent({ projects }: { projects: Project[] }) {
 				<TableFooter></TableFooter>
 			</Table>
 
-			{isOpen && <EditProjectModal b={project} open={open} />}
+			{isOpen && (
+				<EditProjectModal
+					getAll={getAll}
+					canGetAll={canGetAll}
+					b={project}
+					open={open}
+				/>
+			)}
 		</div>
 	);
 }

@@ -7,44 +7,55 @@ import {
 	CardHeader,
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { useRouter } from 'next/navigation';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { createCompetence } from '../_services/CompetencesService';
+import Cookie from 'js-cookie';
+import { cookies } from 'next/headers';
+import { useRouter } from 'next/navigation';
 
-export default function CreateCompetenceComponent() {
-	const router = useRouter();
-	const [isOpen, open] = useState(false);
+export default function CreateCompetenceComponent({
+	isAction3,
+	setAction3,
+	isOpen,
+	open,
+}) {
 	const nameRef = useRef<any>(null);
 	const ratingRef = useRef<any>(null);
-
-	const createNewCompetence = async () => {
-		const name = nameRef.current.value;
-		const rating = Number.parseInt(ratingRef.current.value);
-
-		try {
-			const competencesJson = await JSON.stringify({
-				name: name,
-				rating: rating,
-			});
-			const a = await (
-				await fetch(
-					process.env.BACKEND_URL +
-						'/competences',
-					{
-						headers: {
-							'Content-Type':
-								'application/json',
-						},
-						method: 'POST',
-						body: competencesJson,
-						credentials: 'include',
-					},
-				)
-			).json();
-		} catch (e) {}
-		open(false);
-		router.refresh();
+	const [action1, setAction1] = useState(false);
+	const handler = async () => {
+		await setAction1(true);
 	};
+	useEffect(() => {
+		async function createCompetence() {
+			const competencesJson = await JSON.stringify({
+				name: nameRef.current.value,
+				rating: parseInt(ratingRef.current.value),
+			});
+
+			await fetch(process.env.BACKEND_URL + '/competences', {
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				method: 'POST',
+				body: competencesJson,
+				credentials: 'include',
+			})
+				.then((res) => {
+					if (res.ok) {
+						console.log('ok');
+					} else {
+						console.log('ass');
+					}
+				})
+				.then((d) => open(false))
+				.then((d) => setAction3(!isAction3))
+				.then((d) => setAction1(false));
+		}
+		action1 &&
+			nameRef.current != null &&
+			ratingRef.current != null &&
+			createCompetence();
+	}, [action1]);
 
 	return isOpen ? (
 		<div>
@@ -62,9 +73,7 @@ export default function CreateCompetenceComponent() {
 				</CardContent>
 				<CardFooter>
 					<Button
-						onClick={(e) =>
-							createNewCompetence()
-						}
+						onClick={(e) => handler()}
 						className="mr-4"
 					>
 						Salvar
