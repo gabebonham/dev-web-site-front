@@ -13,71 +13,9 @@ export default function HomePage() {
 	const [isVisible4, setIsVisible4] = useState(false);
 
 	useEffect(() => {
-		const b = async () => {
-			try {
-				await fetch('http://back/asdf', {
-					headers: {
-						'Content-Type':
-							'application/json',
-					},
-					method: 'GET',
-					credentials: 'include',
-				}).then((res) => console.log(res.json()));
-			} catch (e) {
-				console.log('nao');
-			}
-		};
 		const b1 = async () => {
 			try {
-				await fetch('https://back/asdf', {
-					headers: {
-						'Content-Type':
-							'application/json',
-					},
-					method: 'GET',
-					credentials: 'include',
-				}).then((res) => console.log(res.json()));
-			} catch (e) {
-				console.log('nao');
-			}
-		};
-		const b2 = async () => {
-			try {
-				await fetch(
-					'http://back.railway.internal/asdf',
-					{
-						headers: {
-							'Content-Type':
-								'application/json',
-						},
-						method: 'GET',
-						credentials: 'include',
-					},
-				).then((res) => console.log(res.json()));
-			} catch (e) {
-				console.log('nao');
-			}
-		};
-		const b3 = async () => {
-			try {
-				await fetch(
-					'https://back.railway.internal/asdf',
-					{
-						headers: {
-							'Content-Type':
-								'application/json',
-						},
-						method: 'GET',
-						credentials: 'include',
-					},
-				).then((res) => console.log(res.json()));
-			} catch (e) {
-				console.log('nao');
-			}
-		};
-		const b4 = async () => {
-			try {
-				await fetch('back/asdf', {
+				await fetch('https://back:3000/asdf', {
 					headers: {
 						'Content-Type':
 							'application/json',
@@ -90,26 +28,25 @@ export default function HomePage() {
 			}
 		};
 
-		const b5 = async () => {
+		const b3 = async () => {
 			try {
-				await fetch('back.railway.internal/asdf', {
-					headers: {
-						'Content-Type':
-							'application/json',
+				await fetch(
+					'https://back.railway.internal:3000/asdf',
+					{
+						headers: {
+							'Content-Type':
+								'application/json',
+						},
+						method: 'GET',
+						credentials: 'include',
 					},
-					method: 'GET',
-					credentials: 'include',
-				}).then((res) => console.log(res.json()));
+				).then((res) => console.log(res.json()));
 			} catch (e) {
 				console.log('nao');
 			}
 		};
-		b();
 		b1();
-		b2();
 		b3();
-		b4();
-		b5();
 	}, []);
 	useEffect(() => {
 		const handleScroll2 = () => {
