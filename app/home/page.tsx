@@ -14,36 +14,23 @@ export default function HomePage() {
 
 	useEffect(() => {
 		const b1 = async () => {
-			try {
-				await fetch('https://back:3000/asdf', {
-					headers: {
-						'Content-Type':
-							'application/json',
-					},
-					method: 'GET',
-					credentials: 'include',
-				}).then((res) => console.log(res.json()));
-			} catch (e) {
-				console.log('nao');
-			}
+			await fetch('https://back.railway.internal/asdf', {
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				method: 'GET',
+				credentials: 'include',
+			}).then((res) => console.log(res.json()));
 		};
 
 		const b3 = async () => {
-			try {
-				await fetch(
-					'https://back.railway.internal:3000/asdf',
-					{
-						headers: {
-							'Content-Type':
-								'application/json',
-						},
-						method: 'GET',
-						credentials: 'include',
-					},
-				).then((res) => console.log(res.json()));
-			} catch (e) {
-				console.log('nao');
-			}
+			await fetch('https://back.railway.internal:3000/asdf', {
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				method: 'GET',
+				credentials: 'include',
+			}).then((res) => console.log(res.json()));
 		};
 		b1();
 		b3();
