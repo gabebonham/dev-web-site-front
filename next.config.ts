@@ -16,10 +16,6 @@ const nextConfig: NextConfig = {
 				source: '/api/:path*',
 				headers: [
 					{
-						key: 'Access-Control-Allow-Origin',
-						value: 'https://dev-web-site-front-production.up.railway.app',
-					}, // replace this your actual origin
-					{
 						key: 'Access-Control-Allow-Methods',
 						value: 'GET,DELETE,PATCH,POST,PUT, OPTIONS',
 					},

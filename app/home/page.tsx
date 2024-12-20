@@ -13,29 +13,6 @@ export default function HomePage() {
 	const [isVisible4, setIsVisible4] = useState(false);
 
 	useEffect(() => {
-		const b1 = async () => {
-			await fetch('https://back.railway.internal/asdf', {
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				method: 'GET',
-				credentials: 'include',
-			}).then((res) => console.log(res.json()));
-		};
-
-		const b3 = async () => {
-			await fetch('https://back.railway.internal:3000/asdf', {
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				method: 'GET',
-				credentials: 'include',
-			}).then((res) => console.log(res.json()));
-		};
-		b1();
-		b3();
-	}, []);
-	useEffect(() => {
 		const handleScroll2 = () => {
 			if (element2Ref.current) {
 				const rect =
