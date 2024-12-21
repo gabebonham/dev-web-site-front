@@ -19,24 +19,12 @@ const nextConfig: NextConfig = {
 						value: 'https://dev-web-site-front-production.up.railway.app',
 					},
 					{
-						key: 'authorization',
-						value: 'my custom header value',
-					},
-					{
-						key: 'Access-Control-Allow-Headers',
-						value: 'authorization',
-					},
-					{
-						key: 'Access-Control-Allow-Headers',
-						value: 'Content-Type',
-					},
-					{
 						key: 'Accept',
 						value: 'application/json',
 					},
 					{
 						key: 'Access-Control-Allow-Headers',
-						value: 'Access-Control-Allow-Methods',
+						value: 'Content-Type, Access-Control-Allow-Headers, authorization, Authorization',
 					},
 					{
 						key: 'Access-Control-Allow-Methods',
