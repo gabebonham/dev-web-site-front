@@ -11,7 +11,10 @@ export async function middleware(req: NextRequest, res: NextResponse) {
 	const decryptedData = await decrypt(session); // Assuming decrypt works here
 	const requestHeaders = new Headers(req.headers);
 	requestHeaders.set('authorization', session.value);
-
+	requestHeaders.set(
+		'Access-Control-Allow-Origin',
+		'https://dev-web-site-front-production.up.railway.app',
+	);
 	// You can also set request headers in NextResponse.rewrite
 	const headers = {
 		authorization: session,
