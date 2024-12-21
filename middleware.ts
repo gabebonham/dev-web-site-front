@@ -6,8 +6,7 @@ import { headers } from 'next/headers';
 export async function middleware(req, res: NextResponse) {
 	// Get the 'session' cookie from the request
 
-	const session = await req.cookies.get('session'); // Use `cookies.get` to get the cookie
-	const a = req.headers.host as string;
+	const session = await req.cookies.get('session');
 	const decryptedData = await decrypt(session); // Assuming decrypt works here
 	const requestHeaders = new Headers(req.headers);
 
@@ -24,7 +23,7 @@ export async function middleware(req, res: NextResponse) {
 		'Access-Control-Allow-Headers',
 		'Content-Type, Access-Control-Allow-Methods, authorization',
 	);
-	requestHeaders.append('authorization', session.value);
+	requestHeaders.append('Authorization', session.value);
 
 	requestHeaders.append('Accept', 'application/json');
 
@@ -37,7 +36,7 @@ export async function middleware(req, res: NextResponse) {
 	});
 
 	// Set a new response header `x-hello-from-middleware2`
-	response.headers.set('authentication', session.value);
+	response.headers.set('authorization', session.value);
 
 	if (decryptedData) {
 		return response;
