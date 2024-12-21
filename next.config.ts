@@ -36,7 +36,27 @@ const nextConfig: NextConfig = {
 					},
 					{
 						key: 'Access-Control-Allow-Methods',
-						value: 'GET, POST, PUT, DELETE, OPTIONS,PATCH',
+						value: 'GET',
+					},
+					{
+						key: 'Access-Control-Allow-Methods',
+						value: 'POST',
+					},
+					{
+						key: 'Access-Control-Allow-Methods',
+						value: 'PUT',
+					},
+					{
+						key: 'Access-Control-Allow-Methods',
+						value: 'DELETE',
+					},
+					{
+						key: 'Access-Control-Allow-Methods',
+						value: 'OPTIONS',
+					},
+					{
+						key: 'Access-Control-Allow-Methods',
+						value: 'PATCH',
 					},
 				],
 			},
