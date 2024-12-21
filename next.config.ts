@@ -35,28 +35,12 @@ const nextConfig: NextConfig = {
 						value: 'application/json',
 					},
 					{
-						key: 'Access-Control-Allow-Methods',
-						value: 'GET',
+						key: 'Access-Control-Allow-Headers',
+						value: 'Access-Control-Allow-Methods',
 					},
 					{
 						key: 'Access-Control-Allow-Methods',
-						value: 'POST',
-					},
-					{
-						key: 'Access-Control-Allow-Methods',
-						value: 'PUT',
-					},
-					{
-						key: 'Access-Control-Allow-Methods',
-						value: 'DELETE',
-					},
-					{
-						key: 'Access-Control-Allow-Methods',
-						value: 'OPTIONS',
-					},
-					{
-						key: 'Access-Control-Allow-Methods',
-						value: 'PATCH',
+						value: 'GET, POST, PUT, DELETE, OPTIONS,PATCH',
 					},
 				],
 			},
