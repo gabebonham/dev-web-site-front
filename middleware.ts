@@ -32,7 +32,7 @@ export async function middleware(req, res: NextResponse) {
 	};
 	console.log(req.headers);
 	if (decryptedData) {
-		return NextResponse.next(req);
+		return NextResponse.next();
 	} else {
 		return NextResponse.redirect(new URL('/home', req.url));
 	}
