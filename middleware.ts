@@ -8,7 +8,7 @@ export async function middleware(req, res) {
 
 	const session = await req.cookies.get('session');
 	const decryptedData = await decrypt(session); // Assuming decrypt works here
-	const requestHeaders = new Headers(req.headers);
+	const requestHeaders = new Headers(res.headers);
 
 	// res.setHeader('Set-Cookie', 'authorization=' + session.value);
 	requestHeaders.append(
