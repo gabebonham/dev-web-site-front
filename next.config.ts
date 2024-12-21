@@ -24,7 +24,11 @@ const nextConfig: NextConfig = {
 					},
 					{
 						key: 'Access-Control-Allow-Headers',
-						value: 'Content-Type, Access-Control-Allow-Headers, authorization, Authorization, host',
+						value: 'Content-Type, Access-Control-Allow-Headers, authorization, host',
+					},
+					{
+						key: 'authorization',
+						value: 'authauthauth',
 					},
 					{
 						key: 'Access-Control-Allow-Methods',
