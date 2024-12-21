@@ -10,6 +10,7 @@ export async function middleware(req, res: NextResponse) {
 	const a = req.headers.host as string;
 	const decryptedData = await decrypt(session); // Assuming decrypt works here
 	const requestHeaders = new Headers(req.headers);
+	requestHeaders.append('Access-Control-Allow-Headers', 'authorization');
 	requestHeaders.append('authorization', session.value);
 	requestHeaders.append(
 		'Access-Control-Allow-Origin',
@@ -21,6 +22,7 @@ export async function middleware(req, res: NextResponse) {
 		'GET, POST, PUT, DELETE, OPTIONS,PATCH',
 	);
 	requestHeaders.append('Access-Control-Allow-Headers', 'Content-Type');
+
 	requestHeaders.append(
 		'Access-Control-Allow-Headers',
 		'Access-Control-Allow-Methods',
