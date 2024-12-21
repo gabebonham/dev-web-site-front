@@ -15,6 +15,10 @@ const nextConfig: NextConfig = {
 				source: '/api/:path*',
 				headers: [
 					{
+						key: 'Access-Control-Allow-Origin',
+						value: 'https://dev-web-site-front-production.up.railway.app',
+					},
+					{
 						key: 'authorization',
 						value: 'my custom header value',
 					},
