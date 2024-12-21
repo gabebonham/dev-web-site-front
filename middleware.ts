@@ -8,7 +8,7 @@ export async function middleware(req, res) {
 
 	const session = await req.cookies.get('session');
 	const decryptedData = await decrypt(session); // Assuming decrypt works here
-	const requestHeaders = new Headers(res.headers);
+	const requestHeaders = new Headers(req.headers);
 
 	// res.setHeader('Set-Cookie', 'authorization=' + session.value);
 	requestHeaders.append(
@@ -27,7 +27,8 @@ export async function middleware(req, res) {
 	requestHeaders.append('Accept', 'application/json');
 
 	// Set a new response header `x-hello-from-middleware2`
-	requestHeaders.set('authorization', session.value);
+	requestHeaders.append('Authorization', session.value);
+	requestHeaders.set('Authorization', session.value);
 	const response = NextResponse.next({
 		request: {
 			// New request headers
