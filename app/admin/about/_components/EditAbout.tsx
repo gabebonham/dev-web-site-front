@@ -30,11 +30,11 @@ export default function EditAbout() {
 			const about = aboutRef.current.value;
 
 			await fetch(process.env.BACKEND_URL + '/about', {
+				method: 'PUT',
+				body: JSON.stringify({ newAbout: about }),
 				headers: {
 					'Content-Type': 'application/json',
 				},
-				method: 'PUT',
-				body: JSON.stringify({ newAbout: about }),
 				credentials: 'include',
 			})
 				.then((res) => {
@@ -56,11 +56,11 @@ export default function EditAbout() {
 			const a = await fetch(
 				process.env.BACKEND_URL + '/about',
 				{
+					method: 'GET',
 					headers: {
 						'Content-Type':
 							'application/json',
 					},
-					method: 'GET',
 					credentials: 'include',
 				},
 			)

@@ -12,20 +12,19 @@ const nextConfig: NextConfig = {
 	async headers() {
 		return [
 			{
-				// matching all API routes
 				source: '/api/:path*',
 				headers: [
 					{
-						key: 'Access-Control-Allow-Methods',
-						value: 'GET,DELETE,PATCH,POST,PUT, OPTIONS',
+						key: 'authorization',
+						value: 'my custom header value',
 					},
 					{
 						key: 'Access-Control-Allow-Headers',
-						value: 'Content-Type',
+						value: 'authorization',
 					},
 					{
-						key: 'Access-Control-Allow-Credentials',
-						value: 'true',
+						key: 'Accept',
+						value: 'application/json',
 					},
 				],
 			},

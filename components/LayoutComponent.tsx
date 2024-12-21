@@ -29,12 +29,6 @@ import { authenticate, logout } from '@/app/admin/services/AuthService';
 import { useRouter } from 'next/navigation';
 import Cookie from 'js-cookie';
 
-const cookie = {
-	name: 'session',
-	options: { httpOnly: false, secure: true, sameSite: 'lax', path: '/' },
-	duration: 24 * 60 * 60 * 1000,
-};
-
 export default function LayoutComponent({ children }) {
 	const [isOpen, open] = useState(false);
 	const router = useRouter();
@@ -46,6 +40,7 @@ export default function LayoutComponent({ children }) {
 			pass.current.value,
 		);
 		Cookie.set('session', token);
+
 		router.push('/admin/competences');
 	};
 	const logoutHandler = async () => {

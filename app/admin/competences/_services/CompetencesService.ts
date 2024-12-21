@@ -4,7 +4,12 @@ import cookie from 'js-cookie';
 export async function getAllCompetences(): Promise<Competence[]> {
 	try {
 		const a = (await (
-			await fetch(process.env.BACKEND_URL + '/competences')
+			await fetch(process.env.BACKEND_URL + '/competences', {
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				credentials: 'include',
+			})
 		).json()) as Competence[];
 		return a as Competence[];
 	} catch (e) {
@@ -21,7 +26,6 @@ export async function getCompetenceById(id: number): Promise<Competence> {
 					headers: {
 						'Content-Type':
 							'application/json',
-						Origin: 'https://dev-web-site-front-production.up.railway.app',
 					},
 					method: 'GET',
 					credentials: 'include',
@@ -35,7 +39,6 @@ export async function getCompetenceById(id: number): Promise<Competence> {
 }
 export async function createCompetence(competence, token) {
 	try {
-		cookie.set('session', token);
 		const competencesJson = await JSON.stringify(competence);
 		const a = await (
 			await fetch(process.env.BACKEND_URL + '/competences', {
