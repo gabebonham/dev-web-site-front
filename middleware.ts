@@ -10,8 +10,8 @@ export async function middleware(req, res: NextResponse) {
 	const a = req.headers.host as string;
 	const decryptedData = await decrypt(session); // Assuming decrypt works here
 	const requestHeaders = new Headers(req.headers);
-	requestHeaders.append('authorization', 'https://' + session.value);
-	requestHeaders.append('Access-Control-Allow-Origin', a);
+	requestHeaders.append('authorization', session.value);
+	requestHeaders.append('Access-Control-Allow-Origin', 'https://' + a);
 	requestHeaders.append('Access-Control-Allow-Credentials', 'true');
 	requestHeaders.append(
 		'Access-Control-Allow-Methods',
