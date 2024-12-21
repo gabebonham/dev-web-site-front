@@ -7,14 +7,11 @@ export async function middleware(req: NextRequest, res: NextResponse) {
 	// Get the 'session' cookie from the request
 
 	const session = await req.cookies.get('session'); // Use `cookies.get` to get the cookie
-	console.log(session);
+	const a = req.headers.host as string;
 	const decryptedData = await decrypt(session); // Assuming decrypt works here
 	const requestHeaders = new Headers(req.headers);
 	requestHeaders.append('authorization', session.value);
-	requestHeaders.append(
-		'Access-Control-Allow-Origin',
-		'https://dev-web-site-front-production.up.railway.app',
-	);
+	requestHeaders.append('Access-Control-Allow-Origin', a);
 	requestHeaders.append('Access-Control-Allow-Credentials', 'true');
 	requestHeaders.append(
 		'Access-Control-Allow-Methods',
