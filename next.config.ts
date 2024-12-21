@@ -27,8 +27,16 @@ const nextConfig: NextConfig = {
 						value: 'authorization',
 					},
 					{
+						key: 'Access-Control-Allow-Headers',
+						value: 'Content-Type',
+					},
+					{
 						key: 'Accept',
 						value: 'application/json',
+					},
+					{
+						key: 'Access-Control-Allow-Methods',
+						value: 'GET, POST, PUT, DELETE, OPTIONS,PATCH',
 					},
 				],
 			},
