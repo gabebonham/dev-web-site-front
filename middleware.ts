@@ -3,7 +3,7 @@ import { decrypt } from './lib/JWT'; // Assuming decrypt is your custom decrypti
 import { headers } from 'next/headers';
 
 // Middleware to check for a valid session cookie
-export async function middleware(req: NextRequest, res: NextResponse) {
+export async function middleware(req, res: NextResponse) {
 	// Get the 'session' cookie from the request
 
 	const session = await req.cookies.get('session'); // Use `cookies.get` to get the cookie
