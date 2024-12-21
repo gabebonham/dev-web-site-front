@@ -1,5 +1,6 @@
+'use client';
 import About from '../models/AboutMode';
-
+import cook from 'js-cookie';
 export async function getAbout(setData) {
 	await fetch(process.env.BACKEND_URL + '/about', {
 		method: 'GET',
@@ -12,6 +13,10 @@ export async function updateAbout(newAbout) {
 		const a = await fetch(process.env.BACKEND_URL + '/about', {
 			method: 'PUT',
 			body: JSON.stringify({ newAbout: newAbout }),
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: cook.get('session'),
+			},
 			credentials: 'include',
 		});
 	} catch (e) {
