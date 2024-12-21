@@ -8,7 +8,7 @@ export async function getAbout(setData) {
 				'https://dev-web-site-front-production.up.railway.app',
 			authorization: 'my custom header value',
 			'Access-Control-Allow-Headers':
-				'authorization, Content-Type',
+				'authorization, Content-Type, Access-Control-Allow-Methods',
 			Accept: 'application/json',
 			'Access-Control-Allow-Methods':
 				'GET, POST, PUT, DELETE, OPTIONS,PATCH',

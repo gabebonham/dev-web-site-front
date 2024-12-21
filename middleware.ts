@@ -21,6 +21,10 @@ export async function middleware(req: NextRequest, res: NextResponse) {
 		'GET, POST, PUT, DELETE, OPTIONS,PATCH',
 	);
 	requestHeaders.append('Access-Control-Allow-Headers', 'Content-Type');
+	requestHeaders.append(
+		'Access-Control-Allow-Headers',
+		'Access-Control-Allow-Methods',
+	);
 	requestHeaders.append('Accept', 'application/json');
 	// You can also set request headers in NextResponse.rewrite
 	const headers = {
