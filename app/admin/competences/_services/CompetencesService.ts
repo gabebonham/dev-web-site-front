@@ -1,43 +1,18 @@
 'use client';
 import Competence from '../_models/CompetenceModel';
 import cookie from 'js-cookie';
-export async function getAllCompetences(): Promise<Competence[]> {
-	try {
-		const a = (await (
-			await fetch(process.env.BACKEND_URL + '/competences', {
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				credentials: 'include',
-			})
-		).json()) as Competence[];
-		return a as Competence[];
-	} catch (e) {
-		return [] as Competence[];
-	}
+export async function getAllCompetences(setData) {
+	await fetch(process.env.BACKEND_URL + '/competences', {
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		credentials: 'include',
+	})
+		.then((r) => r.json())
+		.then((d) => setData(d));
 }
 
-export async function getCompetenceById(id: number): Promise<Competence> {
-	try {
-		const a = await (
-			await fetch(
-				process.env.BACKEND_URL + '/competences/' + id,
-				{
-					headers: {
-						'Content-Type':
-							'application/json',
-					},
-					method: 'GET',
-					credentials: 'include',
-				},
-			)
-		).json();
-		return a;
-	} catch (e) {
-		return null;
-	}
-}
-export async function createCompetence(competence, token) {
+export async function createCompetence(competence) {
 	try {
 		const competencesJson = await JSON.stringify(competence);
 		const a = await (

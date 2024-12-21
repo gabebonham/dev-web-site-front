@@ -26,35 +26,20 @@ export default function CreateCompetenceComponent({
 		await setAction1(true);
 	};
 	useEffect(() => {
-		async function createCompetence() {
-			const competencesJson = await JSON.stringify({
+		async function createCompetenceH() {
+			const competencesJson = {
 				name: nameRef.current.value,
 				rating: parseInt(ratingRef.current.value),
-			});
+			};
 
-			await fetch(process.env.BACKEND_URL + '/competences', {
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				method: 'POST',
-				body: competencesJson,
-				credentials: 'include',
-			})
-				.then((res) => {
-					if (res.ok) {
-						console.log('ok');
-					} else {
-						console.log('ass');
-					}
-				})
-				.then((d) => open(false))
-				.then((d) => setAction3(!isAction3))
-				.then((d) => setAction1(false));
+			await createCompetence(competencesJson);
+			setAction1(false);
+			setAction3(!isAction3);
 		}
 		action1 &&
 			nameRef.current != null &&
 			ratingRef.current != null &&
-			createCompetence();
+			createCompetenceH();
 	}, [action1]);
 
 	return isOpen ? (

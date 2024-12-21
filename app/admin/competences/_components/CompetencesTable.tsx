@@ -11,7 +11,10 @@ import {
 import { Button } from '@/components/ui/button';
 import { X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
-import { getAllCompetences } from '../_services/CompetencesService';
+import {
+	deleteCompetenceById,
+	getAllCompetences,
+} from '../_services/CompetencesService';
 import Competence from '../_models/CompetenceModel';
 import { useRouter } from 'next/navigation';
 
@@ -27,40 +30,16 @@ export default function CompetencesTable({
 	const [c, setC] = useState([]);
 
 	useEffect(() => {
-		const deleteHandler = async (id: number) => {
-			await fetch(
-				process.env.BACKEND_URL + '/competences/' + id,
-				{
-					headers: {
-						'Content-Type':
-							'application/json',
-					},
-					method: 'DELETE',
-					credentials: 'include',
-				},
-			)
-				.then((d) => setAction3(!isAction3))
-				.then((d) => setAction(false));
+		const deleteHandler = async () => {
+			await deleteCompetenceById(item);
+			setAction3(!isAction3);
 		};
-		action && deleteHandler(item);
+		action && deleteHandler();
 	}, [action]);
 
 	useEffect(() => {
 		async function a() {
-			await fetch(process.env.BACKEND_URL + '/competences', {
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				method: 'GET',
-				credentials: 'include',
-			})
-				.then((res) => res.json())
-				.then((data) => {
-					setC(data);
-				})
-				.then((data) => {
-					router.refresh();
-				});
+			await getAllCompetences(setC);
 		}
 		a();
 	}, [isAction3]);
