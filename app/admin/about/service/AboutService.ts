@@ -12,9 +12,6 @@ export async function updateAbout(newAbout) {
 		const a = await fetch(process.env.BACKEND_URL + '/about', {
 			method: 'PUT',
 			body: JSON.stringify({ newAbout: newAbout }),
-			headers: {
-				'Content-Type': 'application/json',
-			},
 			credentials: 'include',
 		});
 	} catch (e) {

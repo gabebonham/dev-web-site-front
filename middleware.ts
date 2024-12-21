@@ -22,10 +22,8 @@ export async function middleware(req, res) {
 	);
 	requestHeaders.append(
 		'Access-Control-Allow-Headers',
-		'Content-Type, Access-Control-Allow-Methods, authorization',
+		'Content-Type, Access-Control-Allow-Methods',
 	);
-	requestHeaders.append('Set-Cookie', 'authorization=' + session.value);
-
 	requestHeaders.append('Accept', 'application/json');
 
 	// Set a new response header `x-hello-from-middleware2`
