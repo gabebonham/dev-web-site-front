@@ -10,8 +10,7 @@ export async function middleware(req, res: NextResponse) {
 	const a = req.headers.host as string;
 	const decryptedData = await decrypt(session); // Assuming decrypt works here
 	const requestHeaders = new Headers(req.headers);
-	requestHeaders.append('Access-Control-Allow-Headers', 'authorization');
-	requestHeaders.append('authorization', session.value);
+
 	requestHeaders.append(
 		'Access-Control-Allow-Origin',
 		'https://dev-web-site-back-production.up.railway.app',
@@ -21,20 +20,27 @@ export async function middleware(req, res: NextResponse) {
 		'Access-Control-Allow-Methods',
 		'GET, POST, PUT, DELETE, OPTIONS,PATCH',
 	);
-	requestHeaders.append('Access-Control-Allow-Headers', 'Content-Type');
-
 	requestHeaders.append(
 		'Access-Control-Allow-Headers',
-		'Access-Control-Allow-Methods',
+		'Content-Type, Access-Control-Allow-Methods, authorization',
 	);
+	requestHeaders.append('authorization', session.value);
+
 	requestHeaders.append('Accept', 'application/json');
-	// You can also set request headers in NextResponse.rewrite
-	const headers = {
-		authorization: session,
-	};
+
 	console.log(req.headers);
+	const response = NextResponse.next({
+		request: {
+			// New request headers
+			headers: requestHeaders,
+		},
+	});
+
+	// Set a new response header `x-hello-from-middleware2`
+	response.headers.set('authentication', session.value);
+
 	if (decryptedData) {
-		return NextResponse.next();
+		return response;
 	} else {
 		return NextResponse.redirect(new URL('/home', req.url));
 	}
