@@ -22,7 +22,7 @@ export async function middleware(req, res) {
 	);
 	requestHeaders.append(
 		'Access-Control-Allow-Headers',
-		'Content-Type, Access-Control-Allow-Methods',
+		'Content-Type, Access-Control-Allow-Methods, Authorization',
 	);
 	requestHeaders.append('Accept', 'application/json');
 
