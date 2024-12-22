@@ -10,32 +10,29 @@ export async function middleware(req, res, next) {
 	const decryptedData = await decrypt(session); // Assuming decrypt works here
 	let headerss = new Headers();
 
-	res.setHeaders('Authorization', session.value);
-	res.setHeaders('Accept', 'application/json');
-	res.setHeaders(
+	headerss.set('Authorization', session.value);
+	headerss.set('Accept', 'application/json');
+	headerss.set(
 		'Access-Control-Allow-Headers',
 		'Content-Type, Access-Control-Allow-Methods, Accept, Authorization, cookie, Set-Cookie',
 	);
-	res.setHeaders('Access-Control-Allow-Credentials', 'true');
-	res.setHeaders(
+	headerss.set('Access-Control-Allow-Credentials', 'true');
+	headerss.set(
 		'Access-Control-Allow-Methods',
 		'GET, POST, PUT, DELETE, OPTIONS,PATCH',
 	);
-	res.setHeaders(
+	headerss.set(
 		'Access-Control-Allow-Origin',
 		'https://dev-web-site-back-production.up.railway.app',
 	);
-	res.setHeaders(
-		'Access-Control-Expose-Headers',
-		'Authentication, cookie',
-	);
+	headerss.set('Access-Control-Expose-Headers', 'Authentication, cookie');
 	const response = NextResponse.next({
 		headers: headerss,
 	});
 	(await response.cookies).set('Authorization', session.value);
 	console.log(response);
 	if (decryptedData) {
-		return next();
+		return response;
 	} else {
 		return NextResponse.redirect(new URL('/home', req.url));
 	}
