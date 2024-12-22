@@ -18,7 +18,7 @@ import {
 import Competence from '../_models/CompetenceModel';
 import { useRouter } from 'next/navigation';
 
-export default function CompetencesTable({ data }) {
+export default function CompetencesTable({ b, trigger, t }) {
 	const [action, setAction] = useState(false);
 	const [item, setItem] = useState(0);
 
@@ -26,6 +26,7 @@ export default function CompetencesTable({ data }) {
 		const deleteHandler = async () => {
 			await deleteCompetenceById(item);
 			setAction(false);
+			trigger(!t);
 		};
 		action && deleteHandler();
 	}, [action]);
@@ -35,47 +36,15 @@ export default function CompetencesTable({ data }) {
 		setAction(true);
 	};
 	return (
-		<Table className="w-[700px]">
-			<TableHeader>
-				<TableRow>
-					<TableHead className="w-[100px]">
-						ID
-					</TableHead>
-					<TableHead>Nome</TableHead>
-					<TableHead>Porcentagem</TableHead>
-					<TableHead>Excluir</TableHead>
-				</TableRow>
-			</TableHeader>
-			<TableBody>
-				{data.length > 0 &&
-					data.map((b) => (
-						<TableRow key={b.id}>
-							<TableCell className="font-medium">
-								{b.id}
-							</TableCell>
-							<TableCell>
-								{b.name}
-							</TableCell>
-							<TableCell>
-								{b.rating}
-							</TableCell>
-							<TableCell>
-								<Button
-									onClick={(
-										e,
-									) =>
-										handler(
-											b.id,
-										)
-									}
-								>
-									<X />
-								</Button>
-							</TableCell>
-						</TableRow>
-					))}
-			</TableBody>
-			<TableFooter></TableFooter>
-		</Table>
+		<TableRow key={b.id}>
+			<TableCell className="font-medium">{b.id}</TableCell>
+			<TableCell>{b.name}</TableCell>
+			<TableCell>{b.rating}</TableCell>
+			<TableCell>
+				<Button onClick={(e) => handler(b.id)}>
+					<X />
+				</Button>
+			</TableCell>
+		</TableRow>
 	);
 }
