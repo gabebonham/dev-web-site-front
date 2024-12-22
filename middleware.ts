@@ -26,6 +26,7 @@ export async function middleware(req, res) {
 		'Access-Control-Allow-Origin',
 		'https://dev-web-site-back-production.up.railway.app',
 	);
+	headerss.set('Access-Control-Expose-Headers', 'Authentication, cookie');
 	const response = NextResponse.next({
 		request: {
 			// New request headers
