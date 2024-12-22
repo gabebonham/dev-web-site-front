@@ -10,7 +10,7 @@ export async function middleware(req, res, next) {
 	const decryptedData = await decrypt(session); // Assuming decrypt works here
 	let headerss = new Headers();
 
-	res.setHeaders('Authentication', session.value);
+	res.setHeaders('Authorization', session.value);
 	res.setHeaders('Accept', 'application/json');
 	res.setHeaders(
 		'Access-Control-Allow-Headers',
