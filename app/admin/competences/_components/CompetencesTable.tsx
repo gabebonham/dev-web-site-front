@@ -18,34 +18,21 @@ import {
 import Competence from '../_models/CompetenceModel';
 import { useRouter } from 'next/navigation';
 
-export default function CompetencesTable({
-	setAction3,
-	isAction3,
-	open,
-	isOpen,
-}) {
-	const router = useRouter();
+export default function CompetencesTable({ data }) {
 	const [action, setAction] = useState(false);
 	const [item, setItem] = useState(0);
-	const [c, setC] = useState([]);
 
 	useEffect(() => {
 		const deleteHandler = async () => {
 			await deleteCompetenceById(item);
-			setAction3(!isAction3);
+			setAction(false);
 		};
 		action && deleteHandler();
 	}, [action]);
 
-	useEffect(() => {
-		async function a() {
-			await getAllCompetences(setC);
-		}
-		a();
-	}, [isAction3]);
 	const handler = async (id: number) => {
-		await setItem(id);
-		await setAction(true);
+		setItem(id);
+		setAction(true);
 	};
 	return (
 		<Table className="w-[700px]">
@@ -60,8 +47,8 @@ export default function CompetencesTable({
 				</TableRow>
 			</TableHeader>
 			<TableBody>
-				{c.length > 0 &&
-					c.map((b) => (
+				{data.length > 0 &&
+					data.map((b) => (
 						<TableRow key={b.id}>
 							<TableCell className="font-medium">
 								{b.id}

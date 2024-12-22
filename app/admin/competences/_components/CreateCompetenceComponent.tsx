@@ -13,12 +13,7 @@ import Cookie from 'js-cookie';
 import { cookies } from 'next/headers';
 import { useRouter } from 'next/navigation';
 
-export default function CreateCompetenceComponent({
-	isAction3,
-	setAction3,
-	isOpen,
-	open,
-}) {
+export default function CreateCompetenceComponent({ open, isOpen }) {
 	const nameRef = useRef<any>(null);
 	const ratingRef = useRef<any>(null);
 	const [action1, setAction1] = useState(false);
@@ -34,7 +29,6 @@ export default function CreateCompetenceComponent({
 
 			await createCompetence(competencesJson);
 			setAction1(false);
-			setAction3(!isAction3);
 		}
 		action1 &&
 			nameRef.current != null &&

@@ -1,24 +1,24 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CompetencesTable from './CompetencesTable';
 import CreateCompetenceComponent from './CreateCompetenceComponent';
+import { getAllCompetences } from '../_services/CompetencesService';
 export default function WrapComponent() {
 	const [isOpen, open] = useState(false);
-	const [isAction3, setAction3] = useState(false);
+	const [data, setData] = useState([]);
+	useEffect(() => {
+		async function a() {
+			await getAllCompetences(setData);
+		}
+		a();
+	}, [isOpen]);
 	return (
 		<div>
 			<CreateCompetenceComponent
-				isOpen={isOpen}
-				open={open}
-				isAction3={isAction3}
-				setAction3={setAction3}
-			/>
-			<CompetencesTable
 				open={open}
 				isOpen={isOpen}
-				isAction3={isAction3}
-				setAction3={setAction3}
 			/>
+			<CompetencesTable data={data} />
 		</div>
 	);
 }
