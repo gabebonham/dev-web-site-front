@@ -8,30 +8,31 @@ export async function middleware(req, res) {
 
 	const session = await req.cookies.get('Authorization');
 	const decryptedData = await decrypt(session); // Assuming decrypt works here
-	const requestHeaders = new Headers(req.headers);
 
-	// res.setHeader('Set-Cookie', 'authorization=' + session.value);
-	requestHeaders.append(
-		'Access-Control-Allow-Origin',
-		'http://localhost:3001',
+	let headerss = new Headers();
+
+	headerss.set('Authentication', session.value);
+	headerss.set('Accept', 'application/json');
+	headerss.set(
+		'Access-Control-Allow-Headers',
+		'Content-Type, Access-Control-Allow-Methods, Accept, Authorization, cookie, Set-Cookie',
 	);
-	requestHeaders.append('Access-Control-Allow-Credentials', 'true');
-	requestHeaders.append(
+	headerss.set('Access-Control-Allow-Credentials', 'true');
+	headerss.set(
 		'Access-Control-Allow-Methods',
 		'GET, POST, PUT, DELETE, OPTIONS,PATCH',
 	);
-	requestHeaders.append(
-		'Access-Control-Allow-Headers',
-		'Content-Type, Access-Control-Allow-Methods, Authorization, cookie, Set-Cookie',
+	headerss.set(
+		'Access-Control-Allow-Origin',
+		'https://dev-web-site-back-production.up.railway.app',
 	);
-	requestHeaders.append('Accept', 'application/json');
-
 	const response = NextResponse.next({
 		request: {
 			// New request headers
-			headers: requestHeaders,
+			headers: headerss,
 		},
 	});
+	await response.cookies.set('Authorization', session.value);
 	console.log(response);
 	if (decryptedData) {
 		return response;
