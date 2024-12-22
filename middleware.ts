@@ -1,19 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server'; // Required Next.js imports
 import { decrypt } from './lib/JWT'; // Assuming decrypt is your custom decryption function
-import { headers } from 'next/headers';
+import { cookies, headers } from 'next/headers';
 
 // Middleware to check for a valid session cookie
 export async function middleware(req, res) {
 	// Get the 'session' cookie from the request
 
-	const session = await req.cookies.get('session');
+	const session = await req.cookies.get('Authorization');
 	const decryptedData = await decrypt(session); // Assuming decrypt works here
 	const requestHeaders = new Headers(req.headers);
 
 	// res.setHeader('Set-Cookie', 'authorization=' + session.value);
 	requestHeaders.append(
 		'Access-Control-Allow-Origin',
-		'https://dev-web-site-back-production.up.railway.app',
+		'http://localhost:3001',
 	);
 	requestHeaders.append('Access-Control-Allow-Credentials', 'true');
 	requestHeaders.append(
@@ -22,13 +22,10 @@ export async function middleware(req, res) {
 	);
 	requestHeaders.append(
 		'Access-Control-Allow-Headers',
-		'Content-Type, Access-Control-Allow-Methods, Authorization',
+		'Content-Type, Access-Control-Allow-Methods, Authorization, cookie, Set-Cookie',
 	);
 	requestHeaders.append('Accept', 'application/json');
 
-	// Set a new response header `x-hello-from-middleware2`
-	requestHeaders.append('Authorization', session.value);
-	requestHeaders.set('Authorization', session.value);
 	const response = NextResponse.next({
 		request: {
 			// New request headers

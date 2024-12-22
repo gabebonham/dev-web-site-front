@@ -24,7 +24,7 @@ const nextConfig: NextConfig = {
 					},
 					{
 						key: 'Access-Control-Allow-Headers',
-						value: 'Content-Type, Access-Control-Allow-Headers, Authorization',
+						value: 'Content-Type, Access-Control-Allow-Headers, Authorization, cookie, Set-Cookie',
 					},
 					{
 						key: 'Access-Control-Allow-Methods',
