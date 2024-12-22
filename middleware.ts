@@ -28,12 +28,9 @@ export async function middleware(req, res) {
 	);
 	headerss.set('Access-Control-Expose-Headers', 'Authentication, cookie');
 	const response = NextResponse.next({
-		request: {
-			// New request headers
-			headers: headerss,
-		},
+		headers: headerss,
 	});
-	await response.cookies.set('Authorization', session.value);
+	(await response.cookies).set('Authorization', session.value);
 	console.log(response);
 	if (decryptedData) {
 		return response;
