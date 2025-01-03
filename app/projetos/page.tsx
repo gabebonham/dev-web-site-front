@@ -13,9 +13,10 @@ import { getAllProjects } from './_services/ProjectsService';
 import Image from 'next/image';
 import img from '@/public/p1.png';
 import { useEffect, useState } from 'react';
+import Project from '../admin/projects/_models/ProjectModel';
 
 export default function ProjectsPage() {
-	const [data, setData] = useState([]);
+	const [data, setData] = useState<Project[]>([]);
 	useEffect(() => {
 		const get = async () => {
 			await getAllProjects(setData);
@@ -38,7 +39,12 @@ export default function ProjectsPage() {
 						data.map((p) => (
 							<Card
 								key={p.id}
-								className="shadow-2xl cursor-pointer hover:animate-pulse2 bg-gradient-to-br from-gray-400 to-white border border-2 border-cyan-100"
+								className={
+									'shadow-2xl cursor-pointer hover:animate-pulse2 bg-gradient-to-br from-gray-400 to-white border border-2 ' +
+									p.inDev
+										? ' border-red-500 '
+										: ' border-cyan-100 '
+								}
 							>
 								<CardHeader>
 									<CardTitle>
@@ -65,6 +71,10 @@ export default function ProjectsPage() {
 											p.link
 										}
 									</Link>
+									<h1 className="text-red-500 underline">
+										EM
+										DESENVOLVIMENTO
+									</h1>
 								</CardFooter>
 							</Card>
 						))}

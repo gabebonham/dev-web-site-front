@@ -24,12 +24,14 @@ export default function CreateProjectComponent({ getAll, canGetAll }) {
 			name: nameRef.current.value,
 			link: linkRef.current.value,
 			description: descriptionRef.current.value,
+			inDev: inDevH,
 		};
 		setProj(project);
 		create(true);
 		open(false);
 		getAll(!canGetAll);
 	};
+	const [inDevH, setInDev] = useState(false);
 	useEffect(() => {
 		const create = async () => {
 			await createProject(proj);
@@ -42,6 +44,12 @@ export default function CreateProjectComponent({ getAll, canGetAll }) {
 			<Card className="top-14 left-14 absolute z-20 size-11/12 h-5/6 opacity-1">
 				<CardHeader>Criar Projeto</CardHeader>
 				<CardContent>
+					<Button
+						onClick={(e) => setInDev(true)}
+						variant="destructive"
+					>
+						Esta em Desenvolvimento
+					</Button>
 					<label>Nome</label>
 					<Input ref={nameRef} className="h-6" />
 					<label>Link</label>

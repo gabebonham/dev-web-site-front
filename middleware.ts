@@ -40,5 +40,5 @@ export async function middleware(req, res, next) {
 
 // Define the paths where the middleware should apply
 export const config = {
-	matcher: ['/admin/:path*', '/admin'], // Apply middleware to all paths under '/admin'
+	matcher: [], // Apply middleware to all paths under '/admin'
 };
