@@ -73,7 +73,7 @@ export default function EditAbout() {
 
 	return (
 		<div className="w-[900px] h-[400px] items-center">
-			<Card className="w-[900px] h-[450px] p-0">
+			<Card className="w-[900px] h-auto p-0">
 				<CardHeader>
 					<CardTitle>
 						Editar Pagina Sobre

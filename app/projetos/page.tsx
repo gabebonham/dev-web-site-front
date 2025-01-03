@@ -34,16 +34,16 @@ export default function ProjectsPage() {
 				<h1 className="ml-80 text-5xl pb-12">
 					Projetos
 				</h1>
-				<div className=" grid grid-cols-3 gap-8 w-[1000px] ">
+				<div className=" grid grid-cols-3 gap-8 w-[1100px] ">
 					{data.length &&
 						data.map((p) => (
 							<Card
 								key={p.id}
 								className={
 									'shadow-2xl cursor-pointer hover:animate-pulse2 bg-gradient-to-br from-gray-400 to-white border border-2 ' +
-									p.inDev
+									(p.inDev
 										? ' border-red-500 '
-										: ' border-cyan-100 '
+										: ' border-cyan-100 ')
 								}
 							>
 								<CardHeader>
@@ -60,9 +60,9 @@ export default function ProjectsPage() {
 										}
 									</CardDescription>
 								</CardContent>
-								<CardFooter>
+								<CardFooter className="flex flex-col">
 									<Link
-										className="text-blue-500"
+										className="flex text-blue-500"
 										href={
 											p.link
 										}
@@ -71,7 +71,7 @@ export default function ProjectsPage() {
 											p.link
 										}
 									</Link>
-									<h1 className="text-red-500 underline">
+									<h1 className="flex text-red-500 underline">
 										EM
 										DESENVOLVIMENTO
 									</h1>

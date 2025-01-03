@@ -16,6 +16,7 @@ export default function CreateProjectComponent({ getAll, canGetAll }) {
 	const [canCreate, create] = useState(false);
 	const [proj, setProj] = useState(null);
 	const [isOpen, open] = useState(false);
+	const [inDevH, setInDev] = useState(false);
 	const nameRef = useRef<any>(null);
 	const descriptionRef = useRef<any>(null);
 	const linkRef = useRef<any>(null);
@@ -31,7 +32,7 @@ export default function CreateProjectComponent({ getAll, canGetAll }) {
 		open(false);
 		getAll(!canGetAll);
 	};
-	const [inDevH, setInDev] = useState(false);
+
 	useEffect(() => {
 		const create = async () => {
 			await createProject(proj);
@@ -43,7 +44,7 @@ export default function CreateProjectComponent({ getAll, canGetAll }) {
 			<div className="top-0 left-0 absolute bg-black size-full z-10 sepia-0 opacity-30"></div>
 			<Card className="top-14 left-14 absolute z-20 size-11/12 h-5/6 opacity-1">
 				<CardHeader>Criar Projeto</CardHeader>
-				<CardContent>
+				<CardContent className="flex flex-col">
 					<Button
 						onClick={(e) => setInDev(true)}
 						variant="destructive"
