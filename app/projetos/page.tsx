@@ -71,10 +71,12 @@ export default function ProjectsPage() {
 											p.link
 										}
 									</Link>
-									<h1 className="flex text-red-500 underline">
-										EM
-										DESENVOLVIMENTO
-									</h1>
+									{p.inDev && (
+										<h1 className="flex text-red-500 underline">
+											EM
+											DESENVOLVIMENTO
+										</h1>
+									)}
 								</CardFooter>
 							</Card>
 						))}
