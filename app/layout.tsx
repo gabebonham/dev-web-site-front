@@ -7,8 +7,8 @@ export const metadata: Metadata = {
 	icons: {
 		icon: [
 			{
-				url: './favicon.jpg',
-				href: './favicon.jpg',
+				url: './icon.png',
+				href: './icon.png',
 			},
 		],
 	},

@@ -5,6 +5,7 @@ import ContactsTableComponent from './_components/ContactsTableComponent';
 import Image from 'next/image';
 import img from '@/public/p3.png';
 import { useEffect, useState } from 'react';
+import DefaultSkeleton from '@/components/DefaultSkeleton';
 
 export default function ContactPage() {
 	const [data, setData] = useState([]);
@@ -33,10 +34,12 @@ export default function ContactPage() {
 						que use o meu email.
 					</p>
 				</div>
-				{data.length > 0 && data.length && (
+				{data.length > 0 && data.length ? (
 					<ContactsTableComponent
 						contacts={data}
 					/>
+				) : (
+					<DefaultSkeleton />
 				)}
 			</div>
 		</LayoutComponent>

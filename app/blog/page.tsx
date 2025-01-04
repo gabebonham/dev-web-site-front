@@ -12,6 +12,7 @@ import Image from 'next/image';
 import img from '@/public/p4.png';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import DefaultSkeleton from '@/components/DefaultSkeleton';
 
 export default function BlogPage() {
 	const [data, setData] = useState([]);
@@ -23,7 +24,7 @@ export default function BlogPage() {
 	}, []);
 	return (
 		<LayoutComponent>
-			{data.length && (
+			{data.length > 0 ? (
 				<div className="mb-4 p-16 shadow-2xl shadow-black bg-[rgba(0,0,0,0.2)]">
 					<Image
 						src={img}
@@ -99,6 +100,8 @@ export default function BlogPage() {
 						})}
 					</div>
 				</div>
+			) : (
+				<DefaultSkeleton />
 			)}
 		</LayoutComponent>
 	);

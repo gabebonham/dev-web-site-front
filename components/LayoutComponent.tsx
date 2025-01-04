@@ -1,5 +1,5 @@
 'use client';
-import logo from '@/public/a.png';
+import logo from '@/public/logo.png';
 import Image from 'next/image';
 import { Button } from './ui/button';
 import LayoutNavBar from './LayoutNavBar';
@@ -58,7 +58,7 @@ export default function LayoutComponent({ children }) {
 						<Image
 							src={logo}
 							alt="logo"
-							width="100"
+							width="150"
 						/>
 					</Link>
 					<div className="px-48"></div>

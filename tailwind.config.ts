@@ -45,7 +45,7 @@ export default {
 				},
 				pulse: {
 					'0%, 100%': {
-						transform: '',
+						opacity: '0',
 					},
 				},
 				fadeIn: {
@@ -94,7 +94,7 @@ export default {
 				},
 			},
 			animation: {
-				pulse: '2s ease-in',
+				pulse: 'pulse 1s ease-in-out infinite ',
 				fadeIn: 'fadeIn 1s ease-in',
 				fadeIn2: 'fadeIn 3s ease-in',
 				'accordion-down':

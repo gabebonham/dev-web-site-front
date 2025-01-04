@@ -14,6 +14,7 @@ import Image from 'next/image';
 import img from '@/public/p1.png';
 import { useEffect, useState } from 'react';
 import Project from '../admin/projects/_models/ProjectModel';
+import DefaultSkeleton from '@/components/DefaultSkeleton';
 
 export default function ProjectsPage() {
 	const [data, setData] = useState<Project[]>([]);
@@ -35,7 +36,7 @@ export default function ProjectsPage() {
 					Projetos
 				</h1>
 				<div className=" grid grid-cols-3 gap-8 w-[1100px] ">
-					{data.length &&
+					{data.length != 0 ? (
 						data.map((p) => (
 							<Card
 								key={p.id}
@@ -79,7 +80,10 @@ export default function ProjectsPage() {
 									)}
 								</CardFooter>
 							</Card>
-						))}
+						))
+					) : (
+						<DefaultSkeleton />
+					)}
 				</div>
 			</div>
 		</LayoutComponent>

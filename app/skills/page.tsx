@@ -11,6 +11,7 @@ import {
 import Image from 'next/image';
 import img from '@/public/p5.png';
 import { useEffect, useState } from 'react';
+import DefaultSkeleton from '@/components/DefaultSkeleton';
 
 export default function SkillsPage() {
 	const [data, setData] = useState([]);
@@ -44,7 +45,7 @@ export default function SkillsPage() {
 					</p>
 				</div>
 				<div className="grid grid-cols-5 gap-8">
-					{data.length > 0 &&
+					{data.length > 0 ? (
 						data.map((s) => (
 							<Card
 								key={s.id}
@@ -67,7 +68,10 @@ export default function SkillsPage() {
 									</CardDescription>
 								</CardContent>
 							</Card>
-						))}
+						))
+					) : (
+						<DefaultSkeleton />
+					)}
 				</div>
 			</div>
 		</LayoutComponent>

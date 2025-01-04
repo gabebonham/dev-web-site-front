@@ -4,6 +4,8 @@ import Image from 'next/image';
 import img from '@/public/p2.png';
 import { getAbout } from './_services/AboutService';
 import { useEffect, useState } from 'react';
+import { Skeleton } from '@/components/ui/skeleton';
+import DefaultSkeleton from '@/components/DefaultSkeleton';
 
 export default function aboutPage() {
 	const [data, setData] = useState(null);
@@ -25,11 +27,14 @@ export default function aboutPage() {
 					<h1 className="text-5xl ml-80 drop-shadow-[0_2px_2px_rgba(0,0,0,1)] ">
 						Gabriel Grote
 					</h1>
-					{data != null && (
-						<div className="p-16 text-start text-lg drop-shadow-[0_2px_2px_rgba(0,0,0,1)]">
-							{data.about.value}
-						</div>
-					)}
+
+					<div className="p-16 text-start text-lg drop-shadow-[0_2px_2px_rgba(0,0,0,1)]">
+						{data != null ? (
+							data.about.value
+						) : (
+							<DefaultSkeleton />
+						)}
+					</div>
 				</div>
 			</div>
 		</LayoutComponent>
