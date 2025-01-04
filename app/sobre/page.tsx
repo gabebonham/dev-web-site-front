@@ -28,7 +28,7 @@ export default function aboutPage() {
 						Gabriel Grote
 					</h1>
 
-					<div className="p-16 text-start text-lg drop-shadow-[0_2px_2px_rgba(0,0,0,1)]">
+					<div className="p-16 text-start text-lg ">
 						{data != null ? (
 							data.about.value
 						) : (

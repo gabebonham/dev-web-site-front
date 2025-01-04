@@ -39,7 +39,9 @@ export default function ContactPage() {
 						contacts={data}
 					/>
 				) : (
-					<DefaultSkeleton />
+					<div className="w-2/3 ">
+						<DefaultSkeleton />
+					</div>
 				)}
 			</div>
 		</LayoutComponent>
