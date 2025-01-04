@@ -13,6 +13,7 @@ export default function HomePage() {
 	const [isVisible4, setIsVisible4] = useState(false);
 
 	useEffect(() => {
+		fetch(process.env.BACKEND_URL + '/toggle');
 		const handleScroll2 = () => {
 			if (element2Ref.current) {
 				const rect =

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 
-export default function LandingPage() {
+export default async function LandingPage() {
+	await fetch(process.env.BACKEND_URL + '/toggle');
 	return (
 		<div className="bg-[url('/back.gif')] w-full h-screen ">
 			<div className="text-center place-self-center self-center h-screen pt-56">
