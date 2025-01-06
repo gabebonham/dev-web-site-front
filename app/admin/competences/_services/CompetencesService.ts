@@ -5,7 +5,9 @@ export async function getAllCompetences(setData) {
 	await fetch(process.env.BACKEND_URL + '/competences', {
 		headers: {
 			'Content-Type': 'application/json',
+			Authorization: await cookie.get('Authorization'),
 		},
+
 		credentials: 'include',
 	})
 		.then((r) => r.json())
@@ -19,6 +21,9 @@ export async function createCompetence(competence) {
 			await fetch(process.env.BACKEND_URL + '/competences', {
 				headers: {
 					'Content-Type': 'application/json',
+					Authorization: await cookie.get(
+						'Authorization',
+					),
 				},
 				method: 'POST',
 				body: competencesJson,
@@ -39,6 +44,9 @@ export async function deleteCompetenceById(id: number) {
 					headers: {
 						'Content-Type':
 							'application/json',
+						Authorization: await cookie.get(
+							'Authorization',
+						),
 					},
 					method: 'DELETE',
 					credentials: 'include',

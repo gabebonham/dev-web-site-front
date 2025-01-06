@@ -1,8 +1,10 @@
 'use client';
+import cookie from 'js-cookie';
 async function getAllProjects(setData) {
 	await fetch(process.env.BACKEND_URL + '/projects', {
 		headers: {
 			'Content-Type': 'application/json',
+			Authorization: await cookie.get('Authorization'),
 		},
 		method: 'GET',
 		credentials: 'include',
@@ -17,6 +19,7 @@ async function createProject(project) {
 	await fetch(process.env.BACKEND_URL + '/projects', {
 		headers: {
 			'Content-Type': 'application/json',
+			Authorization: await cookie.get('Authorization'),
 		},
 		method: 'POST',
 		body: projectJson,
@@ -28,6 +31,7 @@ async function updateProject(project) {
 	await fetch(process.env.BACKEND_URL + '/projects', {
 		headers: {
 			'Content-Type': 'application/json',
+			Authorization: await cookie.get('Authorization'),
 		},
 		method: 'PUT',
 		body: projectJson,
@@ -38,6 +42,7 @@ async function deleteProjectById(id: number) {
 	await fetch(process.env.BACKEND_URL + '/projects/' + id, {
 		headers: {
 			'Content-Type': 'application/json',
+			Authorization: await cookie.get('Authorization'),
 		},
 		method: 'DELETE',
 		credentials: 'include',

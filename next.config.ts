@@ -1,13 +1,11 @@
 import type { NextConfig } from 'next';
-
+import 'dotenv';
 const nextConfig: NextConfig = {
 	staticPageGenerationTimeout: 15000,
 	env: {
-		BACKEND_URL:
-			'https://dev-web-site-back-production.up.railway.app/api',
-		BACKEND_URL_PURE:
-			'https://dev-web-site-back-production.up.railway.app',
-		JWT_KEY: 'grote',
+		BACKEND_URL: process.env.BACKEND_URL,
+		BACKEND_URL_PURE: process.env.BACKEND_URL_PURE,
+		JWT_KEY: process.env.JWT_KEY,
 	},
 	async headers() {
 		return [
@@ -16,7 +14,8 @@ const nextConfig: NextConfig = {
 				headers: [
 					{
 						key: 'Access-Control-Allow-Origin',
-						value: 'https://dev-web-site-back-production.up.railway.app',
+						value: process.env
+							.BACKEND_URL_PURE,
 					},
 					{
 						key: 'Accept',

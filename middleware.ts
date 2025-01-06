@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'; // Required Next.js imports
 import { decrypt } from './lib/JWT'; // Assuming decrypt is your custom decryption function
 import { cookies, headers } from 'next/headers';
-
+import 'dotenv';
 // Middleware to check for a valid session cookie
 export async function middleware(req, res, next) {
 	// Get the 'session' cookie from the request
@@ -23,7 +23,7 @@ export async function middleware(req, res, next) {
 	);
 	headerss.set(
 		'Access-Control-Allow-Origin',
-		'https://dev-web-site-back-production.up.railway.app',
+		process.env.BACKEND_URL_PURE,
 	);
 	headerss.set('Access-Control-Expose-Headers', 'Authentication, cookie');
 	const response = NextResponse.next({

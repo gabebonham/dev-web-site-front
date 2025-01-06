@@ -15,7 +15,7 @@ export async function updateAbout(newAbout) {
 			body: JSON.stringify({ newAbout: newAbout }),
 			headers: {
 				'Content-Type': 'application/json',
-				Authorization: cook.get('session'),
+				Authorization: await cook.get('Authorization'),
 			},
 			credentials: 'include',
 		});

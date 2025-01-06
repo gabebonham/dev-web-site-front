@@ -22,10 +22,7 @@ export default function RootLayout({
 	return (
 		<html lang="pt" className="">
 			<head></head>
-			<body className="font-imfell h-full">
-				{process.env.RAILWAY_PUBLIC_DOMAIN.length > 4 &&
-					children}
-			</body>
+			<body className="font-imfell h-full">{children}</body>
 		</html>
 	);
 }
