@@ -30,7 +30,7 @@ export default function aboutPage() {
 
 					<div className="p-16 text-start text-lg ">
 						{data != null ? (
-							data.about.value
+							data.value
 						) : (
 							<DefaultSkeleton />
 						)}
